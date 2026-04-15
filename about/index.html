@@ -17,6 +17,21 @@
     .content-block p { font-size: 1.05rem; line-height: 1.8; color: var(--text-muted); margin-bottom: 1.5rem; }
     .content-block p:last-child { margin-bottom: 0; }
 
+    /* Team section */
+    .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 2rem; margin-top: 3rem; }
+    .team-card { background: var(--bg); border: 1px solid var(--border); border-radius: 2px; overflow: hidden; }
+    .team-card__photo { width: 100%; aspect-ratio: 3/4; background: var(--cream); display: flex; align-items: center; justify-content: center; }
+    .team-card__photo-placeholder { display: flex; flex-direction: column; align-items: center; gap: 0.75rem; color: var(--text-muted); }
+    .team-card__photo-placeholder svg { opacity: 0.35; }
+    .team-card__photo-placeholder span { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; }
+    .team-card__body { padding: 1.75rem; }
+    .team-card__name { font-family: var(--serif); font-size: 1.35rem; font-weight: 400; color: var(--text); margin-bottom: 0.25rem; }
+    .team-card__role { font-size: 0.75rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; }
+    .team-card__bio { font-size: 0.95rem; line-height: 1.7; color: var(--text-muted); }
+    .team-card__bio p { margin-bottom: 0.5rem; }
+    .team-card__bio p:last-child { margin-bottom: 0; }
+    .team-placeholder-note { margin-top: 2.5rem; padding: 1.25rem 1.5rem; background: var(--cream); border-left: 3px solid var(--accent); border-radius: 2px; font-size: 0.875rem; color: var(--text-muted); line-height: 1.6; }
+
     /* Core values grid */
     .values-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin-top: 3rem; }
     .value-card { padding: 2.5rem; background: var(--bg); border: 1px solid var(--border); border-radius: 2px; }
@@ -178,6 +193,66 @@
     </section>
 
     <section class="page-section">
+      <span class="section-eyebrow">The Team</span>
+      <h2 class="section-title">The people behind <em>the projects.</em></h2>
+
+      <div class="team-grid">
+        <div class="team-card fade-in">
+          <div class="team-card__photo">
+            <div class="team-card__photo-placeholder">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+              <span>Photo coming soon</span>
+            </div>
+          </div>
+          <div class="team-card__body">
+            <p class="team-card__name">Gemma</p>
+            <p class="team-card__role">[ Role ]</p>
+            <div class="team-card__bio">
+              <p>[ Background sentence to be provided by Gemma. ]</p>
+              <p>[ What she brings to clients — to be provided by Gemma. ]</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="team-card fade-in fade-in-delay-1">
+          <div class="team-card__photo">
+            <div class="team-card__photo-placeholder">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+              <span>Photo coming soon</span>
+            </div>
+          </div>
+          <div class="team-card__body">
+            <p class="team-card__name">Shane</p>
+            <p class="team-card__role">[ Role ]</p>
+            <div class="team-card__bio">
+              <p>[ Background sentence to be provided by Shane. ]</p>
+              <p>[ What he brings to clients — to be provided by Shane. ]</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="team-card fade-in fade-in-delay-2">
+          <div class="team-card__photo">
+            <div class="team-card__photo-placeholder">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+              <span>Photo coming soon</span>
+            </div>
+          </div>
+          <div class="team-card__body">
+            <p class="team-card__name">Jamie</p>
+            <p class="team-card__role">[ Role ]</p>
+            <div class="team-card__bio">
+              <p>[ Background sentence to be provided by Jamie. ]</p>
+              <p>[ What he brings to clients — to be provided by Jamie. ]</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <p class="team-placeholder-note">Team bios to be provided by Gemma, Shane and Jamie. Suggested format: name, role, a sentence on background, a sentence on what they bring to clients.</p>
+    </section>
+
+    <section class="page-section--alt">
       <div class="grid-2 fade-in" style="align-items: center;">
         <div class="about-image" style="order: -1;">
           <img src="../images/19-kitchen.jpg" alt="Finished high quality renovation" />

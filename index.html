@@ -1,0 +1,1201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sail Renovate | Trusted Home Renovations Bristol</title>
+  <meta name="description" content="Bristol's trusted renovation experts. From home repairs to complete transformations and eco-friendly improvements — Sail Renovate delivers quality craftsmanship." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garant:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/global.css" />
+  <style>
+    /* ── Hero ──────────────────────────────────────────────── */
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 100vh;
+      padding-top: var(--nav-h);
+    }
+    .hero__content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 6rem 4rem 6rem 3rem;
+      max-width: 680px;
+    }
+    .hero__eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.75rem;
+    }
+    .hero__eyebrow::before {
+      content: '';
+      display: block;
+      width: 28px; height: 1px;
+      background: var(--accent);
+    }
+    .hero__heading {
+      font-family: var(--serif);
+      font-size: clamp(3.2rem, 6vw, 5.5rem);
+      font-weight: 300;
+      line-height: 1.06;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      margin-bottom: 2rem;
+    }
+    .hero__heading em {
+      font-style: italic;
+      color: var(--accent);
+    }
+    .hero__sub {
+      font-size: 1.05rem;
+      font-weight: 300;
+      line-height: 1.75;
+      color: var(--text-muted);
+      max-width: 460px;
+      margin-bottom: 2.75rem;
+    }
+    .hero__ctas {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .hero__stats {
+      display: flex;
+      gap: 3rem;
+      margin-top: 3.5rem;
+      padding-top: 2.5rem;
+      border-top: 1px solid var(--border);
+    }
+    .stat__num {
+      font-family: var(--serif);
+      font-size: 2rem;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1;
+      margin-bottom: 0.25rem;
+    }
+    .stat__num em { color: var(--accent); font-style: normal; }
+    .stat__label {
+      font-size: 0.78rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+    .hero__image {
+      position: relative;
+      overflow: hidden;
+    }
+    .hero__image img {
+      position: absolute;
+      inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 8s var(--ease);
+    }
+    .hero__image:hover img { transform: scale(1.04); }
+    .hero__badge {
+      position: absolute;
+      bottom: 2.5rem;
+      left: -1.5rem;
+      background: var(--bg);
+      border-radius: 4px;
+      padding: 1.25rem 1.5rem;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+      max-width: 220px;
+    }
+    .hero__badge-text {
+      font-family: var(--serif);
+      font-size: 1.05rem;
+      font-weight: 400;
+      line-height: 1.4;
+      color: var(--text);
+      margin-bottom: 0.5rem;
+    }
+    .hero__badge-text em { color: var(--accent); font-style: italic; }
+    .hero__badge-sub {
+      font-size: 0.72rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    /* ── Intro Band ────────────────────────────────────────── */
+    .intro-band {
+      background: var(--bg-dark);
+      color: #fff;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+    }
+    .intro-item {
+      padding: 3rem 2.5rem;
+      border-right: 1px solid rgba(255,255,255,0.08);
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    .intro-item:last-child { border-right: none; }
+    .intro-item__icon {
+      width: 40px; height: 40px;
+      margin-bottom: 0.5rem;
+      opacity: 0.7;
+    }
+    .intro-item__title {
+      font-family: var(--serif);
+      font-size: 1.3rem;
+      font-weight: 400;
+      letter-spacing: -0.01em;
+      color: #fff;
+    }
+    .intro-item__body {
+      font-size: 0.88rem;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.55);
+      font-weight: 300;
+    }
+
+    /* ── Services Grid ─────────────────────────────────────── */
+    .services { padding: 6rem 3rem; }
+    .section-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 3.5rem;
+    }
+    .section-link {
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      white-space: nowrap;
+      transition: color 0.2s;
+    }
+    .section-link:hover { color: var(--accent); }
+    .section-link svg { transition: transform 0.2s; }
+    .section-link:hover svg { transform: translateX(4px); }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5px;
+      background: var(--border);
+    }
+    .service-card {
+      position: relative;
+      background: var(--bg);
+      overflow: hidden;
+      aspect-ratio: 3/4;
+      cursor: pointer;
+    }
+    .service-card__img {
+      position: absolute;
+      inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transform-origin: center;
+      transition: transform 0.7s var(--ease);
+    }
+    .service-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(24,22,14,0.85) 0%, rgba(24,22,14,0.2) 50%, transparent 100%);
+      transition: opacity 0.4s;
+    }
+    .service-card:hover .service-card__img { transform: scale(1.06); }
+    .service-card__content {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 2rem 1.75rem;
+      z-index: 1;
+    }
+    .service-card__tag {
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 0.6rem;
+    }
+    .service-card__title {
+      font-family: var(--serif);
+      font-size: 1.5rem;
+      font-weight: 400;
+      color: #fff;
+      line-height: 1.2;
+      margin-bottom: 0.85rem;
+    }
+    .service-card__cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.75);
+      transform: translateY(8px);
+      opacity: 0;
+      transition: all 0.3s var(--ease);
+    }
+    .service-card:hover .service-card__cta {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── Why Us ────────────────────────────────────────────── */
+    .why-us {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      background: var(--bg-warm);
+    }
+    .why-us__content {
+      padding: 7rem 4rem 7rem 3rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .why-us__list {
+      display: flex;
+      flex-direction: column;
+      gap: 2.5rem;
+      margin-top: 3rem;
+    }
+    .why-item {
+      display: flex;
+      gap: 1.5rem;
+      padding-bottom: 2.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .why-item:last-child { border-bottom: none; padding-bottom: 0; }
+    .why-item__num {
+      font-family: var(--serif);
+      font-size: 2.5rem;
+      font-weight: 300;
+      color: var(--accent);
+      opacity: 0.4;
+      line-height: 1;
+      flex-shrink: 0;
+      min-width: 2.5rem;
+    }
+    .why-item__title {
+      font-family: var(--serif);
+      font-size: 1.2rem;
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.01em;
+    }
+    .why-item__body {
+      font-size: 0.88rem;
+      line-height: 1.75;
+      color: var(--text-muted);
+      font-weight: 300;
+    }
+    .why-us__image {
+      position: relative;
+      overflow: hidden;
+      min-height: 600px;
+    }
+    .why-us__image img {
+      position: absolute;
+      inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+    }
+    .why-us__image-badge {
+      position: absolute;
+      bottom: 2.5rem;
+      right: 2.5rem;
+      background: var(--accent);
+      color: #fff;
+      padding: 1.5rem;
+      text-align: center;
+      border-radius: 2px;
+    }
+    .why-us__image-badge strong {
+      display: block;
+      font-family: var(--serif);
+      font-size: 2.5rem;
+      font-weight: 600;
+      line-height: 1;
+    }
+    .why-us__image-badge span {
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      opacity: 0.85;
+    }
+
+    /* ── Portfolio ─────────────────────────────────────────── */
+    .portfolio { padding: 6rem 3rem; }
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      grid-template-rows: auto;
+      gap: 1rem;
+      margin-top: 3.5rem;
+    }
+    .proj-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 2px;
+      background: var(--cream);
+      cursor: pointer;
+    }
+    .proj-card:nth-child(1) { grid-column: 1 / 6; grid-row: 1 / 3; }
+    .proj-card:nth-child(2) { grid-column: 6 / 10; grid-row: 1 / 2; }
+    .proj-card:nth-child(3) { grid-column: 10 / 13; grid-row: 1 / 2; }
+    .proj-card:nth-child(4) { grid-column: 6 / 9; grid-row: 2 / 3; }
+    .proj-card:nth-child(5) { grid-column: 9 / 13; grid-row: 2 / 3; }
+    .proj-card img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      min-height: 260px;
+      transition: transform 0.6s var(--ease);
+    }
+    .proj-card:hover img { transform: scale(1.05); }
+    .proj-card__overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(24,22,14,0.8) 0%, transparent 50%);
+      opacity: 0;
+      transition: opacity 0.35s;
+    }
+    .proj-card:hover .proj-card__overlay { opacity: 1; }
+    .proj-card__info {
+      position: absolute;
+      bottom: 1.5rem;
+      left: 1.5rem;
+      right: 1.5rem;
+      transform: translateY(8px);
+      opacity: 0;
+      transition: all 0.35s var(--ease);
+    }
+    .proj-card:hover .proj-card__info { opacity: 1; transform: translateY(0); }
+    .proj-card__type {
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 0.3rem;
+    }
+    .proj-card__title {
+      font-family: var(--serif);
+      font-size: 1.2rem;
+      font-weight: 400;
+      color: #fff;
+    }
+    .portfolio-cta {
+      text-align: center;
+      margin-top: 3rem;
+    }
+
+    /* ── Philosophy Quote ──────────────────────────────────── */
+    .philosophy {
+      background: var(--bg-dark);
+      padding: 8rem 3rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .philosophy::before {
+      content: '"';
+      position: absolute;
+      top: -2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: var(--serif);
+      font-size: 18rem;
+      font-weight: 600;
+      color: rgba(200, 88, 20, 0.06);
+      line-height: 1;
+      pointer-events: none;
+    }
+    .philosophy__quote {
+      font-family: var(--serif);
+      font-size: clamp(1.6rem, 3.5vw, 2.8rem);
+      font-weight: 300;
+      font-style: italic;
+      color: #fff;
+      line-height: 1.5;
+      max-width: 800px;
+      margin: 0 auto 2rem;
+      letter-spacing: -0.01em;
+    }
+    .philosophy__attr {
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+    }
+
+    /* ── FAQ ───────────────────────────────────────────────── */
+    .faq { padding: 6rem 3rem; max-width: 900px; margin: 0 auto; }
+    .faq-list { margin-top: 3rem; }
+    .faq-item {
+      border-bottom: 1px solid var(--border);
+    }
+    .faq-item:first-child { border-top: 1px solid var(--border); }
+    .faq-question {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+      padding: 1.6rem 0;
+      background: none;
+      border: none;
+      text-align: left;
+      width: 100%;
+      font-size: 0.97rem;
+      font-weight: 500;
+      color: var(--text);
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+    .faq-question:hover { color: var(--accent); }
+    .faq-icon {
+      flex-shrink: 0;
+      width: 20px; height: 20px;
+      position: relative;
+    }
+    .faq-icon::before, .faq-icon::after {
+      content: '';
+      position: absolute;
+      background: currentColor;
+      border-radius: 1px;
+      transition: transform 0.3s var(--ease), opacity 0.3s;
+    }
+    .faq-icon::before { width: 12px; height: 1.5px; top: 50%; left: 50%; transform: translate(-50%,-50%); }
+    .faq-icon::after  { width: 1.5px; height: 12px; top: 50%; left: 50%; transform: translate(-50%,-50%); }
+    .faq-item.open .faq-icon::after { transform: translate(-50%,-50%) rotate(90deg); opacity: 0; }
+    .faq-answer {
+      overflow: hidden;
+      max-height: 0;
+      transition: max-height 0.4s var(--ease);
+    }
+    .faq-item.open .faq-answer { max-height: 300px; }
+    .faq-answer p {
+      padding: 0 0 1.75rem;
+      font-size: 0.9rem;
+      line-height: 1.8;
+      color: var(--text-muted);
+      font-weight: 300;
+    }
+
+    /* ── Contact ───────────────────────────────────────────── */
+    .contact {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+    .contact__info {
+      padding: 6rem 4rem 6rem 3rem;
+      background: var(--bg-warm);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 2.5rem;
+    }
+    .contact__detail {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+    .contact__detail-icon {
+      width: 20px; height: 20px;
+      flex-shrink: 0;
+      margin-top: 2px;
+      opacity: 0.5;
+    }
+    .contact__detail-label {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 0.3rem;
+    }
+    .contact__detail-value {
+      font-family: var(--serif);
+      font-size: 1.15rem;
+      font-weight: 400;
+    }
+    .contact__detail-value a { transition: color 0.2s; }
+    .contact__detail-value a:hover { color: var(--accent); }
+    .contact__socials {
+      display: flex;
+      gap: 1rem;
+      margin-top: 0.5rem;
+    }
+    .social-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px; height: 40px;
+      border: 1.5px solid var(--border);
+      border-radius: 2px;
+      color: var(--text-muted);
+      transition: all 0.2s;
+    }
+    .social-btn:hover { border-color: var(--accent); color: var(--accent); }
+    .contact__form {
+      padding: 6rem 3rem 6rem 4rem;
+      background: var(--bg);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 1.25rem;
+    }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .form-group label {
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      background: var(--bg-warm);
+      border: 1.5px solid var(--border);
+      border-radius: 2px;
+      padding: 0.8rem 1rem;
+      font-family: var(--sans);
+      font-size: 0.9rem;
+      color: var(--text);
+      transition: border-color 0.2s;
+      width: 100%;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+    .form-group textarea { resize: vertical; min-height: 100px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .form-submit {
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      padding: 0.95rem 2rem;
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      border-radius: 2px;
+      margin-top: 0.5rem;
+      transition: background 0.2s;
+      align-self: flex-start;
+    }
+    .form-submit:hover { background: var(--accent-lt); }
+
+    /* ── Responsive ────────────────────────────────────────── */
+    @media (max-width: 1100px) {
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+      .proj-card:nth-child(1) { grid-column: 1 / 8; grid-row: 1 / 2; }
+      .proj-card:nth-child(2) { grid-column: 8 / 13; grid-row: 1 / 2; }
+      .proj-card:nth-child(3) { grid-column: 1 / 6; grid-row: 2 / 3; }
+      .proj-card:nth-child(4) { grid-column: 6 / 13; grid-row: 2 / 3; }
+      .proj-card:nth-child(5) { display: none; }
+    }
+    @media (max-width: 860px) {
+      .hero { grid-template-columns: 1fr; }
+      .hero__image { min-height: 50vh; order: -1; }
+      .hero__content { padding: 3rem 1.5rem; }
+      .hero__stats { gap: 2rem; }
+      .intro-band { grid-template-columns: 1fr; }
+      .intro-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.08); }
+      .services { padding: 4rem 1.5rem; }
+      .services-grid { grid-template-columns: 1fr; gap: 1px; }
+      .section-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
+      .why-us { grid-template-columns: 1fr; }
+      .why-us__image { min-height: 400px; }
+      .why-us__content { padding: 4rem 1.5rem; }
+      .portfolio { padding: 4rem 1.5rem; }
+      .portfolio-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+      .proj-card:nth-child(n) { grid-column: auto; grid-row: auto; }
+      .proj-card:nth-child(5) { display: block; grid-column: 1 / -1; }
+      .faq { padding: 4rem 1.5rem; }
+      .contact { grid-template-columns: 1fr; }
+      .contact__info, .contact__form { padding: 4rem 1.5rem; }
+      .form-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── Navigation ── -->
+<nav class="nav" id="nav">
+  <a href="/" class="nav__logo" aria-label="Sail Renovate home">
+    <img src="/images/Sail_Renovate_Primary_Orange_MAIN-300x229.png" alt="Sail Renovate" />
+  </a>
+
+  <ul class="nav__links">
+    <li><a href="/">Home</a></li>
+    <li><a href="/about/">About</a></li>
+      <li class="nav__item nav__item--has-mega">
+        <button class="nav__mega-trigger" aria-expanded="false" aria-controls="megaNav">
+          Services
+          <svg class="nav__chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+      </li>
+    <li><a href="/projects/">Our Work</a></li>
+    <li><a href="/testimonials/">Testimonials</a></li>
+    <li><a href="/contact/">Contact</a></li>
+  </ul>
+
+  <a href="/contact/" class="nav__cta">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.12 1.18 2 2 0 012.11 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+    Get a Quote
+  </a>
+
+  <button class="nav__burger" id="burger" aria-label="Open menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+
+  <!-- Mega Nav Panel -->
+  <div class="mega-nav" id="megaNav" role="region" aria-label="Services menu">
+    <div class="mega-nav__inner">
+      <div class="mega-nav__grid">
+        <a href="/services/insurance-reinstatement/" class="mega-nav__card">
+          <svg class="mega-nav__card-icon" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+            <path d="M20 4 L34 10 V22 C34 30 20 36 20 36 C20 36 6 30 6 22 V10 Z"/>
+            <path d="M14 20 L18 24 L26 16"/>
+          </svg>
+          <h4>Insurance Reinstatement</h4>
+          <p>Trusted delivery for insurer-led repairs and reinstatement projects.</p>
+        </a>
+        <a href="/services/property-refurbishment/" class="mega-nav__card">
+          <svg class="mega-nav__card-icon" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+            <rect x="8" y="12" width="24" height="22" rx="1"/>
+            <path d="M4 14 L20 4 L36 14"/>
+            <path d="M16 34 L16 24 L24 24 L24 34"/>
+          </svg>
+          <h4>Property Refurbishment</h4>
+          <p>Complete home makeovers from kitchens and bathrooms to full transformations.</p>
+        </a>
+        <a href="/services/property-maintenance/" class="mega-nav__card">
+          <svg class="mega-nav__card-icon" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+            <path d="M28 8 L32 12 L16 28 L10 30 L12 24 Z"/>
+            <path d="M24 12 L28 16"/>
+            <circle cx="12" cy="28" r="2" fill="currentColor" stroke="none"/>
+          </svg>
+          <h4>Property Maintenance</h4>
+          <p>Scheduled repairs and upkeep to protect and maintain your property.</p>
+        </a>
+        <a href="/services/project-management/" class="mega-nav__card">
+          <svg class="mega-nav__card-icon" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+            <rect x="10" y="8" width="20" height="26" rx="1"/>
+            <path d="M15 16 H25"/>
+            <path d="M15 21 H25"/>
+            <path d="M15 26 H20"/>
+          </svg>
+          <h4>Project Management</h4>
+          <p>Co-ordinated delivery, procurement and contractor scheduling.</p>
+        </a>
+        <a href="/services/claims-management/" class="mega-nav__card">
+          <svg class="mega-nav__card-icon" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+            <circle cx="20" cy="20" r="14"/>
+            <path d="M14 20 L18 24 L26 16"/>
+          </svg>
+          <h4>Claims Management</h4>
+          <p>Working with insurers and homeowners to keep claims moving smoothly.</p>
+        </a>
+      </div>
+      <div class="mega-nav__footer">
+        <a href="/services/" class="mega-nav__all">
+          View all services
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu" role="dialog" aria-label="Navigation menu">
+  <a href="/" class="mobile-link">Home</a>
+  <a href="/about/" class="mobile-link">About</a>
+    <div class="mobile-services">
+      <button class="mobile-services__trigger" aria-expanded="false">
+        Services
+        <svg class="nav__chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="mobile-services__list">
+        <a href="/services/" class="mobile-services__all">All Services</a>
+        <a href="/services/insurance-reinstatement/">Insurance Reinstatement</a>
+        <a href="/services/property-refurbishment/">Property Refurbishment</a>
+        <a href="/services/property-maintenance/">Property Maintenance</a>
+        <a href="/services/project-management/">Project Management</a>
+        <a href="/services/claims-management/">Claims Management</a>
+      </div>
+    </div>
+  <a href="/projects/" class="mobile-link">Our Work</a>
+  <a href="/testimonials/" class="mobile-link">Testimonials</a>
+  <a href="/contact/" class="nav__cta">Get a Quote</a>
+</div>
+
+<!-- ── Hero ── -->
+<section class="hero" aria-labelledby="hero-heading">
+  <div class="hero__content">
+    <span class="hero__eyebrow">Bristol's Trusted Renovation Experts</span>
+    <h1 class="hero__heading" id="hero-heading">
+      <em>Exceptional</em><br>
+      Renovations,<br>
+      Trusted Results.
+    </h1>
+    <p class="hero__sub">
+      From home repairs and insurance restoration to complete property transformations and eco-friendly upgrades — we handle every detail with care.
+    </p>
+    <div class="hero__ctas">
+      <a href="/contact/" class="btn btn--primary">Start Your Project</a>
+      <a href="/projects/" class="btn btn--outline">View Our Work</a>
+    </div>
+    <div class="hero__stats">
+      <div>
+        <div class="stat__num">10<em>+</em></div>
+        <div class="stat__label">Years Experience</div>
+      </div>
+      <div>
+        <div class="stat__num">500<em>+</em></div>
+        <div class="stat__label">Projects Completed</div>
+      </div>
+      <div>
+        <div class="stat__num">4.9<em>★</em></div>
+        <div class="stat__label">Client Rating</div>
+      </div>
+    </div>
+  </div>
+  <div class="hero__image">
+    <img
+      src="/images/5-living-room.jpg"
+      alt="A beautifully renovated modern living space"
+      loading="eager"
+    />
+    <div class="hero__badge">
+      <p class="hero__badge-text">We make your home feel <em>extraordinary</em> again.</p>
+      <span class="hero__badge-sub">Bristol &amp; Surrounding Areas</span>
+    </div>
+  </div>
+</section>
+
+<!-- ── Intro Band ── -->
+<div class="intro-band" role="list" aria-label="Core services overview">
+  <div class="intro-item" role="listitem">
+    <svg class="intro-item__icon" viewBox="0 0 40 40" fill="none" stroke="white" stroke-width="1.5" aria-hidden="true">
+      <rect x="8" y="12" width="24" height="22" rx="1"/>
+      <path d="M4 14 L20 4 L36 14"/>
+      <path d="M16 34 L16 24 L24 24 L24 34"/>
+    </svg>
+    <div class="intro-item__title">Renovations &amp; Repairs</div>
+    <p class="intro-item__body">From emergency call-outs to complete home renovations, trusted by insurers and homeowners across Bristol.</p>
+  </div>
+  <div class="intro-item" role="listitem">
+    <svg class="intro-item__icon" viewBox="0 0 40 40" fill="none" stroke="white" stroke-width="1.5" aria-hidden="true">
+      <circle cx="20" cy="20" r="14"/>
+      <path d="M14 20 L18 24 L26 16"/>
+    </svg>
+    <div class="intro-item__title">Accredited &amp; Qualified</div>
+    <p class="intro-item__body">Qualified surveyors and certified tradespeople ensuring every project meets the highest standards.</p>
+  </div>
+  <div class="intro-item" role="listitem">
+    <svg class="intro-item__icon" viewBox="0 0 40 40" fill="none" stroke="white" stroke-width="1.5" aria-hidden="true">
+      <path d="M20 8 C20 8 10 16 10 24 a10 10 0 0 0 20 0 C30 16 20 8 20 8Z"/>
+      <path d="M16 24 L20 20 L24 24"/>
+    </svg>
+    <div class="intro-item__title">Eco &amp; Smart Upgrades</div>
+    <p class="intro-item__body">Solar panels, smart heating, and sustainable materials for a greener, more efficient home.</p>
+  </div>
+</div>
+
+<!-- ── Services ── -->
+<section class="services" id="services" aria-labelledby="services-heading">
+  <div class="section-header">
+    <div>
+      <p class="section-eyebrow">What We Do</p>
+      <h2 class="section-title" id="services-heading">
+        Our <em>Services</em>
+      </h2>
+    </div>
+    <a href="/services/" class="section-link">
+      All Services
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+  </div>
+
+  <div class="services-grid">
+    <!-- Service 1 -->
+    <div class="service-card fade-in" onclick="window.location='/services/insurance-reinstatement/';">
+      <img class="service-card__img" src="/images/12-bathroom.jpg" alt="Home repair and restoration work" />
+      <div class="service-card__content">
+        <p class="service-card__tag">Insurance Approved</p>
+        <h3 class="service-card__title">Home Repairs &amp; Restoration</h3>
+        <span class="service-card__cta">
+          Learn More
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </span>
+      </div>
+    </div>
+
+    <!-- Service 2 -->
+    <div class="service-card fade-in fade-in-delay-1" onclick="window.location='/services/property-refurbishment/';">
+      <img class="service-card__img" src="/images/3-kitchen.jpg" alt="Professional property renovation" />
+      <div class="service-card__content">
+        <p class="service-card__tag">Full Project Management</p>
+        <h3 class="service-card__title">Property Renovations</h3>
+        <span class="service-card__cta">
+          Learn More
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </span>
+      </div>
+    </div>
+
+    <!-- Service 3 -->
+    <div class="service-card fade-in fade-in-delay-2" onclick="window.location='/services/property-maintenance/';">
+      <img class="service-card__img" src="/images/15-garden.jpg" alt="Eco-friendly home improvements" />
+      <div class="service-card__content">
+        <p class="service-card__tag">Sustainable Living</p>
+        <h3 class="service-card__title">Eco Home Improvements</h3>
+        <span class="service-card__cta">
+          Learn More
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </span>
+      </div>
+    </div>
+
+    <!-- Service 4 -->
+    <div class="service-card fade-in fade-in-delay-3" onclick="window.location='/services/project-management/';">
+      <img class="service-card__img" src="/images/6-study.jpg" alt="Smart home systems installation" />
+      <div class="service-card__content">
+        <p class="service-card__tag">Technology &amp; Automation</p>
+        <h3 class="service-card__title">Smart Home Systems</h3>
+        <span class="service-card__cta">
+          Learn More
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Why Sail Renovate ── -->
+<section class="why-us" id="why-us" aria-labelledby="why-heading">
+  <div class="why-us__content">
+    <div>
+      <p class="section-eyebrow">Why Choose Us</p>
+      <h2 class="section-title" id="why-heading">
+        A team you can<br><em>truly rely on.</em>
+      </h2>
+    </div>
+    <div class="why-us__list">
+      <div class="why-item fade-in">
+        <span class="why-item__num">01</span>
+        <div>
+          <h3 class="why-item__title">Over a Decade of Expertise</h3>
+          <p class="why-item__body">With more than ten years serving homeowners and insurers across Bristol, we've earned a reputation for reliability, quality, and transparency on every project — large or small.</p>
+        </div>
+      </div>
+      <div class="why-item fade-in fade-in-delay-1">
+        <span class="why-item__num">02</span>
+        <div>
+          <h3 class="why-item__title">Qualified Surveyor-Led Projects</h3>
+          <p class="why-item__body">Every project is overseen by a qualified surveyor, ensuring accurate scoping, fair pricing, and a finished result that meets industry standards and your expectations.</p>
+        </div>
+      </div>
+      <div class="why-item fade-in fade-in-delay-2">
+        <span class="why-item__num">03</span>
+        <div>
+          <h3 class="why-item__title">Dedicated Customer Care</h3>
+          <p class="why-item__body">Your dedicated project contact keeps you informed at every stage — no surprises, no delays, just clear communication and a home you'll love.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="why-us__image">
+    <img src="/images/18-front.jpg" alt="Completed renovation by Sail Renovate" />
+    <div class="why-us__image-badge">
+      <strong>10+</strong>
+      <span>Years Trusted</span>
+    </div>
+  </div>
+</section>
+
+<!-- ── Portfolio ── -->
+<section class="portfolio" id="portfolio" aria-labelledby="portfolio-heading">
+  <div class="section-header">
+    <div>
+      <p class="section-eyebrow">Recent Projects</p>
+      <h2 class="section-title" id="portfolio-heading">
+        Our <em>Work</em>
+      </h2>
+    </div>
+    <a href="/projects/" class="section-link">
+      View all projects
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+  </div>
+
+  <div class="portfolio-grid">
+    <div class="proj-card fade-in">
+      <img src="/images/1-front.jpg" alt="Full renovation, Bristol" />
+      <div class="proj-card__overlay"></div>
+      <div class="proj-card__info">
+        <p class="proj-card__type">Full Renovation · Clifton</p>
+        <p class="proj-card__title">Period Property Transformation</p>
+      </div>
+    </div>
+    <div class="proj-card fade-in fade-in-delay-1">
+      <img src="/images/11-bathroom.jpg" alt="Bathroom renovation Bristol" />
+      <div class="proj-card__overlay"></div>
+      <div class="proj-card__info">
+        <p class="proj-card__type">Bathroom · Redland</p>
+        <p class="proj-card__title">Luxury Bathroom Suite</p>
+      </div>
+    </div>
+    <div class="proj-card fade-in fade-in-delay-2">
+      <img src="/images/4-diner.jpg" alt="Kitchen-diner extension Bristol" />
+      <div class="proj-card__overlay"></div>
+      <div class="proj-card__info">
+        <p class="proj-card__type">Extension · Westbury Park</p>
+        <p class="proj-card__title">Kitchen-Diner Extension</p>
+      </div>
+    </div>
+    <div class="proj-card fade-in">
+      <img src="/images/15-garden.jpg" alt="Eco garden and outdoor upgrade" />
+      <div class="proj-card__overlay"></div>
+      <div class="proj-card__info">
+        <p class="proj-card__type">Eco Upgrade · Bishopston</p>
+        <p class="proj-card__title">Solar &amp; Smart Heating</p>
+      </div>
+    </div>
+    <div class="proj-card fade-in fade-in-delay-1">
+      <img src="/images/16-hallway.jpg" alt="Insurance restoration project" />
+      <div class="proj-card__overlay"></div>
+      <div class="proj-card__info">
+        <p class="proj-card__type">Insurance Repair · Horfield</p>
+        <p class="proj-card__title">Fire Damage Restoration</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="portfolio-cta fade-in">
+    <a href="/contact/" class="btn btn--outline">Discuss Your Project</a>
+  </div>
+</section>
+
+<!-- ── Philosophy ── -->
+<section class="philosophy" aria-label="Company philosophy">
+  <blockquote class="philosophy__quote">
+    "We want you to feel proud and excited every time you come home — that's the standard we hold ourselves to on every single project."
+  </blockquote>
+  <p class="philosophy__attr">— The Sail Renovate Team</p>
+</section>
+
+<!-- ── FAQ ── -->
+<section class="faq" id="faq" aria-labelledby="faq-heading">
+  <div style="text-align:center; margin-bottom: 1rem;">
+    <p class="section-eyebrow" style="justify-content:center; display:flex; gap:0.5rem;">Common Questions</p>
+    <h2 class="section-title" id="faq-heading">Frequently Asked</h2>
+  </div>
+
+  <div class="faq-list" role="list">
+    <div class="faq-item" role="listitem">
+      <button class="faq-question" aria-expanded="false">
+        What types of projects do you specialise in?
+        <span class="faq-icon" aria-hidden="true"></span>
+      </button>
+      <div class="faq-answer" role="region">
+        <p>We specialise in home repairs, property renovations, insurance restoration work, eco-friendly improvements (solar panels, smart heating), and smart home systems. We handle everything from small repairs to complete property transformations across Bristol and the surrounding areas.</p>
+      </div>
+    </div>
+
+    <div class="faq-item" role="listitem">
+      <button class="faq-question" aria-expanded="false">
+        Are you approved by insurance companies?
+        <span class="faq-icon" aria-hidden="true"></span>
+      </button>
+      <div class="faq-answer" role="region">
+        <p>Yes. We are trusted by major insurers to carry out restoration and repair work. We handle the documentation and scoping process to make insurance claims as smooth as possible for homeowners.</p>
+      </div>
+    </div>
+
+    <div class="faq-item" role="listitem">
+      <button class="faq-question" aria-expanded="false">
+        How do you manage projects and keep me informed?
+        <span class="faq-icon" aria-hidden="true"></span>
+      </button>
+      <div class="faq-answer" role="region">
+        <p>Each project is assigned a dedicated project manager who acts as your single point of contact. They'll keep you updated throughout the build with regular progress reports, handle any issues that arise, and ensure the project stays on time and on budget.</p>
+      </div>
+    </div>
+
+    <div class="faq-item" role="listitem">
+      <button class="faq-question" aria-expanded="false">
+        Do you offer free quotes?
+        <span class="faq-icon" aria-hidden="true"></span>
+      </button>
+      <div class="faq-answer" role="region">
+        <p>Absolutely. We offer free, no-obligation quotes for all project types. One of our qualified surveyors will visit your property to assess the work required and provide a detailed, transparent quote with no hidden costs.</p>
+      </div>
+    </div>
+
+    <div class="faq-item" role="listitem">
+      <button class="faq-question" aria-expanded="false">
+        What areas do you cover?
+        <span class="faq-icon" aria-hidden="true"></span>
+      </button>
+      <div class="faq-answer" role="region">
+        <p>We're based in Bristol and cover the wider Bristol area including Clifton, Redland, Bishopston, Westbury Park, Horfield, and surrounding areas. If you're unsure whether we cover your location, give us a call and we'll let you know.</p>
+      </div>
+    </div>
+
+    <div class="faq-item" role="listitem">
+      <button class="faq-question" aria-expanded="false">
+        What eco-friendly options do you offer?
+        <span class="faq-icon" aria-hidden="true"></span>
+      </button>
+      <div class="faq-answer" role="region">
+        <p>We offer a full range of eco upgrades including solar panel installation, smart heating systems (such as heat pumps and smart thermostats), improved insulation, sustainable materials, and EV charging points. We can also advise on available government grants and incentives.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Contact ── -->
+<section class="contact" id="contact" aria-labelledby="contact-heading">
+  <div class="contact__info">
+    <div>
+      <p class="section-eyebrow">Get In Touch</p>
+      <h2 class="section-title" id="contact-heading">
+        Start Your <em>Project</em>
+      </h2>
+    </div>
+
+    <div class="contact__detail">
+      <svg class="contact__detail-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.12 1.18 2 2 0 012.11 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+      <div>
+        <p class="contact__detail-label">Phone</p>
+        <div class="contact__detail-value"><a href="tel:01174767858">0117 476 7858</a></div>
+      </div>
+    </div>
+
+    <div class="contact__detail">
+      <svg class="contact__detail-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      <div>
+        <p class="contact__detail-label">Email</p>
+        <div class="contact__detail-value"><a href="mailto:team@sailrenovate.co.uk">team@sailrenovate.co.uk</a></div>
+      </div>
+    </div>
+
+    <div class="contact__detail">
+      <svg class="contact__detail-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      <div>
+        <p class="contact__detail-label">Location</p>
+        <div class="contact__detail-value">Bristol &amp; Surrounding Areas</div>
+      </div>
+    </div>
+
+    <div>
+      <p class="contact__detail-label" style="margin-bottom:0.75rem;">Follow Us</p>
+      <div class="contact__socials">
+        <a href="#" class="social-btn" aria-label="Instagram">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        </a>
+        <a href="#" class="social-btn" aria-label="Facebook">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+        </a>
+        <a href="#" class="social-btn" aria-label="Twitter / X">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="contact__form">
+    <div>
+      <p class="section-eyebrow">Free Quote</p>
+      <h3 class="section-title" style="font-size:1.6rem;">Tell us about<br>your <em>project</em></h3>
+    </div>
+    <form action="mailto:team@sailrenovate.co.uk" method="post" enctype="text/plain" novalidate>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="fname">First Name</label>
+          <input type="text" id="fname" name="first_name" placeholder="Jane" autocomplete="given-name" required />
+        </div>
+        <div class="form-group">
+          <label for="lname">Last Name</label>
+          <input type="text" id="lname" name="last_name" placeholder="Smith" autocomplete="family-name" required />
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" name="email" placeholder="jane@example.com" autocomplete="email" required />
+      </div>
+      <div class="form-group">
+        <label for="phone">Phone Number</label>
+        <input type="tel" id="phone" name="phone" placeholder="07700 900000" autocomplete="tel" />
+      </div>
+      <div class="form-group">
+        <label for="service">Project Type</label>
+        <select id="service" name="service">
+          <option value="">Select a service…</option>
+          <option value="repairs">Home Repairs &amp; Restoration</option>
+          <option value="renovations">Property Renovations</option>
+          <option value="eco">Eco Home Improvements</option>
+          <option value="smart">Smart Home Systems</option>
+          <option value="other">Other / Not Sure</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="message">Tell us more</label>
+        <textarea id="message" name="message" placeholder="Briefly describe your project…"></textarea>
+      </div>
+      <button type="submit" class="form-submit">Send Enquiry →</button>
+    </form>
+  </div>
+</section>
+
+<!-- ── Footer ── -->
+<footer>
+  <div class="footer__logo">
+    <img src="/images/Sail_Renovate_Primary_Orange_MAIN-300x229.png" alt="Sail Renovate" />
+  </div>
+
+  <ul class="footer__links">
+    <li><a href="/about/">About</a></li>
+    <li><a href="/services/">Services</a></li>
+    <li><a href="/projects/">Our Work</a></li>
+    <li><a href="/testimonials/">Testimonials</a></li>
+    <li><a href="/privacy-policy/">Privacy Policy</a></li>
+    <li><a href="/contact/">Contact</a></li>
+  </ul>
+
+  <div class="footer__badges">
+    <span class="badge-pill">Qualified Surveyors</span>
+    <span class="badge-pill">Insurance Approved</span>
+    <span class="badge-pill">Bristol Based</span>
+  </div>
+
+  <p class="footer__copy">&copy; 2026 Sail Renovate Ltd. All rights reserved.</p>
+</footer>
+
+<script src="/js/main.js"></script>
+</body>
+</html>

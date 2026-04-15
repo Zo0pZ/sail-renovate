@@ -1,3 +1,19 @@
+// ── Active nav link ─────────────────────────────────────
+const currentPath = window.location.pathname;
+document.querySelectorAll('.nav__links a, .mobile-link').forEach(link => {
+  const href = link.getAttribute('href');
+  const isHome = href === '/sail-renovate/' || href === '/sail-renovate';
+  if (isHome ? currentPath === href || currentPath === '/sail-renovate'
+              : currentPath.startsWith(href)) {
+    link.setAttribute('aria-current', 'page');
+  }
+});
+// Highlight Services trigger on any /services/ sub-page
+if (currentPath.startsWith('/sail-renovate/services')) {
+  const trigger = document.querySelector('.nav__mega-trigger');
+  if (trigger) trigger.setAttribute('aria-current', 'page');
+}
+
 // ── Sticky nav ──────────────────────────────────────────
 const nav = document.getElementById('nav');
 const onScroll = () => {

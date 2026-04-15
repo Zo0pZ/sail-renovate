@@ -61,8 +61,30 @@ button { cursor: pointer; font-family: inherit; border: none; background: none; 
   text-transform: uppercase;
   color: var(--text-muted);
   transition: color 0.2s;
+  position: relative;
 }
 .nav__links a:hover { color: var(--text); }
+
+/* Active page indicator */
+.nav__links a[aria-current="page"],
+.nav__mega-trigger[aria-current="page"] {
+  color: var(--text);
+}
+.nav__links a[aria-current="page"]::after,
+.nav__mega-trigger[aria-current="page"]::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  right: 0;
+  height: 1.5px;
+  background: var(--accent);
+  border-radius: 1px;
+}
+.nav__mega-trigger { position: relative; }
+
+/* Mobile menu active link */
+.mobile-link[aria-current="page"] { color: var(--accent); }
 .nav__cta {
   display: inline-flex;
   align-items: center;

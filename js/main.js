@@ -15,6 +15,7 @@ burger.addEventListener('click', () => {
   const isOpen = mobileMenu.classList.toggle('open');
   burger.classList.toggle('open', isOpen);
   burger.setAttribute('aria-expanded', isOpen);
+  burger.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
   document.body.style.overflow = isOpen ? 'hidden' : '';
 });
 mobileLinks.forEach(link => {
@@ -22,6 +23,7 @@ mobileLinks.forEach(link => {
     mobileMenu.classList.remove('open');
     burger.classList.remove('open');
     burger.setAttribute('aria-expanded', 'false');
+    burger.setAttribute('aria-label', 'Open menu');
     document.body.style.overflow = '';
   });
 });

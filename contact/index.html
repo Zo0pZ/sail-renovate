@@ -138,7 +138,20 @@
   <div class="mobile-menu" id="mobileMenu" role="dialog" aria-label="Navigation menu">
     <a href="/sail-renovate/" class="mobile-link">Home</a>
     <a href="/sail-renovate/about/" class="mobile-link">About</a>
-    <a href="/sail-renovate/services/" class="mobile-link">Services</a>
+    <div class="mobile-services">
+      <button class="mobile-services__trigger" aria-expanded="false">
+        Services
+        <svg class="nav__chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="mobile-services__list">
+        <a href="/sail-renovate/services/" class="mobile-services__all">All Services</a>
+        <a href="/sail-renovate/services/insurance-reinstatement/">Insurance Reinstatement</a>
+        <a href="/sail-renovate/services/property-refurbishment/">Property Refurbishment</a>
+        <a href="/sail-renovate/services/property-maintenance/">Property Maintenance</a>
+        <a href="/sail-renovate/services/project-management/">Project Management</a>
+        <a href="/sail-renovate/services/claims-management/">Claims Management</a>
+      </div>
+    </div>
     <a href="/sail-renovate/projects/" class="mobile-link">Our Work</a>
     <a href="/sail-renovate/testimonials/" class="mobile-link">Testimonials</a>
     <a href="/sail-renovate/contact/" class="nav__cta">Get a Quote</a>
@@ -245,6 +258,7 @@
       <li><a href="/sail-renovate/projects/">Our Work</a></li>
       <li><a href="/sail-renovate/testimonials/">Testimonials</a></li>
       <li><a href="/sail-renovate/privacy-policy/">Privacy Policy</a></li>
+      <li><a href="/sail-renovate/contact/">Contact</a></li>
     </ul>
     <div class="footer__badges">
       <span class="badge-pill">Qualified Surveyors</span>

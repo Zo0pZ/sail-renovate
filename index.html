@@ -559,6 +559,93 @@
       justify-content: center;
       gap: 1.25rem;
     }
+    .contact__cta {
+      padding: 6rem 3rem 6rem 4rem;
+      background: var(--bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .cta-card {
+      background: var(--bg-warm);
+      border-radius: 2px;
+      padding: 3rem;
+      max-width: 600px;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 2rem;
+      align-items: center;
+    }
+    .cta-card__content {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    .cta-card__title {
+      font-family: var(--serif);
+      font-size: 2rem;
+      font-weight: 400;
+      color: var(--text);
+      line-height: 1.2;
+      margin: 0;
+    }
+    .cta-card__text {
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin: 0;
+      font-size: 0.95rem;
+    }
+    .cta-card__actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .cta-card__actions .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      white-space: nowrap;
+    }
+    .cta-card__guarantee {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding-top: 0.5rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+    .cta-card__guarantee svg {
+      color: var(--accent);
+      flex-shrink: 0;
+    }
+    .cta-card__visual {
+      position: relative;
+    }
+    .cta-badge {
+      background: var(--accent);
+      color: #fff;
+      padding: 1.5rem;
+      border-radius: 2px;
+      text-align: center;
+      min-width: 120px;
+    }
+    .cta-badge strong {
+      display: block;
+      font-size: 2rem;
+      font-weight: 600;
+      line-height: 1;
+      margin-bottom: 0.25rem;
+    }
+    .cta-badge span {
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      opacity: 0.9;
+    }
     .form-group {
       display: flex;
       flex-direction: column;
@@ -636,8 +723,23 @@
       .proj-card:nth-child(5) { display: block; grid-column: 1 / -1; }
       .faq { padding: 4rem 1.5rem; }
       .contact { grid-template-columns: 1fr; }
-      .contact__info, .contact__form { padding: 4rem 1.5rem; }
+      .contact__info, .contact__cta { padding: 4rem 1.5rem; }
       .form-row { grid-template-columns: 1fr; }
+      .cta-card {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 2rem;
+      }
+      .cta-card__actions {
+        justify-content: center;
+      }
+      .cta-card__guarantee {
+        justify-content: center;
+      }
+      .cta-card__visual {
+        display: flex;
+        justify-content: center;
+      }
     }
   </style>
 </head>
@@ -1135,47 +1237,36 @@
     </div>
   </div>
 
-  <div class="contact__form">
-    <div>
-      <p class="section-eyebrow">Free Quote</p>
-      <h3 class="section-title" style="font-size:1.6rem;">Tell us about<br>your <em>project</em></h3>
+  <div class="contact__cta">
+    <div class="cta-card">
+      <div class="cta-card__content">
+        <p class="section-eyebrow">Ready to Transform Your Home?</p>
+        <h3 class="cta-card__title">Let's discuss your <em>project</em></h3>
+        <p class="cta-card__text">
+          From emergency repairs to complete renovations, our qualified surveyors provide free, no-obligation consultations and quotes. Every project is handled with care, transparency, and the highest standards.
+        </p>
+        <div class="cta-card__actions">
+          <a href="tel:01174767858" class="btn btn--primary">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.12 1.18 2 2 0 012.11 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+            Call 0117 476 7858
+          </a>
+          <a href="mailto:team@sailrenovate.co.uk" class="btn btn--outline">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            Email for Quote
+          </a>
+        </div>
+        <div class="cta-card__guarantee">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="16,8 8,12 16,16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+          <span>Free consultation • No obligation • Transparent pricing</span>
+        </div>
+      </div>
+      <div class="cta-card__visual">
+        <div class="cta-badge">
+          <strong>500+</strong>
+          <span>Happy Homes</span>
+        </div>
+      </div>
     </div>
-    <form action="mailto:team@sailrenovate.co.uk" method="post" enctype="text/plain" novalidate>
-      <div class="form-row">
-        <div class="form-group">
-          <label for="fname">First Name</label>
-          <input type="text" id="fname" name="first_name" placeholder="Jane" autocomplete="given-name" required />
-        </div>
-        <div class="form-group">
-          <label for="lname">Last Name</label>
-          <input type="text" id="lname" name="last_name" placeholder="Smith" autocomplete="family-name" required />
-        </div>
-      </div>
-      <div class="form-group">
-        <label for="email">Email Address</label>
-        <input type="email" id="email" name="email" placeholder="jane@example.com" autocomplete="email" required />
-      </div>
-      <div class="form-group">
-        <label for="phone">Phone Number</label>
-        <input type="tel" id="phone" name="phone" placeholder="07700 900000" autocomplete="tel" />
-      </div>
-      <div class="form-group">
-        <label for="service">Project Type</label>
-        <select id="service" name="service">
-          <option value="">Select a service…</option>
-          <option value="repairs">Home Repairs &amp; Restoration</option>
-          <option value="renovations">Property Renovations</option>
-          <option value="eco">Eco Home Improvements</option>
-          <option value="smart">Smart Home Systems</option>
-          <option value="other">Other / Not Sure</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label for="message">Tell us more</label>
-        <textarea id="message" name="message" placeholder="Briefly describe your project…"></textarea>
-      </div>
-      <button type="submit" class="form-submit">Send Enquiry →</button>
-    </form>
   </div>
 </section>
 

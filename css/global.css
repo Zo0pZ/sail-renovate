@@ -232,8 +232,8 @@ footer {
 }
 .footer__logo img { height: 38px; width: auto; display: block; filter: brightness(0) invert(1); opacity: 0.85; }
 .footer__links { display: flex; gap: 2rem; list-style: none; flex-wrap: wrap; }
-.footer__links a { font-size: 0.78rem; letter-spacing: 0.04em; text-transform: uppercase; transition: color 0.2s; }
-.footer__links a:hover { color: rgba(255,255,255,0.85); }
+.footer__links a { font-size: 0.78rem; letter-spacing: 0.04em; text-transform: uppercase; transition: color 0.2s; color: rgba(255,255,255,0.5); }
+.footer__links a:hover { color: rgba(255,255,255,0.85) !important; }
 .footer__copy { font-size: 0.75rem; }
 .footer__badges { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; }
 .badge-pill {

@@ -32,13 +32,76 @@
     .team-card__bio p:last-child { margin-bottom: 0; }
     .team-placeholder-note { margin-top: 2.5rem; padding: 1.25rem 1.5rem; background: var(--cream); border-left: 3px solid var(--accent); border-radius: 2px; font-size: 0.875rem; color: var(--text-muted); line-height: 1.6; }
 
+    /* Hero stats */
+    .about-hero-stats {
+      display: grid;
+      grid-template-columns: repeat(4, auto);
+      gap: 2.5rem;
+      margin-top: 2.5rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+      justify-content: start;
+    }
+    .about-hero-stats .stat__num {
+      font-family: var(--serif);
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1;
+      margin-bottom: 0.25rem;
+    }
+    .about-hero-stats .stat__num em { color: var(--accent); font-style: normal; }
+    .about-hero-stats .stat__label {
+      font-size: 0.75rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
     /* Core values grid */
     .values-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin-top: 3rem; }
     .value-card { padding: 2.5rem; background: var(--bg); border: 1px solid var(--border); border-radius: 2px; }
-    .value-card h3 { font-family: var(--serif); font-size: 1.35rem; margin-bottom: 1rem; color: var(--text); font-weight: 400;}
+    .value-card__icon { width: 40px; height: 40px; color: var(--accent); margin-bottom: 1.25rem; }
+    .value-card__stat { display: inline-block; font-size: 0.72rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); background: rgba(200,88,20,0.08); border: 1px solid rgba(200,88,20,0.2); border-radius: 2px; padding: 0.2rem 0.55rem; margin-bottom: 0.9rem; }
+    .value-card h3 { font-family: var(--serif); font-size: 1.35rem; margin-bottom: 0.75rem; color: var(--text); font-weight: 400;}
     .value-card p { font-size: 0.95rem; line-height: 1.7; color: var(--text-muted); margin: 0; }
 
-    @media (max-width:860px) { .grid-2 { grid-template-columns: 1fr; gap: 2rem; } }
+    /* Testimonial */
+    .about-testimonial {
+      background: var(--bg-dark);
+      padding: 5rem 3rem;
+      text-align: center;
+    }
+    .about-testimonial blockquote {
+      font-family: var(--serif);
+      font-size: clamp(1.25rem, 2.5vw, 1.7rem);
+      font-weight: 300;
+      line-height: 1.55;
+      color: #fff;
+      max-width: 760px;
+      margin: 0 auto 1.75rem;
+      letter-spacing: -0.01em;
+    }
+    .about-testimonial blockquote em { color: var(--accent); font-style: italic; }
+    .about-testimonial__attr {
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+    }
+    .about-testimonial__stars {
+      color: var(--accent);
+      font-size: 1rem;
+      letter-spacing: 0.1em;
+      margin-bottom: 1.5rem;
+    }
+
+    @media (max-width:860px) {
+      .grid-2 { grid-template-columns: 1fr; gap: 2rem; }
+      .about-hero-stats { grid-template-columns: repeat(2, auto); gap: 1.5rem; }
+      .about-testimonial { padding: 3.5rem 1.5rem; }
+    }
   </style>
 </head>
 <body>
@@ -154,6 +217,27 @@
       <span class="section-eyebrow">About Us</span>
       <h1 class="hero__heading">Bristol's trusted team for <em>quality renovations</em>.</h1>
       <p class="hero__sub">We are a surveyor-led renovation and reinstatement company, dedicated to bringing professionalism, transparency, and exceptional craftsmanship to every project.</p>
+      <div style="margin-top: 2rem;">
+        <a href="/sail-renovate/contact/" class="btn btn--primary">Get a Free Quote</a>
+      </div>
+      <div class="about-hero-stats">
+        <div>
+          <div class="stat__num">10<em>+</em></div>
+          <div class="stat__label">Years Experience</div>
+        </div>
+        <div>
+          <div class="stat__num">500<em>+</em></div>
+          <div class="stat__label">Projects Completed</div>
+        </div>
+        <div>
+          <div class="stat__num">4.9<em>★</em></div>
+          <div class="stat__label">Client Rating</div>
+        </div>
+        <div>
+          <div class="stat__num" style="color: var(--accent);">✓</div>
+          <div class="stat__label">Insurance Approved</div>
+        </div>
+      </div>
     </section>
 
     <section class="page-section">
@@ -161,9 +245,9 @@
         <div class="content-block">
           <span class="section-eyebrow">Our Story</span>
           <h2 class="section-title">Built on a foundation of <em>trust and expertise.</em></h2>
-          <p>Sail Renovate was founded with a clear mission: to elevate the standard of property renovations and insurance reinstatements in Bristol and the surrounding areas.</p>
-          <p>With over a decade of experience across the construction and insurance sectors, our founders recognised that homeowners needed more than just skilled tradespeople — they needed reliable project management, clear communication, and the reassurance of qualified oversight.</p>
-          <p>Today, we handle everything from emergency insurance repairs to full home transformations, all managed by our dedicated team of qualified surveyors and experienced project managers.</p>
+          <p>Sail Renovate was founded in 2023 by Shane, Jamie, and Gemma — with a clear mission: to elevate the standard of property renovations and insurance reinstatements in Bristol and the surrounding areas.</p>
+          <p>Between them, Shane, Jamie, and Gemma bring over a decade of hands-on experience across construction, surveying, and insurance. They recognised that homeowners needed more than just skilled tradespeople — they needed reliable project management, clear communication, and the reassurance of qualified oversight on every job.</p>
+          <p>Today, Sail Renovate handles everything from emergency insurance repairs to full home transformations, all managed by a dedicated team who treats every property as if it were their own.</p>
         </div>
         <div class="about-image">
           <img src="../images/2-rear.jpg" alt="Sail Renovate team working on site" />
@@ -178,19 +262,42 @@
         
         <div class="values-grid">
           <div class="value-card fade-in">
+            <svg class="value-card__icon" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+              <path d="M20 4 L34 10 V22 C34 30 20 36 20 36 C20 36 6 30 6 22 V10 Z"/>
+              <path d="M14 20 L18 24 L26 16"/>
+            </svg>
+            <span class="value-card__stat">100% Surveyor Overseen</span>
             <h3>Surveyor-Led Delivery</h3>
             <p>Every project is assessed, scoped, and overseen by a qualified surveyor. This ensures accuracy in our quoting and adherence to the highest building standards throughout the build.</p>
           </div>
           <div class="value-card fade-in fade-in-delay-1">
+            <svg class="value-card__icon" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+              <path d="M8 10 h24 a2 2 0 0 1 2 2 v12 a2 2 0 0 1 -2 2 h-12 l-6 5 v-5 h-6 a2 2 0 0 1 -2 -2 v-12 a2 2 0 0 1 2 -2z"/>
+            </svg>
+            <span class="value-card__stat">Dedicated Contact on Every Project</span>
             <h3>Transparent Communication</h3>
             <p>We believe in keeping you informed. You'll have a dedicated point of contact providing regular updates, so you always know exactly what is happening with your property.</p>
           </div>
           <div class="value-card fade-in fade-in-delay-2">
+            <svg class="value-card__icon" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+              <path d="M14 8 L10 14 L20 32 L30 14 L26 8 Z"/>
+              <path d="M14 8 h12"/>
+              <path d="M11 14 h18"/>
+            </svg>
+            <span class="value-card__stat">Vetted &amp; Certified Tradespeople</span>
             <h3>Exceptional Craftsmanship</h3>
             <p>We never compromise on quality. Our network of vetted, certified tradespeople take immense pride in their work, resulting in finishes that stand the test of time.</p>
           </div>
         </div>
       </div>
+    </section>
+
+    <section class="about-testimonial">
+      <div class="about-testimonial__stars" aria-label="5 stars">★★★★★</div>
+      <blockquote>
+        "From the very first meeting, Sail Renovate made the whole process feel <em>effortless</em>. Shane walked us through every stage and we always knew exactly what was happening. The quality of finish is absolutely outstanding — we couldn't be happier with our home."
+      </blockquote>
+      <p class="about-testimonial__attr">Sarah M. &mdash; Full Renovation, Clifton</p>
     </section>
 
     <section class="page-section">
@@ -261,7 +368,8 @@
         <div class="content-block">
           <h2 class="section-title">Trusted by homeowners and <em>insurers alike.</em></h2>
           <p>Our rigorous standards have earned us the trust of major insurance providers to handle complex reinstatement works. We bring that exact same level of scrutiny, project management, and attention to detail to our private home renovations.</p>
-          <div style="margin-top: 2rem;">
+          <div style="margin-top: 2rem; display: flex; gap: 1rem; flex-wrap: wrap;">
+            <a href="/sail-renovate/contact/" class="btn btn--primary">Get a Free Quote</a>
             <a href="/sail-renovate/projects/" class="btn btn--outline">View Our Work</a>
           </div>
         </div>

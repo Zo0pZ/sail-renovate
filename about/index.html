@@ -59,12 +59,37 @@
     }
 
     /* Core values grid */
-    .values-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin-top: 3rem; }
-    .value-card { padding: 2.5rem; background: var(--bg); border: 1px solid var(--border); border-radius: 2px; }
-    .value-card__icon { width: 40px; height: 40px; color: var(--accent); margin-bottom: 1.25rem; }
-    .value-card__stat { display: inline-block; font-size: 0.72rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); background: rgba(200,88,20,0.08); border: 1px solid rgba(200,88,20,0.2); border-radius: 2px; padding: 0.2rem 0.55rem; margin-bottom: 0.9rem; }
-    .value-card h3 { font-family: var(--serif); font-size: 1.35rem; margin-bottom: 0.75rem; color: var(--text); font-weight: 400;}
-    .value-card p { font-size: 0.95rem; line-height: 1.7; color: var(--text-muted); margin: 0; }
+    .values-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5px; background: var(--border); margin-top: 3rem; }
+    .value-card {
+      padding: 2.75rem 2.5rem;
+      background: var(--bg);
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .value-card__icon-wrap {
+      width: 48px;
+      height: 48px;
+      background: rgba(200,88,20,0.08);
+      border-radius: 2px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+      flex-shrink: 0;
+    }
+    .value-card__icon-wrap svg {
+      width: 22px;
+      height: 22px;
+      stroke: var(--accent);
+      fill: none;
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .value-card h3 { font-family: var(--serif); font-size: 1.3rem; margin-bottom: 0.75rem; color: var(--text); font-weight: 400; line-height: 1.2; }
+    .value-card p { font-size: 0.92rem; line-height: 1.75; color: var(--text-muted); margin: 0; }
+    @media (max-width: 860px) { .values-grid { grid-template-columns: 1fr; } }
 
     /* Testimonial */
     .about-testimonial {
@@ -262,29 +287,32 @@
         
         <div class="values-grid">
           <div class="value-card fade-in">
-            <svg class="value-card__icon" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-              <path d="M20 4 L34 10 V22 C34 30 20 36 20 36 C20 36 6 30 6 22 V10 Z"/>
-              <path d="M14 20 L18 24 L26 16"/>
-            </svg>
-            <span class="value-card__stat">100% Surveyor Overseen</span>
+            <div class="value-card__icon-wrap" aria-hidden="true">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2L20 6v6c0 5-3.5 9.74-8 11C7.5 21.74 4 17 4 12V6l8-4z"/>
+                <path d="M9 12l2 2 4-4"/>
+              </svg>
+            </div>
             <h3>Surveyor-Led Delivery</h3>
             <p>Every project is assessed, scoped, and overseen by a qualified surveyor. This ensures accuracy in our quoting and adherence to the highest building standards throughout the build.</p>
           </div>
           <div class="value-card fade-in fade-in-delay-1">
-            <svg class="value-card__icon" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-              <path d="M8 10 h24 a2 2 0 0 1 2 2 v12 a2 2 0 0 1 -2 2 h-12 l-6 5 v-5 h-6 a2 2 0 0 1 -2 -2 v-12 a2 2 0 0 1 2 -2z"/>
-            </svg>
-            <span class="value-card__stat">Dedicated Contact on Every Project</span>
+            <div class="value-card__icon-wrap" aria-hidden="true">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+              </svg>
+            </div>
             <h3>Transparent Communication</h3>
             <p>We believe in keeping you informed. You'll have a dedicated point of contact providing regular updates, so you always know exactly what is happening with your property.</p>
           </div>
           <div class="value-card fade-in fade-in-delay-2">
-            <svg class="value-card__icon" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-              <path d="M14 8 L10 14 L20 32 L30 14 L26 8 Z"/>
-              <path d="M14 8 h12"/>
-              <path d="M11 14 h18"/>
-            </svg>
-            <span class="value-card__stat">Vetted &amp; Certified Tradespeople</span>
+            <div class="value-card__icon-wrap" aria-hidden="true">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12" cy="8" r="6"/>
+                <path d="M8 14v7M12 14v7M16 14v7"/>
+                <path d="M6 21h12"/>
+              </svg>
+            </div>
             <h3>Exceptional Craftsmanship</h3>
             <p>We never compromise on quality. Our network of vetted, certified tradespeople take immense pride in their work, resulting in finishes that stand the test of time.</p>
           </div>

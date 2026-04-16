@@ -203,6 +203,8 @@
     .service-card {
       position: relative;
       background: var(--bg);
+      text-decoration: none;
+      display: block;
       overflow: hidden;
       aspect-ratio: 3/4;
       cursor: pointer;
@@ -966,7 +968,7 @@
 
   <div class="services-grid">
     <!-- Service 1 -->
-    <div class="service-card fade-in" onclick="window.location='/services/insurance-reinstatement/';">
+    <a href="/sail-renovate/services/insurance-reinstatement/" class="service-card fade-in">
       <img class="service-card__img" src="images/12-bathroom.jpg" alt="Home repair and restoration work" />
       <div class="service-card__content">
         <p class="service-card__tag">Insurance Approved</p>
@@ -976,10 +978,10 @@
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </span>
       </div>
-    </div>
+    </a>
 
     <!-- Service 2 -->
-    <div class="service-card fade-in fade-in-delay-1" onclick="window.location='/services/property-refurbishment/';">
+    <a href="/sail-renovate/services/property-refurbishment/" class="service-card fade-in fade-in-delay-1">
       <img class="service-card__img" src="images/3-kitchen.jpg" alt="Professional property renovation" />
       <div class="service-card__content">
         <p class="service-card__tag">Full Project Management</p>
@@ -989,10 +991,10 @@
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </span>
       </div>
-    </div>
+    </a>
 
     <!-- Service 3 -->
-    <div class="service-card fade-in fade-in-delay-2" onclick="window.location='/services/property-maintenance/';">
+    <a href="/sail-renovate/services/property-maintenance/" class="service-card fade-in fade-in-delay-2">
       <img class="service-card__img" src="images/15-garden.jpg" alt="Eco-friendly home improvements" />
       <div class="service-card__content">
         <p class="service-card__tag">Sustainable Living</p>
@@ -1002,10 +1004,10 @@
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </span>
       </div>
-    </div>
+    </a>
 
     <!-- Service 4 -->
-    <div class="service-card fade-in fade-in-delay-3" onclick="window.location='/services/project-management/';">
+    <a href="/sail-renovate/services/project-management/" class="service-card fade-in fade-in-delay-3">
       <img class="service-card__img" src="images/6-study.jpg" alt="Smart home systems installation" />
       <div class="service-card__content">
         <p class="service-card__tag">Technology &amp; Automation</p>
@@ -1015,7 +1017,7 @@
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </span>
       </div>
-    </div>
+    </a>
   </div>
 </section>
 

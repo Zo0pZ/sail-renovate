@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>About Us | Sail Renovate</title>
-  <meta name="description" content="Learn about Sail Renovate's history, our qualified surveyor-led approach, and our commitment to providing Bristol with quality renovations." />
+  <meta name="description" content="Learn about Sail Renovate's history, our qualified surveyor-led approach, and our commitment to quality renovations across Bristol and the South West." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garant:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
@@ -35,7 +35,7 @@
     /* Hero stats */
     .about-hero-stats {
       display: grid;
-      grid-template-columns: repeat(4, auto);
+      grid-template-columns: repeat(3, auto);
       gap: 2.5rem;
       margin-top: 2.5rem;
       padding-top: 2rem;
@@ -87,10 +87,23 @@
 
     /* Testimonial */
     .about-testimonial {
-      background: var(--bg-dark);
+      background: var(--navy);
       padding: 5rem 3rem;
       text-align: center;
+      position: relative;
+      overflow: hidden;
     }
+    .about-testimonial::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url('../images/sail-background-pattern-light.svg');
+      background-size: 160px;
+      background-repeat: repeat;
+      opacity: 0.07;
+      pointer-events: none;
+    }
+    .about-testimonial > * { position: relative; z-index: 1; }
     .about-testimonial blockquote {
       font-family: var(--serif);
       font-size: clamp(1.25rem, 2.5vw, 1.7rem);
@@ -234,7 +247,7 @@
   <main>
     <section class="internal-hero">
       <span class="section-eyebrow">About Us</span>
-      <h1 class="hero__heading">Bristol's trusted team for <em>quality renovations</em>.</h1>
+      <h1 class="hero__heading">Trusted renovation specialists across <em>Bristol & the South West</em>.</h1>
       <p class="hero__sub">We are a surveyor-led renovation and reinstatement company, dedicated to bringing professionalism, transparency, and exceptional craftsmanship to every project.</p>
       <div style="margin-top: 2rem;">
         <a href="/sail-renovate/contact/" class="btn btn--primary">Get a Free Quote</a>
@@ -247,10 +260,6 @@
         <div>
           <div class="stat__num">500<em>+</em></div>
           <div class="stat__label">Projects Completed</div>
-        </div>
-        <div>
-          <div class="stat__num">4.9<em>★</em></div>
-          <div class="stat__label">Client Rating</div>
         </div>
         <div>
           <div class="stat__num" style="color: var(--accent);">✓</div>
@@ -266,7 +275,7 @@
           <h2 class="section-title">Built on a foundation of <em>trust and expertise.</em></h2>
           <p>Sail Renovate was founded in 2023 by Shane, Jamie, and Gemma — with a clear mission: to elevate the standard of property renovations and insurance reinstatements in Bristol and the surrounding areas.</p>
           <p>Between them, Shane, Jamie, and Gemma bring over a decade of hands-on experience across construction, surveying, and insurance. They recognised that homeowners needed more than just skilled tradespeople — they needed reliable project management, clear communication, and the reassurance of qualified oversight on every job.</p>
-          <p>Today, Sail Renovate handles everything from emergency insurance repairs to full home transformations, all managed by a dedicated team who treats every property as if it were their own.</p>
+          <p>Today, Sail Renovate handles everything from insurance reinstatements to full home transformations, all managed by a dedicated team who treats every property as if it were their own.</p>
         </div>
         <div class="about-image">
           <img src="../images/2-rear.jpg" alt="Sail Renovate team working on site" />
@@ -392,7 +401,7 @@
           <p>Our rigorous standards have earned us the trust of major insurance providers to handle complex reinstatement works. We bring that exact same level of scrutiny, project management, and attention to detail to our private home renovations.</p>
           <div style="margin-top: 2rem; display: flex; gap: 1rem; flex-wrap: wrap;">
             <a href="/sail-renovate/contact/" class="btn btn--primary">Get a Free Quote</a>
-            <a href="/sail-renovate/projects/" class="btn btn--outline">View Our Work</a>
+            <a href="/sail-renovate/projects/" class="btn btn--navy">View Our Work</a>
           </div>
         </div>
       </div>

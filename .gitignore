@@ -94,3 +94,23 @@ temp/
 # Temporary files
 *.tmp
 *.temp
+
+# Claude / MCP tooling
+.claude/settings.local.json
+.mcp.json
+.playwright-mcp/
+
+# Working screenshots and reference images
+*-full.png
+full-page.png
+*-mobile.png
+*-live.png
+*-above-fold.png
+hero-above-fold.png
+reference-*.png
+values-*.png
+about-*.png
+mobile-*.png
+
+# Meeting / planning docs
+MEETING-SCRIPT.md

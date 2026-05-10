@@ -184,6 +184,7 @@ button { cursor: pointer; font-family: inherit; border: none; background: none; 
   font-weight: 300;
   line-height: 1.15;
   letter-spacing: -0.02em;
+  color: var(--navy);
   margin-bottom: 2rem;
 }
 .section-title em { font-style: italic; color: var(--accent); }
@@ -227,8 +228,8 @@ button { cursor: pointer; font-family: inherit; border: none; background: none; 
 footer {
   position: relative;
   overflow: hidden;
-  background: var(--bg-dark);
-  border-top: 3px solid var(--accent);
+  background: var(--navy);
+  border-top: 3px solid var(--navy);
   color: rgba(255,255,255,0.5);
   padding: 3rem;
   display: flex;

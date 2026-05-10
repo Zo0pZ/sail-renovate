@@ -196,7 +196,7 @@ button { cursor: pointer; font-family: inherit; border: none; background: none; 
   font-weight: 300;
   line-height: 1.06;
   letter-spacing: -0.02em;
-  color: var(--text);
+  color: var(--navy);
   margin-bottom: 1.5rem;
 }
 .internal-hero .hero__heading em { font-style: italic; color: var(--accent); }
@@ -220,7 +220,7 @@ button { cursor: pointer; font-family: inherit; border: none; background: none; 
 
 /* ── Card ──────────────────────────────────────────────── */
 .card { background: #fff; border: 1px solid var(--border); padding: 2.5rem; border-radius: 2px; }
-.card h3 { font-family: var(--serif); font-size: 1.35rem; margin-bottom: 0.75rem; font-weight: 400; color: var(--text); }
+.card h3 { font-family: var(--serif); font-size: 1.35rem; margin-bottom: 0.75rem; font-weight: 400; color: var(--navy); }
 .card p { font-size: 0.95rem; line-height: 1.7; color: var(--text-muted); }
 
 /* ── Footer ────────────────────────────────────────────── */
@@ -353,7 +353,7 @@ footer::before {
   font-family: var(--serif);
   font-size: 1.05rem;
   font-weight: 400;
-  color: var(--text);
+  color: var(--navy);
   line-height: 1.25;
   margin: 0;
 }
@@ -394,7 +394,7 @@ footer::before {
   font-family: var(--serif);
   font-size: 2rem;
   font-weight: 400;
-  color: var(--text);
+  color: var(--navy);
   background: none;
   border: none;
   cursor: pointer;

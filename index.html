@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sail Renovate | Trusted Home Renovations Bristol</title>
-  <meta name="description" content="Bristol's trusted renovation experts. From home repairs to complete transformations and eco-friendly improvements — Sail Renovate delivers quality craftsmanship." />
+  <title>Sail Renovate | Home Renovations Across Bristol & the South West</title>
+  <meta name="description" content="Trusted renovation experts covering Bristol and the South West. From insurance reinstatement to full home renovations — surveyor-led, no hidden costs." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garant:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
@@ -47,7 +47,7 @@
       font-weight: 300;
       line-height: 1.06;
       letter-spacing: -0.02em;
-      color: var(--text);
+      color: var(--navy);
       margin-bottom: 2rem;
     }
     .hero__heading em {
@@ -75,7 +75,7 @@
     }
     .hero__stats {
       display: grid;
-      grid-template-columns: repeat(4, auto);
+      grid-template-columns: repeat(3, auto);
       gap: 3rem;
       margin-top: 3.5rem;
       padding-top: 2.5rem;
@@ -85,7 +85,7 @@
       font-family: var(--serif);
       font-size: 2rem;
       font-weight: 600;
-      color: var(--text);
+      color: var(--navy);
       line-height: 1;
       margin-bottom: 0.25rem;
     }
@@ -116,6 +116,7 @@
       left: -1.5rem;
       background: var(--bg);
       border-radius: 4px;
+      border-top: 3px solid var(--accent);
       padding: 1.25rem 1.5rem;
       box-shadow: 0 8px 32px rgba(0,0,0,0.12);
       max-width: 250px;
@@ -125,7 +126,7 @@
       font-size: 1.05rem;
       font-weight: 400;
       line-height: 1.4;
-      color: var(--text);
+      color: var(--navy);
       margin-bottom: 0.5rem;
     }
     .hero__badge-text em { color: var(--accent); font-style: italic; }
@@ -138,7 +139,7 @@
 
     /* ── Intro Band ────────────────────────────────────────── */
     .intro-band {
-      background: var(--bg-dark);
+      background: var(--navy);
       color: #fff;
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -296,7 +297,7 @@
       font-size: 2.5rem;
       font-weight: 300;
       color: var(--accent);
-      opacity: 0.4;
+      opacity: 0.65;
       line-height: 1;
       flex-shrink: 0;
       min-width: 2.5rem;
@@ -329,7 +330,7 @@
       position: absolute;
       bottom: 2.5rem;
       right: 2.5rem;
-      background: var(--accent);
+      background: var(--navy);
       color: #fff;
       padding: 1.5rem;
       text-align: center;
@@ -417,7 +418,7 @@
 
     /* ── Philosophy Quote ──────────────────────────────────── */
     .philosophy {
-      background: var(--bg-dark);
+      background: var(--navy);
       padding: 8rem 3rem;
       text-align: center;
       position: relative;
@@ -432,8 +433,19 @@
       font-family: var(--serif);
       font-size: 18rem;
       font-weight: 600;
-      color: rgba(200, 88, 20, 0.06);
+      color: rgba(255,255,255,0.04);
       line-height: 1;
+      pointer-events: none;
+      z-index: 1;
+    }
+    .philosophy::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url('images/sail-background-pattern-light.svg');
+      background-size: 180px;
+      background-repeat: repeat;
+      opacity: 0.07;
       pointer-events: none;
     }
     .philosophy__quote {
@@ -446,12 +458,18 @@
       max-width: 800px;
       margin: 0 auto 2rem;
       letter-spacing: -0.01em;
+      position: relative;
+      z-index: 2;
+      padding: 0 1rem;
+      border-left: none;
     }
     .philosophy__attr {
       font-size: 0.78rem;
       letter-spacing: 0.1em;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.4);
+      color: rgba(255,255,255,0.45);
+      position: relative;
+      z-index: 2;
     }
 
     /* ── FAQ ───────────────────────────────────────────────── */
@@ -597,7 +615,7 @@
       font-family: var(--serif);
       font-size: 2rem;
       font-weight: 400;
-      color: var(--text);
+      color: var(--navy);
       line-height: 1.2;
       margin: 0;
     }
@@ -871,20 +889,20 @@
 <!-- ── Hero ── -->
 <section class="hero" aria-labelledby="hero-heading">
   <div class="hero__content">
-    <span class="hero__eyebrow">Bristol's Trusted Renovation Experts</span>
+    <span class="hero__eyebrow">Trusted Renovation Experts — Bristol & the South West</span>
     <h1 class="hero__heading" id="hero-heading">
       <em>Exceptional</em><br>
       Renovations,<br>
       Trusted Results.
     </h1>
     <p class="hero__sub">
-      From insurance reinstatement to full home renovations — surveyor-led, no hidden costs, and trusted by Bristol homeowners since 2014.
+      From insurance reinstatement to full home renovations — surveyor-led, no hidden costs, and trusted by Bristol homeowners.
     </p>
     <div class="hero__ctas">
       <a href="/sail-renovate/contact/" class="btn btn--primary">Start Your Project</a>
       <a href="/sail-renovate/projects/" class="btn btn--outline">View Our Work</a>
     </div>
-    <p class="hero__cta-note">Free quote &middot; No obligation &middot; Bristol based</p>
+    <p class="hero__cta-note">Free quote &middot; No obligation &middot; Bristol &amp; South West based</p>
     <div class="hero__stats">
       <div>
         <div class="stat__num">10<em>+</em></div>
@@ -893,10 +911,6 @@
       <div>
         <div class="stat__num">500<em>+</em></div>
         <div class="stat__label">Projects Completed</div>
-      </div>
-      <div>
-        <div class="stat__num">4.9<em>★</em></div>
-        <div class="stat__label">Client Rating</div>
       </div>
       <div>
         <div class="stat__num" style="color: var(--accent);">✓</div>
@@ -931,7 +945,7 @@
       <path d="M16 34 L16 24 L24 24 L24 34"/>
     </svg>
     <div class="intro-item__title">Renovations &amp; Repairs</div>
-    <p class="intro-item__body">From emergency call-outs to complete home renovations, trusted by insurers and homeowners across Bristol.</p>
+    <p class="intro-item__body">From insurance reinstatements to complete home renovations, trusted by homeowners and insurers across Bristol and the South West.</p>
   </div>
   <div class="intro-item" role="listitem">
     <svg class="intro-item__icon" viewBox="0 0 40 40" fill="none" stroke="white" stroke-width="1.5" aria-hidden="true">
@@ -1035,7 +1049,7 @@
         <span class="why-item__num">01</span>
         <div>
           <h3 class="why-item__title">Over a Decade of Expertise</h3>
-          <p class="why-item__body">With more than ten years serving homeowners and insurers across Bristol, we've earned a reputation for reliability, quality, and transparency on every project — large or small.</p>
+          <p class="why-item__body">With more than ten years serving homeowners and insurers across Bristol and the South West, we've earned a reputation for reliability, quality, and transparency on every project — large or small.</p>
         </div>
       </div>
       <div class="why-item fade-in fade-in-delay-1">
@@ -1158,7 +1172,7 @@
         <span class="faq-icon" aria-hidden="true"></span>
       </button>
       <div class="faq-answer" role="region">
-        <p>We specialise in home repairs, property renovations, insurance restoration work, eco-friendly improvements (solar panels, smart heating), and smart home systems. We handle everything from small repairs to complete property transformations across Bristol and the surrounding areas.</p>
+        <p>We specialise in home repairs, property renovations, insurance reinstatement, and property refurbishment. We handle everything from small repairs to complete property transformations across Bristol and the South West.</p>
       </div>
     </div>
 
@@ -1256,7 +1270,7 @@
       <p class="section-eyebrow">Ready to Transform Your Home?</p>
       <h3 class="cta-card__title">Ready to start your <em>project?</em></h3>
       <p style="color: var(--text-muted); font-size: 1.05rem; line-height: 1.7; margin: 1.5rem 0 2.5rem;">
-        Join our satisfied clients and experience professional renovation services in Bristol. Free consultation, no obligation.
+        Join our satisfied clients and experience professional renovation services across Bristol and the South West. Free consultation, no obligation.
       </p>
       <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
         <a href="tel:01174767858" class="btn btn--primary">

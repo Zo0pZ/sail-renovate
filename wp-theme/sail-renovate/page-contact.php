@@ -5,6 +5,8 @@
  * @package sail-renovate
  */
 get_header();
+$phone     = sail_contact( 'phone' );
+$phone_tel = 'tel:' . preg_replace( '/[^0-9+]/', '', $phone );
 ?>
 <main class="contact-page">
   <!-- ── Left: Info ── -->
@@ -18,7 +20,7 @@ get_header();
         <svg class="contact__detail-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.12 1.18 2 2 0 012.11 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
         <div>
           <p class="contact__detail-label"><?php esc_html_e( 'Phone', 'sail-renovate' ); ?></p>
-          <div class="contact__detail-value"><a href="tel:01174767858">0117 476 7858</a></div>
+          <div class="contact__detail-value"><a href="<?php echo esc_url( $phone_tel ); ?>"><?php echo esc_html( $phone ); ?></a></div>
         </div>
       </div>
 
@@ -26,7 +28,7 @@ get_header();
         <svg class="contact__detail-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
         <div>
           <p class="contact__detail-label"><?php esc_html_e( 'Email', 'sail-renovate' ); ?></p>
-          <div class="contact__detail-value"><a href="mailto:team@sailrenovate.co.uk">team@sailrenovate.co.uk</a></div>
+          <div class="contact__detail-value"><a href="mailto:<?php echo esc_attr( sail_contact( 'email' ) ); ?>"><?php echo esc_html( sail_contact( 'email' ) ); ?></a></div>
         </div>
       </div>
 
@@ -34,17 +36,17 @@ get_header();
         <svg class="contact__detail-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
         <div>
           <p class="contact__detail-label"><?php esc_html_e( 'Service Area', 'sail-renovate' ); ?></p>
-          <div class="contact__detail-value"><?php esc_html_e( 'Bristol & Surrounding Areas', 'sail-renovate' ); ?></div>
+          <div class="contact__detail-value"><?php echo esc_html( sail_contact( 'location' ) ); ?></div>
         </div>
       </div>
 
       <div>
         <p class="contact__detail-label"><?php esc_html_e( 'Follow Us', 'sail-renovate' ); ?></p>
         <div class="contact__socials">
-          <a href="#" class="social-btn" aria-label="<?php esc_attr_e( 'Instagram', 'sail-renovate' ); ?>">
+          <a href="<?php echo esc_url( sail_contact( 'instagram_url' ) ); ?>" class="social-btn" aria-label="<?php esc_attr_e( 'Instagram', 'sail-renovate' ); ?>">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
           </a>
-          <a href="#" class="social-btn" aria-label="<?php esc_attr_e( 'Facebook', 'sail-renovate' ); ?>">
+          <a href="<?php echo esc_url( sail_contact( 'facebook_url' ) ); ?>" class="social-btn" aria-label="<?php esc_attr_e( 'Facebook', 'sail-renovate' ); ?>">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
           </a>
         </div>
@@ -54,7 +56,7 @@ get_header();
 
   <!-- ── Right: Form ── -->
   <div class="contact__form-side fade-in fade-in-delay-1">
-    <form action="mailto:team@sailrenovate.co.uk" method="post" enctype="text/plain" novalidate>
+    <form action="mailto:<?php echo esc_attr( sail_contact( 'email' ) ); ?>" method="post" enctype="text/plain" novalidate>
       <?php wp_nonce_field( 'sail_contact_form', 'sail_contact_nonce' ); ?>
       <div class="form-row">
         <div class="form-group" style="margin-bottom:0;">

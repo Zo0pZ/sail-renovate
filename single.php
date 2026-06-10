@@ -10,7 +10,7 @@ get_header();
   <?php while ( have_posts() ) : the_post(); ?>
   <section class="internal-hero">
     <span class="section-eyebrow"><?php the_category( ', ' ); ?></span>
-    <h1 class="hero__heading"><?php the_title(); ?></h1>
+    <h1 class="hero__heading"><?php echo esc_html( get_the_title() ); ?></h1>
     <p class="hero__sub"><?php esc_html_e( 'Posted on', 'sail-renovate' ); ?> <?php the_date(); ?></p>
   </section>
 

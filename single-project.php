@@ -15,7 +15,7 @@ $img = esc_url( get_template_directory_uri() . '/images/' );
     <?php if ( get_post_meta( get_the_ID(), 'project_type', true ) ) : ?>
     <span class="section-eyebrow"><?php echo esc_html( get_post_meta( get_the_ID(), 'project_type', true ) ); ?></span>
     <?php endif; ?>
-    <h1 class="hero__heading"><?php the_title(); ?></h1>
+    <h1 class="hero__heading"><?php echo esc_html( get_the_title() ); ?></h1>
     <?php if ( get_the_excerpt() ) : ?>
     <p class="hero__sub"><?php the_excerpt(); ?></p>
     <?php endif; ?>

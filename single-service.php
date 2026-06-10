@@ -6,6 +6,8 @@
  * @package sail-renovate
  */
 get_header();
+$phone     = sail_contact( 'phone' );
+$phone_tel = 'tel:' . preg_replace( '/[^0-9+]/', '', $phone );
 ?>
 <main>
   <?php while ( have_posts() ) : the_post(); ?>
@@ -14,7 +16,7 @@ get_header();
     <?php if ( get_post_meta( get_the_ID(), 'service_eyebrow', true ) ) : ?>
     <span class="section-eyebrow"><?php echo esc_html( get_post_meta( get_the_ID(), 'service_eyebrow', true ) ); ?></span>
     <?php endif; ?>
-    <h1 class="hero__heading"><?php the_title(); ?></h1>
+    <h1 class="hero__heading"><?php echo esc_html( get_the_title() ); ?></h1>
     <?php if ( get_the_excerpt() ) : ?>
     <p class="hero__sub"><?php the_excerpt(); ?></p>
     <?php endif; ?>
@@ -36,7 +38,12 @@ get_header();
       <?php esc_html_e( 'Get in touch with our team for a free initial assessment and to discuss how we can help.', 'sail-renovate' ); ?>
     </p>
     <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-      <a href="tel:01174767858" class="btn btn--primary"><?php esc_html_e( 'Call 0117 476 7858', 'sail-renovate' ); ?></a>
+      <a href="<?php echo esc_url( $phone_tel ); ?>" class="btn btn--primary">
+        <?php
+        /* translators: %s: phone number */
+        printf( esc_html__( 'Call %s', 'sail-renovate' ), esc_html( $phone ) );
+        ?>
+      </a>
       <a href="<?php echo esc_url( home_url( '/contact/' ) ); ?>" class="btn btn--outline"><?php esc_html_e( 'Send Enquiry', 'sail-renovate' ); ?></a>
     </div>
   </section>

@@ -5,7 +5,9 @@
  * @package sail-renovate
  */
 get_header();
-$img = esc_url( get_template_directory_uri() . '/images/' );
+$img       = esc_url( get_template_directory_uri() . '/images/' );
+$phone     = sail_contact( 'phone' );
+$phone_tel = 'tel:' . preg_replace( '/[^0-9+]/', '', $phone );
 ?>
 <main>
   <section class="internal-hero">
@@ -73,7 +75,12 @@ $img = esc_url( get_template_directory_uri() . '/images/' );
       <p style="color: var(--text-muted); font-size: 1.05rem; max-width: 520px; margin: 1rem auto 0;"><?php esc_html_e( 'Free quote, no obligation. We cover Bristol and the surrounding area.', 'sail-renovate' ); ?></p>
       <div style="display: flex; gap: 1rem; margin-top: 2rem; flex-wrap: wrap; justify-content: center;">
         <a href="<?php echo esc_url( home_url( '/contact/' ) ); ?>" class="btn btn--primary"><?php esc_html_e( 'Get a Free Quote', 'sail-renovate' ); ?></a>
-        <a href="tel:01174767858" class="btn btn--navy"><?php esc_html_e( 'Call 0117 476 7858', 'sail-renovate' ); ?></a>
+        <a href="<?php echo esc_url( $phone_tel ); ?>" class="btn btn--navy">
+          <?php
+          /* translators: %s: phone number */
+          printf( esc_html__( 'Call %s', 'sail-renovate' ), esc_html( $phone ) );
+          ?>
+        </a>
       </div>
     </div>
   </section>

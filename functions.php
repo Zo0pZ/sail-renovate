@@ -88,3 +88,114 @@ function sail_preconnect_fonts() {
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 	<?php
 }
+
+// ── Customizer ───────────────────────────────────────────────────────────────
+add_action( 'customize_register', 'sail_customizer_register' );
+function sail_customizer_register( $wp_customize ) {
+
+	$wp_customize->add_panel( 'sail_panel', [
+		'title'    => __( 'Sail Renovate', 'sail-renovate' ),
+		'priority' => 130,
+	] );
+
+	// ── Section: Contact Details ──────────────────────────────────────────────
+	$wp_customize->add_section( 'sail_contact', [
+		'title'    => __( 'Contact Details', 'sail-renovate' ),
+		'panel'    => 'sail_panel',
+		'priority' => 10,
+	] );
+
+	$contact_settings = [
+		'sail_phone'         => [ __( 'Phone Number', 'sail-renovate' ),        '0117 476 7858',           'text' ],
+		'sail_email'         => [ __( 'Email Address', 'sail-renovate' ),        'team@sailrenovate.co.uk', 'text' ],
+		'sail_location'      => [ __( 'Service Area / Location', 'sail-renovate' ), 'Bristol & Surrounding Areas', 'text' ],
+		'sail_instagram_url' => [ __( 'Instagram URL', 'sail-renovate' ),        '#',                       'url' ],
+		'sail_facebook_url'  => [ __( 'Facebook URL', 'sail-renovate' ),         '#',                       'url' ],
+	];
+
+	foreach ( $contact_settings as $id => [ $label, $default, $type ] ) {
+		$sanitize = ( 'url' === $type ) ? 'esc_url_raw' : 'sanitize_text_field';
+		$wp_customize->add_setting( $id, [
+			'default'           => $default,
+			'sanitize_callback' => $sanitize,
+		] );
+		$wp_customize->add_control( $id, [
+			'label'   => $label,
+			'section' => 'sail_contact',
+			'type'    => $type,
+		] );
+	}
+
+	// ── Section: Homepage Hero ────────────────────────────────────────────────
+	$wp_customize->add_section( 'sail_hero', [
+		'title'    => __( 'Homepage Hero', 'sail-renovate' ),
+		'panel'    => 'sail_panel',
+		'priority' => 20,
+	] );
+
+	$hero_settings = [
+		'sail_hero_eyebrow'       => [ __( 'Eyebrow Text', 'sail-renovate' ),          'Trusted Renovation Experts — Bristol & the South West' ],
+		'sail_hero_heading_em'    => [ __( 'Heading — Italic Line', 'sail-renovate' ),  'Exceptional' ],
+		'sail_hero_heading_line2' => [ __( 'Heading — Line 2', 'sail-renovate' ),       'Renovations,' ],
+		'sail_hero_heading_line3' => [ __( 'Heading — Line 3', 'sail-renovate' ),       'Trusted Results.' ],
+		'sail_hero_sub'           => [ __( 'Subheading Paragraph', 'sail-renovate' ),   'From insurance reinstatement to full home renovations — surveyor-led, no hidden costs, and trusted by Bristol homeowners.' ],
+		'sail_hero_cta_note'      => [ __( 'CTA Note Text', 'sail-renovate' ),          'Free quote · No obligation · Bristol & South West based' ],
+		'sail_hero_stat1_num'     => [ __( 'Stat 1 — Number/Value', 'sail-renovate' ),  '10+' ],
+		'sail_hero_stat1_label'   => [ __( 'Stat 1 — Label', 'sail-renovate' ),         'Years Experience' ],
+		'sail_hero_stat2_num'     => [ __( 'Stat 2 — Number/Value', 'sail-renovate' ),  '500+' ],
+		'sail_hero_stat2_label'   => [ __( 'Stat 2 — Label', 'sail-renovate' ),         'Projects Completed' ],
+		'sail_hero_stat3_label'   => [ __( 'Stat 3 — Label', 'sail-renovate' ),         'Insurance Approved' ],
+	];
+
+	foreach ( $hero_settings as $id => [ $label, $default ] ) {
+		$wp_customize->add_setting( $id, [
+			'default'           => $default,
+			'sanitize_callback' => 'sanitize_textarea_field',
+		] );
+		$wp_customize->add_control( $id, [
+			'label'   => $label,
+			'section' => 'sail_hero',
+			'type'    => ( 'sail_hero_sub' === $id ) ? 'textarea' : 'text',
+		] );
+	}
+
+	// ── Section: Philosophy Quote ─────────────────────────────────────────────
+	$wp_customize->add_section( 'sail_philosophy', [
+		'title'    => __( 'Philosophy Quote', 'sail-renovate' ),
+		'panel'    => 'sail_panel',
+		'priority' => 30,
+	] );
+
+	$wp_customize->add_setting( 'sail_philosophy_quote', [
+		'default'           => "We want you to feel proud and excited every time you come home \u{2014} that\u{2019}s the standard we hold ourselves to on every single project.",
+		'sanitize_callback' => 'sanitize_textarea_field',
+	] );
+	$wp_customize->add_control( 'sail_philosophy_quote', [
+		'label'   => __( 'Quote Text', 'sail-renovate' ),
+		'section' => 'sail_philosophy',
+		'type'    => 'textarea',
+	] );
+
+	$wp_customize->add_setting( 'sail_philosophy_attr', [
+		'default'           => '— The Sail Renovate Team',
+		'sanitize_callback' => 'sanitize_text_field',
+	] );
+	$wp_customize->add_control( 'sail_philosophy_attr', [
+		'label'   => __( 'Attribution', 'sail-renovate' ),
+		'section' => 'sail_philosophy',
+		'type'    => 'text',
+	] );
+}
+
+// ── Contact detail helper ─────────────────────────────────────────────────────
+// Usage: sail_contact('phone'), sail_contact('email'), etc.
+function sail_contact( $key ) {
+	$defaults = [
+		'phone'         => '0117 476 7858',
+		'email'         => 'team@sailrenovate.co.uk',
+		'location'      => 'Bristol & Surrounding Areas',
+		'instagram_url' => '#',
+		'facebook_url'  => '#',
+	];
+	return get_theme_mod( 'sail_' . $key, $defaults[ $key ] ?? '' );
+}

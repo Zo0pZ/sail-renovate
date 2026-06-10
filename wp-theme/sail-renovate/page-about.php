@@ -18,16 +18,16 @@ $img = esc_url( get_template_directory_uri() . '/images/' );
     </div>
     <div class="about-hero-stats">
       <div>
-        <div class="stat__num">10<em>+</em></div>
-        <div class="stat__label"><?php esc_html_e( 'Years Experience', 'sail-renovate' ); ?></div>
+        <div class="stat__num"><?php echo esc_html( get_theme_mod( 'sail_hero_stat1_num', '10+' ) ); ?></div>
+        <div class="stat__label"><?php echo esc_html( get_theme_mod( 'sail_hero_stat1_label', 'Years Experience' ) ); ?></div>
       </div>
       <div>
-        <div class="stat__num">500<em>+</em></div>
-        <div class="stat__label"><?php esc_html_e( 'Projects Completed', 'sail-renovate' ); ?></div>
+        <div class="stat__num"><?php echo esc_html( get_theme_mod( 'sail_hero_stat2_num', '500+' ) ); ?></div>
+        <div class="stat__label"><?php echo esc_html( get_theme_mod( 'sail_hero_stat2_label', 'Projects Completed' ) ); ?></div>
       </div>
       <div>
         <div class="stat__num" style="color: var(--accent);">&#10003;</div>
-        <div class="stat__label"><?php esc_html_e( 'Insurance Approved', 'sail-renovate' ); ?></div>
+        <div class="stat__label"><?php echo esc_html( get_theme_mod( 'sail_hero_stat3_label', 'Insurance Approved' ) ); ?></div>
       </div>
     </div>
   </section>
@@ -113,7 +113,7 @@ $img = esc_url( get_template_directory_uri() . '/images/' );
       $delays = [ '', ' fade-in-delay-1', ' fade-in-delay-2' ];
       foreach ( $team as $i => $member ) :
       ?>
-      <div class="team-card fade-in<?php echo $delays[ $i ]; ?>">
+      <div class="team-card fade-in<?php echo esc_attr( $delays[ $i ] ); ?>">
         <div class="team-card__photo">
           <div class="team-card__photo-placeholder">
             <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>

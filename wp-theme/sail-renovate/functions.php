@@ -187,6 +187,67 @@ function sail_customizer_register( $wp_customize ) {
 	] );
 }
 
+// ── Custom Post Types ─────────────────────────────────────────────────────────
+add_action( 'init', 'sail_register_post_types' );
+function sail_register_post_types() {
+
+	register_post_type( 'service', [
+		'labels' => [
+			'name'               => __( 'Services', 'sail-renovate' ),
+			'singular_name'      => __( 'Service', 'sail-renovate' ),
+			'add_new_item'       => __( 'Add New Service', 'sail-renovate' ),
+			'edit_item'          => __( 'Edit Service', 'sail-renovate' ),
+			'view_item'          => __( 'View Service', 'sail-renovate' ),
+			'search_items'       => __( 'Search Services', 'sail-renovate' ),
+			'not_found'          => __( 'No services found.', 'sail-renovate' ),
+			'not_found_in_trash' => __( 'No services found in Trash.', 'sail-renovate' ),
+			'menu_name'          => __( 'Services', 'sail-renovate' ),
+		],
+		'public'       => true,
+		'has_archive'  => false,
+		'show_in_rest' => true,
+		'supports'     => [ 'title', 'editor', 'thumbnail', 'excerpt', 'custom-fields' ],
+		'rewrite'      => [ 'slug' => 'services', 'with_front' => false ],
+		'menu_icon'    => 'dashicons-hammer',
+	] );
+
+	register_post_type( 'project', [
+		'labels' => [
+			'name'               => __( 'Projects', 'sail-renovate' ),
+			'singular_name'      => __( 'Project', 'sail-renovate' ),
+			'add_new_item'       => __( 'Add New Project', 'sail-renovate' ),
+			'edit_item'          => __( 'Edit Project', 'sail-renovate' ),
+			'view_item'          => __( 'View Project', 'sail-renovate' ),
+			'search_items'       => __( 'Search Projects', 'sail-renovate' ),
+			'not_found'          => __( 'No projects found.', 'sail-renovate' ),
+			'not_found_in_trash' => __( 'No projects found in Trash.', 'sail-renovate' ),
+			'menu_name'          => __( 'Projects', 'sail-renovate' ),
+		],
+		'public'       => true,
+		'has_archive'  => false,
+		'show_in_rest' => true,
+		'supports'     => [ 'title', 'editor', 'thumbnail', 'excerpt', 'custom-fields' ],
+		'rewrite'      => [ 'slug' => 'projects', 'with_front' => false ],
+		'menu_icon'    => 'dashicons-portfolio',
+	] );
+
+	// Taxonomy used by the projects filter bar on page-projects.php
+	register_taxonomy( 'project_cat', 'project', [
+		'labels' => [
+			'name'          => __( 'Project Categories', 'sail-renovate' ),
+			'singular_name' => __( 'Project Category', 'sail-renovate' ),
+			'search_items'  => __( 'Search Categories', 'sail-renovate' ),
+			'all_items'     => __( 'All Categories', 'sail-renovate' ),
+			'edit_item'     => __( 'Edit Category', 'sail-renovate' ),
+			'add_new_item'  => __( 'Add New Category', 'sail-renovate' ),
+		],
+		'public'       => true,
+		'show_in_rest' => true,
+		'hierarchical' => true,
+		'rewrite'      => [ 'slug' => 'project-category' ],
+	] );
+}
+
 // ── Contact detail helper ─────────────────────────────────────────────────────
 // Usage: sail_contact('phone'), sail_contact('email'), etc.
 function sail_contact( $key ) {

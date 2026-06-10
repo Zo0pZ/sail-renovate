@@ -5,6 +5,7 @@
  * @package sail-renovate
  */
 get_header();
+if ( have_posts() ) the_post();
 $img = esc_url( get_template_directory_uri() . '/images/' );
 ?>
 <main>
@@ -38,9 +39,19 @@ $img = esc_url( get_template_directory_uri() . '/images/' );
       <div class="content-block">
         <span class="section-eyebrow"><?php esc_html_e( 'Our Story', 'sail-renovate' ); ?></span>
         <h2 class="section-title"><?php esc_html_e( 'Built on a foundation of', 'sail-renovate' ); ?> <em><?php esc_html_e( 'trust and expertise.', 'sail-renovate' ); ?></em></h2>
-        <p><?php esc_html_e( 'Sail Renovate was founded in 2023 by Shane, Jamie, and Gemma — with a clear mission: to elevate the standard of property renovations and insurance reinstatements in Bristol and the surrounding areas.', 'sail-renovate' ); ?></p>
-        <p><?php esc_html_e( 'Between them, Shane, Jamie, and Gemma bring over a decade of hands-on experience across construction, surveying, and insurance. They recognised that homeowners needed more than just skilled tradespeople — they needed reliable project management, clear communication, and the reassurance of qualified oversight on every job.', 'sail-renovate' ); ?></p>
-        <p><?php esc_html_e( 'Today, Sail Renovate handles everything from insurance reinstatements to full home transformations, all managed by a dedicated team who treats every property as if it were their own.', 'sail-renovate' ); ?></p>
+        <?php
+        $story = get_the_content();
+        if ( $story ) {
+          the_content();
+        } else {
+          // Default content shown until edited in the WP editor
+          ?>
+          <p><?php esc_html_e( 'Sail Renovate was founded in 2023 by Shane, Jamie, and Gemma — with a clear mission: to elevate the standard of property renovations and insurance reinstatements in Bristol and the surrounding areas.', 'sail-renovate' ); ?></p>
+          <p><?php esc_html_e( 'Between them, Shane, Jamie, and Gemma bring over a decade of hands-on experience across construction, surveying, and insurance. They recognised that homeowners needed more than just skilled tradespeople — they needed reliable project management, clear communication, and the reassurance of qualified oversight on every job.', 'sail-renovate' ); ?></p>
+          <p><?php esc_html_e( 'Today, Sail Renovate handles everything from insurance reinstatements to full home transformations, all managed by a dedicated team who treats every property as if it were their own.', 'sail-renovate' ); ?></p>
+          <?php
+        }
+        ?>
       </div>
       <div class="about-image">
         <img src="<?php echo $img; ?>2-rear.jpg" alt="<?php esc_attr_e( 'Sail Renovate team working on site', 'sail-renovate' ); ?>" />
@@ -62,8 +73,8 @@ $img = esc_url( get_template_directory_uri() . '/images/' );
               <path d="M9 12l2 2 4-4"/>
             </svg>
           </div>
-          <h3><?php esc_html_e( 'Surveyor-Led Delivery', 'sail-renovate' ); ?></h3>
-          <p><?php esc_html_e( 'Every project is assessed, scoped, and overseen by a qualified surveyor. This ensures accuracy in our quoting and adherence to the highest building standards throughout the build.', 'sail-renovate' ); ?></p>
+          <h3><?php echo esc_html( sail_field( 'value_1_title', __( 'Surveyor-Led Delivery', 'sail-renovate' ) ) ); ?></h3>
+          <p><?php echo esc_html( sail_field( 'value_1_body', __( 'Every project is assessed, scoped, and overseen by a qualified surveyor. This ensures accuracy in our quoting and adherence to the highest building standards throughout the build.', 'sail-renovate' ) ) ); ?></p>
         </div>
         <div class="value-card fade-in fade-in-delay-1">
           <div class="value-card__icon-wrap" aria-hidden="true">
@@ -71,8 +82,8 @@ $img = esc_url( get_template_directory_uri() . '/images/' );
               <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
             </svg>
           </div>
-          <h3><?php esc_html_e( 'Transparent Communication', 'sail-renovate' ); ?></h3>
-          <p><?php esc_html_e( 'We believe in keeping you informed. You\'ll have a dedicated point of contact providing regular updates, so you always know exactly what is happening with your property.', 'sail-renovate' ); ?></p>
+          <h3><?php echo esc_html( sail_field( 'value_2_title', __( 'Transparent Communication', 'sail-renovate' ) ) ); ?></h3>
+          <p><?php echo esc_html( sail_field( 'value_2_body', __( "We believe in keeping you informed. You'll have a dedicated point of contact providing regular updates, so you always know exactly what is happening with your property.", 'sail-renovate' ) ) ); ?></p>
         </div>
         <div class="value-card fade-in fade-in-delay-2">
           <div class="value-card__icon-wrap" aria-hidden="true">
@@ -82,8 +93,8 @@ $img = esc_url( get_template_directory_uri() . '/images/' );
               <path d="M6 21h12"/>
             </svg>
           </div>
-          <h3><?php esc_html_e( 'Exceptional Craftsmanship', 'sail-renovate' ); ?></h3>
-          <p><?php esc_html_e( 'We never compromise on quality. Our network of vetted, certified tradespeople take immense pride in their work, resulting in finishes that stand the test of time.', 'sail-renovate' ); ?></p>
+          <h3><?php echo esc_html( sail_field( 'value_3_title', __( 'Exceptional Craftsmanship', 'sail-renovate' ) ) ); ?></h3>
+          <p><?php echo esc_html( sail_field( 'value_3_body', __( 'We never compromise on quality. Our network of vetted, certified tradespeople take immense pride in their work, resulting in finishes that stand the test of time.', 'sail-renovate' ) ) ); ?></p>
         </div>
       </div>
     </div>
@@ -93,9 +104,9 @@ $img = esc_url( get_template_directory_uri() . '/images/' );
   <section class="about-testimonial">
     <div class="about-testimonial__stars" aria-label="<?php esc_attr_e( '5 stars', 'sail-renovate' ); ?>">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
     <blockquote>
-      &#8220;<?php esc_html_e( 'We\'ve worked together for nearly 10 years on a wide range of insurance reinstatement projects, and the service has always been reliable, professional, and completed to a high standard. Communication is excellent, works are handled efficiently, and we know our clients are in', 'sail-renovate' ); ?> <em><?php esc_html_e( 'safe hands', 'sail-renovate' ); ?></em> <?php esc_html_e( 'throughout the process. We would have no hesitation in recommending their services.', 'sail-renovate' ); ?>&#8221;
+      &#8220;<?php echo esc_html( sail_field( 'testimonial_quote', __( "We've worked together for nearly 10 years on a wide range of insurance reinstatement projects, and the service has always been reliable, professional, and completed to a high standard. Communication is excellent, works are handled efficiently, and we know our clients are in safe hands throughout the process. We would have no hesitation in recommending their services.", 'sail-renovate' ) ) ); ?>&#8221;
     </blockquote>
-    <p class="about-testimonial__attr">Steve &mdash; Ellipta</p>
+    <p class="about-testimonial__attr"><?php echo esc_html( sail_field( 'testimonial_attr', 'Steve &mdash; Ellipta' ) ); ?></p>
   </section>
 
   <!-- ── Team ── -->
@@ -105,15 +116,52 @@ $img = esc_url( get_template_directory_uri() . '/images/' );
 
     <div class="team-grid">
       <?php
-      $team = [
-        [ 'Gemma', '[ Role ]', '[ Background sentence to be provided by Gemma. ]', '[ What she brings to clients — to be provided by Gemma. ]' ],
-        [ 'Shane',  '[ Role ]', '[ Background sentence to be provided by Shane. ]',  '[ What he brings to clients — to be provided by Shane. ]'  ],
-        [ 'Jamie',  '[ Role ]', '[ Background sentence to be provided by Jamie. ]',  '[ What he brings to clients — to be provided by Jamie. ]'  ],
-      ];
-      $delays = [ '', ' fade-in-delay-1', ' fade-in-delay-2' ];
-      foreach ( $team as $i => $member ) :
+      $team_q = new WP_Query( [
+        'post_type'      => 'team_member',
+        'posts_per_page' => -1,
+        'orderby'        => 'menu_order',
+        'order'          => 'ASC',
+      ] );
+      $team_delays = [ '', ' fade-in-delay-1', ' fade-in-delay-2' ];
+      $ti = 0;
+      if ( $team_q->have_posts() ) :
+        while ( $team_q->have_posts() ) : $team_q->the_post();
+          $t_thumb = get_the_post_thumbnail_url( null, 'medium' );
+          $t_delay = $team_delays[ $ti % 3 ];
       ?>
-      <div class="team-card fade-in<?php echo esc_attr( $delays[ $i ] ); ?>">
+      <div class="team-card fade-in<?php echo esc_attr( $t_delay ); ?>">
+        <div class="team-card__photo">
+          <?php if ( $t_thumb ) : ?>
+          <img src="<?php echo esc_url( $t_thumb ); ?>" alt="<?php echo esc_attr( get_the_title() ); ?>" />
+          <?php else : ?>
+          <div class="team-card__photo-placeholder">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+            <span><?php esc_html_e( 'Photo coming soon', 'sail-renovate' ); ?></span>
+          </div>
+          <?php endif; ?>
+        </div>
+        <div class="team-card__body">
+          <p class="team-card__name"><?php echo esc_html( get_the_title() ); ?></p>
+          <?php if ( get_the_excerpt() ) : ?>
+          <p class="team-card__role"><?php echo esc_html( get_the_excerpt() ); ?></p>
+          <?php endif; ?>
+          <div class="team-card__bio"><?php the_content(); ?></div>
+        </div>
+      </div>
+      <?php
+          $ti++;
+        endwhile;
+        wp_reset_postdata();
+      else :
+        // Placeholder cards shown until team members are added via WP admin
+        $team = [
+          [ 'Gemma', '[ Role ]', '[ Background sentence to be provided by Gemma. ]', '[ What she brings to clients — to be provided by Gemma. ]' ],
+          [ 'Shane',  '[ Role ]', '[ Background sentence to be provided by Shane. ]',  '[ What he brings to clients — to be provided by Shane. ]'  ],
+          [ 'Jamie',  '[ Role ]', '[ Background sentence to be provided by Jamie. ]',  '[ What he brings to clients — to be provided by Jamie. ]'  ],
+        ];
+        foreach ( $team as $i => $member ) :
+      ?>
+      <div class="team-card fade-in<?php echo esc_attr( $team_delays[ $i ] ); ?>">
         <div class="team-card__photo">
           <div class="team-card__photo-placeholder">
             <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
@@ -129,10 +177,13 @@ $img = esc_url( get_template_directory_uri() . '/images/' );
           </div>
         </div>
       </div>
-      <?php endforeach; ?>
+      <?php
+        endforeach;
+      endif;
+      ?>
     </div>
 
-    <p class="team-placeholder-note"><?php esc_html_e( 'Team bios to be provided by Gemma, Shane and Jamie. Suggested format: name, role, a sentence on background, a sentence on what they bring to clients.', 'sail-renovate' ); ?></p>
+    <p class="team-placeholder-note"><?php esc_html_e( 'Add team members via WordPress Admin → Team. Use the title for the name, excerpt for job role, and content for the bio. Upload a featured image for the photo.', 'sail-renovate' ); ?></p>
 
     <!-- ── Tradespeople ── -->
     <div style="margin-top: 4rem; padding-top: 3.5rem; border-top: 1px solid var(--border);">

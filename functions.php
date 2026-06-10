@@ -246,6 +246,38 @@ function sail_register_post_types() {
 		'hierarchical' => true,
 		'rewrite'      => [ 'slug' => 'project-category' ],
 	] );
+
+	// FAQ items — title = question, content = answer. No front-end URL needed.
+	register_post_type( 'faq', [
+		'labels' => [
+			'name'          => __( 'FAQs', 'sail-renovate' ),
+			'singular_name' => __( 'FAQ', 'sail-renovate' ),
+			'add_new_item'  => __( 'Add New FAQ', 'sail-renovate' ),
+			'edit_item'     => __( 'Edit FAQ', 'sail-renovate' ),
+			'menu_name'     => __( 'FAQs', 'sail-renovate' ),
+		],
+		'public'       => false,
+		'show_ui'      => true,
+		'show_in_rest' => true,
+		'supports'     => [ 'title', 'editor', 'page-attributes' ],
+		'menu_icon'    => 'dashicons-editor-help',
+	] );
+
+	// Team members — title = name, excerpt = role, content = bio, thumbnail = photo.
+	register_post_type( 'team_member', [
+		'labels' => [
+			'name'          => __( 'Team Members', 'sail-renovate' ),
+			'singular_name' => __( 'Team Member', 'sail-renovate' ),
+			'add_new_item'  => __( 'Add New Team Member', 'sail-renovate' ),
+			'edit_item'     => __( 'Edit Team Member', 'sail-renovate' ),
+			'menu_name'     => __( 'Team', 'sail-renovate' ),
+		],
+		'public'       => false,
+		'show_ui'      => true,
+		'show_in_rest' => true,
+		'supports'     => [ 'title', 'editor', 'thumbnail', 'excerpt', 'page-attributes' ],
+		'menu_icon'    => 'dashicons-groups',
+	] );
 }
 
 // ── Contact detail helper ─────────────────────────────────────────────────────
@@ -259,4 +291,98 @@ function sail_contact( $key ) {
 		'facebook_url'  => '#',
 	];
 	return get_theme_mod( 'sail_' . $key, $defaults[ $key ] ?? '' );
+}
+
+// ── ACF field helper ──────────────────────────────────────────────────────────
+// Returns an ACF field value, or $default if ACF isn't installed or the field
+// is empty. This means the theme renders correctly with or without ACF active.
+// Usage: sail_field( 'intro_1_title', 'Renovations & Repairs' )
+function sail_field( $key, $default = '' ) {
+	if ( function_exists( 'get_field' ) ) {
+		$value = get_field( $key, get_queried_object_id() );
+		return ( $value !== false && $value !== '' && $value !== null ) ? $value : $default;
+	}
+	return $default;
+}
+
+// ── ACF field group registration ─────────────────────────────────────────────
+// Registers field groups in PHP so they appear automatically when ACF Free is
+// installed — no manual setup required in the admin UI.
+add_action( 'acf/init', 'sail_register_acf_fields' );
+function sail_register_acf_fields() {
+	if ( ! function_exists( 'acf_add_local_field_group' ) ) {
+		return;
+	}
+
+	// ── Homepage sections ─────────────────────────────────────────────────────
+	acf_add_local_field_group( [
+		'key'    => 'group_sail_homepage',
+		'title'  => 'Homepage — Intro Band & Why Us',
+		'fields' => [
+			// Intro Band
+			[ 'key' => 'field_intro_band_msg',  'label' => 'Intro Band (dark strip below hero)', 'name' => '', 'type' => 'message', 'message' => 'Edit the three feature items in the dark band below the hero image.' ],
+			[ 'key' => 'field_intro_1_title', 'label' => 'Item 1 — Title', 'name' => 'intro_1_title', 'type' => 'text',     'default_value' => 'Renovations & Repairs' ],
+			[ 'key' => 'field_intro_1_body',  'label' => 'Item 1 — Body',  'name' => 'intro_1_body',  'type' => 'textarea', 'rows' => 2, 'default_value' => 'From insurance reinstatements to complete home renovations, trusted by homeowners and insurers across Bristol and the South West.' ],
+			[ 'key' => 'field_intro_2_title', 'label' => 'Item 2 — Title', 'name' => 'intro_2_title', 'type' => 'text',     'default_value' => 'Accredited & Qualified' ],
+			[ 'key' => 'field_intro_2_body',  'label' => 'Item 2 — Body',  'name' => 'intro_2_body',  'type' => 'textarea', 'rows' => 2, 'default_value' => 'Qualified surveyors and certified tradespeople ensuring every project meets the highest standards.' ],
+			[ 'key' => 'field_intro_3_title', 'label' => 'Item 3 — Title', 'name' => 'intro_3_title', 'type' => 'text',     'default_value' => 'Eco & Smart Upgrades' ],
+			[ 'key' => 'field_intro_3_body',  'label' => 'Item 3 — Body',  'name' => 'intro_3_body',  'type' => 'textarea', 'rows' => 2, 'default_value' => 'Solar panels, smart heating, and sustainable materials for a greener, more efficient home.' ],
+			// Why Us
+			[ 'key' => 'field_why_us_msg',    'label' => 'Why Sail Renovate section', 'name' => '', 'type' => 'message', 'message' => 'Edit the three reason bullets in the Why Sail Renovate section.' ],
+			[ 'key' => 'field_why_1_title', 'label' => 'Reason 1 — Title', 'name' => 'why_1_title', 'type' => 'text',     'default_value' => 'Over a Decade of Expertise' ],
+			[ 'key' => 'field_why_1_body',  'label' => 'Reason 1 — Body',  'name' => 'why_1_body',  'type' => 'textarea', 'rows' => 2, 'default_value' => "With more than ten years serving homeowners and insurers across Bristol and the South West, we've earned a reputation for reliability, quality, and transparency on every project — large or small." ],
+			[ 'key' => 'field_why_2_title', 'label' => 'Reason 2 — Title', 'name' => 'why_2_title', 'type' => 'text',     'default_value' => 'Qualified Surveyor-Led Projects' ],
+			[ 'key' => 'field_why_2_body',  'label' => 'Reason 2 — Body',  'name' => 'why_2_body',  'type' => 'textarea', 'rows' => 2, 'default_value' => 'Every project is overseen by a qualified surveyor, ensuring accurate scoping, fair pricing, and a finished result that meets industry standards and your expectations.' ],
+			[ 'key' => 'field_why_3_title', 'label' => 'Reason 3 — Title', 'name' => 'why_3_title', 'type' => 'text',     'default_value' => 'Dedicated Customer Care' ],
+			[ 'key' => 'field_why_3_body',  'label' => 'Reason 3 — Body',  'name' => 'why_3_body',  'type' => 'textarea', 'rows' => 2, 'default_value' => "Your dedicated project contact keeps you informed at every stage — no surprises, no delays, just clear communication and a home you'll love." ],
+		],
+		'location' => [ [ [ 'param' => 'page_type', 'operator' => '==', 'value' => 'front_page' ] ] ],
+	] );
+
+	// ── About page ────────────────────────────────────────────────────────────
+	acf_add_local_field_group( [
+		'key'    => 'group_sail_about',
+		'title'  => 'About — Values & Testimonial',
+		'fields' => [
+			// Values
+			[ 'key' => 'field_values_msg',    'label' => 'Core Values section', 'name' => '', 'type' => 'message', 'message' => 'Edit the three values cards. Icons are fixed in the design.' ],
+			[ 'key' => 'field_value_1_title', 'label' => 'Value 1 — Title', 'name' => 'value_1_title', 'type' => 'text',     'default_value' => 'Surveyor-Led Delivery' ],
+			[ 'key' => 'field_value_1_body',  'label' => 'Value 1 — Body',  'name' => 'value_1_body',  'type' => 'textarea', 'rows' => 2, 'default_value' => 'Every project is assessed, scoped, and overseen by a qualified surveyor. This ensures accuracy in our quoting and adherence to the highest building standards throughout the build.' ],
+			[ 'key' => 'field_value_2_title', 'label' => 'Value 2 — Title', 'name' => 'value_2_title', 'type' => 'text',     'default_value' => 'Transparent Communication' ],
+			[ 'key' => 'field_value_2_body',  'label' => 'Value 2 — Body',  'name' => 'value_2_body',  'type' => 'textarea', 'rows' => 2, 'default_value' => "We believe in keeping you informed. You'll have a dedicated point of contact providing regular updates, so you always know exactly what is happening with your property." ],
+			[ 'key' => 'field_value_3_title', 'label' => 'Value 3 — Title', 'name' => 'value_3_title', 'type' => 'text',     'default_value' => 'Exceptional Craftsmanship' ],
+			[ 'key' => 'field_value_3_body',  'label' => 'Value 3 — Body',  'name' => 'value_3_body',  'type' => 'textarea', 'rows' => 2, 'default_value' => 'We never compromise on quality. Our network of vetted, certified tradespeople take immense pride in their work, resulting in finishes that stand the test of time.' ],
+			// Testimonial
+			[ 'key' => 'field_test_msg',   'label' => 'Testimonial section', 'name' => '', 'type' => 'message', 'message' => 'Edit the featured testimonial quote.' ],
+			[ 'key' => 'field_test_quote', 'label' => 'Quote', 'name' => 'testimonial_quote', 'type' => 'textarea', 'rows' => 4, 'default_value' => "We've worked together for nearly 10 years on a wide range of insurance reinstatement projects, and the service has always been reliable, professional, and completed to a high standard. Communication is excellent, works are handled efficiently, and we know our clients are in safe hands throughout the process. We would have no hesitation in recommending their services." ],
+			[ 'key' => 'field_test_attr',  'label' => 'Attribution (name — company)', 'name' => 'testimonial_attr', 'type' => 'text', 'default_value' => 'Steve — Ellipta' ],
+		],
+		'location' => [ [ [ 'param' => 'page_slug', 'operator' => '==', 'value' => 'about' ] ] ],
+	] );
+
+	// ── Service CPT ────────────────────────────────────────────────────────────
+	acf_add_local_field_group( [
+		'key'    => 'group_sail_service',
+		'title'  => 'Service — Card Tag',
+		'fields' => [
+			[ 'key' => 'field_service_tag', 'label' => 'Card Tag (short label, e.g. "Insurance Approved")', 'name' => 'service_tag', 'type' => 'text', 'default_value' => '' ],
+		],
+		'location' => [ [ [ 'param' => 'post_type', 'operator' => '==', 'value' => 'service' ] ] ],
+	] );
+
+	// ── Project CPT ────────────────────────────────────────────────────────────
+	// Built-in: title = project name, thumbnail = featured image, excerpt = intro.
+	// ACF provides: project_type, project_location, project_date for the meta sidebar.
+	acf_add_local_field_group( [
+		'key'    => 'group_sail_project',
+		'title'  => 'Project — Meta Fields',
+		'fields' => [
+			[ 'key' => 'field_project_type',     'label' => 'Project Type (e.g. Full Renovation)',  'name' => 'project_type',     'type' => 'text', 'default_value' => '' ],
+			[ 'key' => 'field_project_location', 'label' => 'Location (e.g. Clifton, Bristol)',     'name' => 'project_location', 'type' => 'text', 'default_value' => '' ],
+			[ 'key' => 'field_project_date',     'label' => 'Completion Date (e.g. October 2024)', 'name' => 'project_date',     'type' => 'text', 'default_value' => '' ],
+		],
+		'location' => [ [ [ 'param' => 'post_type', 'operator' => '==', 'value' => 'project' ] ] ],
+	] );
+	// Team Member CPT: title = name, excerpt = job role, content = bio, thumbnail = photo.
+	// No extra ACF fields needed — WordPress built-ins cover the full profile.
 }

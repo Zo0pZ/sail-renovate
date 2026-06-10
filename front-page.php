@@ -62,24 +62,24 @@ $phone_tel = 'tel:' . preg_replace( '/[^0-9+]/', '', $phone );
       <path d="M4 14 L20 4 L36 14"/>
       <path d="M16 34 L16 24 L24 24 L24 34"/>
     </svg>
-    <div class="intro-item__title"><?php esc_html_e( 'Renovations & Repairs', 'sail-renovate' ); ?></div>
-    <p class="intro-item__body"><?php esc_html_e( 'From insurance reinstatements to complete home renovations, trusted by homeowners and insurers across Bristol and the South West.', 'sail-renovate' ); ?></p>
+    <div class="intro-item__title"><?php echo esc_html( sail_field( 'intro_1_title', __( 'Renovations & Repairs', 'sail-renovate' ) ) ); ?></div>
+    <p class="intro-item__body"><?php echo esc_html( sail_field( 'intro_1_body', __( 'From insurance reinstatements to complete home renovations, trusted by homeowners and insurers across Bristol and the South West.', 'sail-renovate' ) ) ); ?></p>
   </div>
   <div class="intro-item" role="listitem">
     <svg class="intro-item__icon" viewBox="0 0 40 40" fill="none" stroke="white" stroke-width="1.5" aria-hidden="true">
       <circle cx="20" cy="20" r="14"/>
       <path d="M14 20 L18 24 L26 16"/>
     </svg>
-    <div class="intro-item__title"><?php esc_html_e( 'Accredited & Qualified', 'sail-renovate' ); ?></div>
-    <p class="intro-item__body"><?php esc_html_e( 'Qualified surveyors and certified tradespeople ensuring every project meets the highest standards.', 'sail-renovate' ); ?></p>
+    <div class="intro-item__title"><?php echo esc_html( sail_field( 'intro_2_title', __( 'Accredited & Qualified', 'sail-renovate' ) ) ); ?></div>
+    <p class="intro-item__body"><?php echo esc_html( sail_field( 'intro_2_body', __( 'Qualified surveyors and certified tradespeople ensuring every project meets the highest standards.', 'sail-renovate' ) ) ); ?></p>
   </div>
   <div class="intro-item" role="listitem">
     <svg class="intro-item__icon" viewBox="0 0 40 40" fill="none" stroke="white" stroke-width="1.5" aria-hidden="true">
       <path d="M20 8 C20 8 10 16 10 24 a10 10 0 0 0 20 0 C30 16 20 8 20 8Z"/>
       <path d="M16 24 L20 20 L24 24"/>
     </svg>
-    <div class="intro-item__title"><?php esc_html_e( 'Eco & Smart Upgrades', 'sail-renovate' ); ?></div>
-    <p class="intro-item__body"><?php esc_html_e( 'Solar panels, smart heating, and sustainable materials for a greener, more efficient home.', 'sail-renovate' ); ?></p>
+    <div class="intro-item__title"><?php echo esc_html( sail_field( 'intro_3_title', __( 'Eco & Smart Upgrades', 'sail-renovate' ) ) ); ?></div>
+    <p class="intro-item__body"><?php echo esc_html( sail_field( 'intro_3_body', __( 'Solar panels, smart heating, and sustainable materials for a greener, more efficient home.', 'sail-renovate' ) ) ); ?></p>
   </div>
 </div>
 
@@ -162,22 +162,22 @@ $phone_tel = 'tel:' . preg_replace( '/[^0-9+]/', '', $phone );
       <div class="why-item fade-in">
         <span class="why-item__num">01</span>
         <div>
-          <h3 class="why-item__title"><?php esc_html_e( 'Over a Decade of Expertise', 'sail-renovate' ); ?></h3>
-          <p class="why-item__body"><?php esc_html_e( 'With more than ten years serving homeowners and insurers across Bristol and the South West, we\'ve earned a reputation for reliability, quality, and transparency on every project — large or small.', 'sail-renovate' ); ?></p>
+          <h3 class="why-item__title"><?php echo esc_html( sail_field( 'why_1_title', __( 'Over a Decade of Expertise', 'sail-renovate' ) ) ); ?></h3>
+          <p class="why-item__body"><?php echo esc_html( sail_field( 'why_1_body', __( "With more than ten years serving homeowners and insurers across Bristol and the South West, we've earned a reputation for reliability, quality, and transparency on every project — large or small.", 'sail-renovate' ) ) ); ?></p>
         </div>
       </div>
       <div class="why-item fade-in fade-in-delay-1">
         <span class="why-item__num">02</span>
         <div>
-          <h3 class="why-item__title"><?php esc_html_e( 'Qualified Surveyor-Led Projects', 'sail-renovate' ); ?></h3>
-          <p class="why-item__body"><?php esc_html_e( 'Every project is overseen by a qualified surveyor, ensuring accurate scoping, fair pricing, and a finished result that meets industry standards and your expectations.', 'sail-renovate' ); ?></p>
+          <h3 class="why-item__title"><?php echo esc_html( sail_field( 'why_2_title', __( 'Qualified Surveyor-Led Projects', 'sail-renovate' ) ) ); ?></h3>
+          <p class="why-item__body"><?php echo esc_html( sail_field( 'why_2_body', __( 'Every project is overseen by a qualified surveyor, ensuring accurate scoping, fair pricing, and a finished result that meets industry standards and your expectations.', 'sail-renovate' ) ) ); ?></p>
         </div>
       </div>
       <div class="why-item fade-in fade-in-delay-2">
         <span class="why-item__num">03</span>
         <div>
-          <h3 class="why-item__title"><?php esc_html_e( 'Dedicated Customer Care', 'sail-renovate' ); ?></h3>
-          <p class="why-item__body"><?php esc_html_e( 'Your dedicated project contact keeps you informed at every stage — no surprises, no delays, just clear communication and a home you\'ll love.', 'sail-renovate' ); ?></p>
+          <h3 class="why-item__title"><?php echo esc_html( sail_field( 'why_3_title', __( 'Dedicated Customer Care', 'sail-renovate' ) ) ); ?></h3>
+          <p class="why-item__body"><?php echo esc_html( sail_field( 'why_3_body', __( "Your dedicated project contact keeps you informed at every stage — no surprises, no delays, just clear communication and a home you'll love.", 'sail-renovate' ) ) ); ?></p>
         </div>
       </div>
     </div>
@@ -271,15 +271,38 @@ $phone_tel = 'tel:' . preg_replace( '/[^0-9+]/', '', $phone );
 
   <div class="faq-list" role="list">
     <?php
-    $faqs = [
-      [ __( 'Do you offer free quotes?', 'sail-renovate' ), __( 'Absolutely. We offer free, no-obligation quotes for all project types. One of our qualified surveyors will visit your property to assess the work required and provide a detailed, transparent quote with no hidden costs.', 'sail-renovate' ) ],
-      [ __( 'What types of projects do you specialise in?', 'sail-renovate' ), __( 'We specialise in home repairs, property renovations, insurance reinstatement, and property refurbishment. We handle everything from small repairs to complete property transformations across Bristol and the South West.', 'sail-renovate' ) ],
-      [ __( 'Are you approved by insurance companies?', 'sail-renovate' ), __( 'Yes. We are trusted by major insurers to carry out restoration and repair work. We handle the documentation and scoping process to make insurance claims as smooth as possible for homeowners.', 'sail-renovate' ) ],
-      [ __( 'How do you manage projects and keep me informed?', 'sail-renovate' ), __( 'Each project is assigned a dedicated project manager who acts as your single point of contact. They\'ll keep you updated throughout the build with regular progress reports, handle any issues that arise, and ensure the project stays on time and on budget.', 'sail-renovate' ) ],
-      [ __( 'What areas do you cover?', 'sail-renovate' ), __( 'We\'re based in Bristol and cover the wider Bristol area including Clifton, Redland, Bishopston, Westbury Park, Horfield, and surrounding areas. If you\'re unsure whether we cover your location, give us a call and we\'ll let you know.', 'sail-renovate' ) ],
-      [ __( 'What eco-friendly options do you offer?', 'sail-renovate' ), __( 'We offer a full range of eco upgrades including solar panel installation, smart heating systems (such as heat pumps and smart thermostats), improved insulation, sustainable materials, and EV charging points. We can also advise on available government grants and incentives.', 'sail-renovate' ) ],
-    ];
-    foreach ( $faqs as $faq ) :
+    $faq_q = new WP_Query( [
+      'post_type'      => 'faq',
+      'posts_per_page' => -1,
+      'orderby'        => 'menu_order',
+      'order'          => 'ASC',
+    ] );
+    if ( $faq_q->have_posts() ) :
+      while ( $faq_q->have_posts() ) : $faq_q->the_post();
+    ?>
+    <div class="faq-item" role="listitem">
+      <button class="faq-question" aria-expanded="false">
+        <?php echo esc_html( get_the_title() ); ?>
+        <span class="faq-icon" aria-hidden="true"></span>
+      </button>
+      <div class="faq-answer" role="region">
+        <?php the_content(); ?>
+      </div>
+    </div>
+    <?php
+      endwhile;
+      wp_reset_postdata();
+    else :
+      // Fallback until FAQ posts are added in the WP admin
+      $faqs = [
+        [ __( 'Do you offer free quotes?', 'sail-renovate' ), __( 'Absolutely. We offer free, no-obligation quotes for all project types. One of our qualified surveyors will visit your property to assess the work required and provide a detailed, transparent quote with no hidden costs.', 'sail-renovate' ) ],
+        [ __( 'What types of projects do you specialise in?', 'sail-renovate' ), __( 'We specialise in home repairs, property renovations, insurance reinstatement, and property refurbishment. We handle everything from small repairs to complete property transformations across Bristol and the South West.', 'sail-renovate' ) ],
+        [ __( 'Are you approved by insurance companies?', 'sail-renovate' ), __( 'Yes. We are trusted by major insurers to carry out restoration and repair work. We handle the documentation and scoping process to make insurance claims as smooth as possible for homeowners.', 'sail-renovate' ) ],
+        [ __( 'How do you manage projects and keep me informed?', 'sail-renovate' ), __( "Each project is assigned a dedicated project manager who acts as your single point of contact. They'll keep you updated throughout the build with regular progress reports, handle any issues that arise, and ensure the project stays on time and on budget.", 'sail-renovate' ) ],
+        [ __( 'What areas do you cover?', 'sail-renovate' ), __( "We're based in Bristol and cover the wider Bristol area including Clifton, Redland, Bishopston, Westbury Park, Horfield, and surrounding areas. If you're unsure whether we cover your location, give us a call and we'll let you know.", 'sail-renovate' ) ],
+        [ __( 'What eco-friendly options do you offer?', 'sail-renovate' ), __( 'We offer a full range of eco upgrades including solar panel installation, smart heating systems (such as heat pumps and smart thermostats), improved insulation, sustainable materials, and EV charging points. We can also advise on available government grants and incentives.', 'sail-renovate' ) ],
+      ];
+      foreach ( $faqs as $faq ) :
     ?>
     <div class="faq-item" role="listitem">
       <button class="faq-question" aria-expanded="false">
@@ -290,7 +313,10 @@ $phone_tel = 'tel:' . preg_replace( '/[^0-9+]/', '', $phone );
         <p><?php echo esc_html( $faq[1] ); ?></p>
       </div>
     </div>
-    <?php endforeach; ?>
+    <?php
+      endforeach;
+    endif;
+    ?>
   </div>
 </section>
 

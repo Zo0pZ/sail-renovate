@@ -24,47 +24,62 @@ $phone_tel = 'tel:' . preg_replace( '/[^0-9+]/', '', $phone );
   <section class="page-section" style="padding-top: 0;">
     <div class="filter-bar" role="group" aria-label="<?php esc_attr_e( 'Filter projects by category', 'sail-renovate' ); ?>">
       <button class="filter-btn active" data-filter="all"><?php esc_html_e( 'All', 'sail-renovate' ); ?></button>
-      <button class="filter-btn" data-filter="insurance"><?php esc_html_e( 'Insurance', 'sail-renovate' ); ?></button>
-      <button class="filter-btn" data-filter="refurbishment"><?php esc_html_e( 'Refurbishment', 'sail-renovate' ); ?></button>
-      <button class="filter-btn" data-filter="eco"><?php esc_html_e( 'Eco', 'sail-renovate' ); ?></button>
+      <?php
+      $proj_terms = get_terms( [ 'taxonomy' => 'project_cat', 'hide_empty' => false ] );
+      if ( ! is_wp_error( $proj_terms ) ) :
+        foreach ( $proj_terms as $term ) :
+      ?>
+      <button class="filter-btn" data-filter="<?php echo esc_attr( $term->slug ); ?>"><?php echo esc_html( $term->name ); ?></button>
+      <?php
+        endforeach;
+      endif;
+      ?>
     </div>
 
     <div class="project-grid" id="projectGrid">
       <?php
-      $projects = [
-        [ '/projects/period-property-transformation/', '1-front.jpg',   __( 'Full renovation in Clifton', 'sail-renovate' ),             'refurbishment', __( 'Full Renovation · Clifton', 'sail-renovate' ),                __( 'Period Property Transformation', 'sail-renovate' ),  __( 'A complete internal strip-out and refurbishment of a Victorian townhouse, blending modern amenities with restored period features.', 'sail-renovate' ) ],
-        [ null,                                        '16-hallway.jpg', __( 'Insurance repair in Horfield', 'sail-renovate' ),            'insurance',     __( 'Insurance Repair · Horfield', 'sail-renovate' ),              __( 'Fire Damage Restoration', 'sail-renovate' ),         __( 'Working directly with the insurer to fully reinstate a fire-damaged ground floor, managing the claim through to final sign-off.', 'sail-renovate' ) ],
-        [ null,                                        '11-bathroom.jpg',__( 'Property refurbishment in Redland', 'sail-renovate' ),       'refurbishment', __( 'Property Refurbishment · Redland', 'sail-renovate' ),        __( 'Luxury Bathroom Suite', 'sail-renovate' ),           __( 'Complete redesign and installation of a high-end family bathroom featuring custom tiling, underfloor heating, and premium fixtures.', 'sail-renovate' ) ],
-        [ null,                                        '4-diner.jpg',    __( 'Kitchen-diner extension in Westbury Park', 'sail-renovate' ),'refurbishment', __( 'Extension & Kitchen · Westbury Park', 'sail-renovate' ),   __( 'Kitchen-Diner Extension', 'sail-renovate' ),         __( 'Project management and delivery of a rear extension to create a light-filled, open-plan kitchen and dining area.', 'sail-renovate' ) ],
-        [ null,                                        '15-garden.jpg',  __( 'Eco upgrade in Bishopston', 'sail-renovate' ),               'eco',           __( 'Eco Upgrade · Bishopston', 'sail-renovate' ),                __( 'Solar & Smart Heating', 'sail-renovate' ),           __( 'Installation of a full solar PV array with battery storage, integrated with a new smart heating system for maximum efficiency.', 'sail-renovate' ) ],
-        [ null,                                        '2-rear.jpg',     __( 'Water damage reinstatement', 'sail-renovate' ),              'insurance',     __( 'Insurance Reinstatement · Southville', 'sail-renovate' ),   __( 'Water Damage Reinstatement', 'sail-renovate' ),      __( 'Rapid response drying and complete reinstatement of flooring and joinery following extensive escape of water.', 'sail-renovate' ) ],
-      ];
-      $delays = [ '', ' fade-in-delay-1', ' fade-in-delay-2', '', ' fade-in-delay-1', ' fade-in-delay-2' ];
-      foreach ( $projects as $i => $p ) :
-        $tag = 'div';
-        $href_attr = '';
-        if ( $p[0] ) {
-          $tag = 'a';
-          $href_attr = ' href="' . esc_url( home_url( $p[0] ) ) . '"';
-        }
+      $proj_query = new WP_Query( [
+        'post_type'      => 'project',
+        'posts_per_page' => -1,
+        'orderby'        => 'menu_order',
+        'order'          => 'ASC',
+      ] );
+      $proj_delays = [ '', ' fade-in-delay-1', ' fade-in-delay-2', '', ' fade-in-delay-1', ' fade-in-delay-2' ];
+      $pi = 0;
+      while ( $proj_query->have_posts() ) : $proj_query->the_post();
+        $thumb     = get_the_post_thumbnail_url( null, 'large' );
+        $p_type    = get_post_meta( get_the_ID(), 'project_type', true );
+        $p_loc     = get_post_meta( get_the_ID(), 'project_location', true );
+        $p_terms   = get_the_terms( get_the_ID(), 'project_cat' );
+        $cat_slug  = ( $p_terms && ! is_wp_error( $p_terms ) ) ? $p_terms[0]->slug : '';
+        $disp_type = trim( implode( ' &middot; ', array_filter( [ $p_type, $p_loc ] ) ) );
+        $delay     = $proj_delays[ $pi % count( $proj_delays ) ];
       ?>
-      <<?php echo $tag . $href_attr; ?> class="project-card fade-in<?php echo $delays[ $i ]; ?>" data-category="<?php echo esc_attr( $p[3] ); ?>">
+      <a href="<?php the_permalink(); ?>" class="project-card fade-in<?php echo esc_attr( $delay ); ?>" data-category="<?php echo esc_attr( $cat_slug ); ?>">
+        <?php if ( $thumb ) : ?>
         <div class="project-card__image">
-          <img src="<?php echo $img . esc_attr( $p[1] ); ?>" alt="<?php echo esc_attr( $p[2] ); ?>" />
+          <img src="<?php echo esc_url( $thumb ); ?>" alt="<?php echo esc_attr( get_the_title() ); ?>" />
         </div>
+        <?php endif; ?>
         <div class="project-card__content">
-          <span class="project-card__type"><?php echo esc_html( $p[4] ); ?></span>
-          <h3 class="project-card__title"><?php echo esc_html( $p[5] ); ?></h3>
-          <p class="project-card__description"><?php echo esc_html( $p[6] ); ?></p>
-          <?php if ( $p[0] ) : ?>
+          <?php if ( $disp_type ) : ?>
+          <span class="project-card__type"><?php echo wp_kses_post( $disp_type ); ?></span>
+          <?php endif; ?>
+          <h3 class="project-card__title"><?php echo esc_html( get_the_title() ); ?></h3>
+          <?php if ( get_the_excerpt() ) : ?>
+          <p class="project-card__description"><?php echo esc_html( get_the_excerpt() ); ?></p>
+          <?php endif; ?>
           <span class="project-card__link">
             <?php esc_html_e( 'View Project', 'sail-renovate' ); ?>
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </span>
-          <?php endif; ?>
         </div>
-      </<?php echo $tag; ?>>
-      <?php endforeach; ?>
+      </a>
+      <?php
+        $pi++;
+      endwhile;
+      wp_reset_postdata();
+      ?>
     </div>
   </section>
 

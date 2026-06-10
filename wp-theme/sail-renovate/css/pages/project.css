@@ -1,0 +1,7 @@
+/* Individual project page styles */
+.content-block p { font-size: 1.05rem; line-height: 1.8; color: var(--text-muted); margin-bottom: 1.5rem; }
+.content-block p:last-child { margin-bottom: 0; }
+
+@media (max-width: 860px) {
+  .grid-2 { grid-template-columns: 1fr; }
+}

@@ -22,25 +22,35 @@ $img = esc_url( get_template_directory_uri() . '/images/' );
   <section class="page-section">
     <div class="grid-3">
       <?php
-      $services = [
-        [ '/services/insurance-reinstatement/', '12-bathroom.jpg', __( 'Insurance reinstatement project', 'sail-renovate' ), __( 'Insurance Reinstatement', 'sail-renovate' ), __( 'Trusted delivery for insurer-led repairs and reinstatement projects across Bristol properties.', 'sail-renovate' ) ],
-        [ '/services/property-refurbishment/',  '3-kitchen.jpg',  __( 'Property refurbishment project', 'sail-renovate' ), __( 'Property Refurbishment', 'sail-renovate' ),  __( 'Complete home makeovers from kitchens and bathrooms to full internal transformations.', 'sail-renovate' ) ],
-        [ '/services/property-maintenance/',    '14-utility.jpg', __( 'Property maintenance services', 'sail-renovate' ),  __( 'Property Maintenance', 'sail-renovate' ),    __( 'Scheduled repairs and upkeep to protect property condition and avoid costly damage.', 'sail-renovate' ) ],
-        [ '/services/project-management/',      '5-living-room.jpg', __( 'Project management for renovations', 'sail-renovate' ), __( 'Project Management', 'sail-renovate' ), __( 'Co-ordinated site delivery, material procurement and contractor scheduling for every project.', 'sail-renovate' ) ],
-        [ '/services/claims-management/',       '13-ensuite.jpg', __( 'Claims management services', 'sail-renovate' ),     __( 'Claims Management', 'sail-renovate' ),       __( 'We work with insurers and homeowners to keep claims moving and avoid unnecessary delays.', 'sail-renovate' ) ],
-      ];
-      $delays = [ '', ' fade-in-delay-1', ' fade-in-delay-2', '', ' fade-in-delay-1' ];
-      foreach ( $services as $i => $s ) :
+      $svc_query = new WP_Query( [
+        'post_type'      => 'service',
+        'posts_per_page' => -1,
+        'orderby'        => 'menu_order',
+        'order'          => 'ASC',
+      ] );
+      $svc_delays = [ '', ' fade-in-delay-1', ' fade-in-delay-2', '', ' fade-in-delay-1', ' fade-in-delay-2' ];
+      $si = 0;
+      while ( $svc_query->have_posts() ) : $svc_query->the_post();
+        $thumb = get_the_post_thumbnail_url( null, 'large' );
+        $tag   = get_post_meta( get_the_ID(), 'service_tag', true );
+        $delay = $svc_delays[ $si % count( $svc_delays ) ];
       ?>
-      <a href="<?php echo esc_url( home_url( $s[0] ) ); ?>" class="card-img fade-in<?php echo $delays[ $i ]; ?>">
-        <img src="<?php echo $img . esc_attr( $s[1] ); ?>" alt="<?php echo esc_attr( $s[2] ); ?>" />
+      <a href="<?php the_permalink(); ?>" class="card-img fade-in<?php echo esc_attr( $delay ); ?>">
+        <?php if ( $thumb ) : ?>
+        <img src="<?php echo esc_url( $thumb ); ?>" alt="<?php echo esc_attr( get_the_title() ); ?>" />
+        <?php endif; ?>
         <div class="card-img__content">
-          <h3><?php echo esc_html( $s[3] ); ?></h3>
-          <p><?php echo esc_html( $s[4] ); ?></p>
+          <?php if ( $tag ) : ?><p class="card-img__tag"><?php echo esc_html( $tag ); ?></p><?php endif; ?>
+          <h3><?php echo esc_html( get_the_title() ); ?></h3>
+          <p><?php echo esc_html( get_the_excerpt() ); ?></p>
           <span class="card-img__link"><?php esc_html_e( 'Find out more', 'sail-renovate' ); ?> <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
         </div>
       </a>
-      <?php endforeach; ?>
+      <?php
+        $si++;
+      endwhile;
+      wp_reset_postdata();
+      ?>
 
       <!-- CTA card -->
       <a href="<?php echo esc_url( home_url( '/contact/' ) ); ?>" class="card-img card-img--cta fade-in fade-in-delay-2">

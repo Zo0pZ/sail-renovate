@@ -1,0 +1,397 @@
+/*
+ * Sail Renovate — Project / Case-Study & Component Styles
+ * ---------------------------------------------------------
+ * Migrated from Customizer "Additional CSS" into the theme.
+ *
+ * IMPORTANT — CASCADE / LOAD ORDER WARNING:
+ *   These rules were authored in the Customizer, which loads AFTER the
+ *   theme stylesheet. Moving them into the theme makes them load EARLIER.
+ *   This file contains 123 !important declarations that were needed to
+ *   beat theme rules and inline block styles in that later-loading context.
+ *   After moving:
+ *     1. Enqueue this file LAST (high priority / after the main stylesheet)
+ *        so the cascade order is preserved, OR keep the !important flags.
+ *     2. Remove the same CSS from Appearance > Customize > Additional CSS
+ *        ONLY after confirming the page renders identically.
+ *     3. Design tokens (var(--accent), --navy, --serif, etc.) must already
+ *        be defined in :root by the theme — they are NOT redefined here.
+ *
+ * SECTIONS:
+ *   1. Project "Our Work" page layout
+ *   2. Project page typography & colours
+ *   3. Brief sidebar fields
+ *   4. Brief chips (orange outline override)
+ *   5. Brief chips final override
+ *   6. Cover block dim overlay (navy)
+ *   7. Stat cards
+ *   8. Image hover zoom
+ *   9. Related card (whole-card clickable)
+ *  10. Breadcrumb navigation
+ *  11. Project card thumbnail
+ */
+
+/* ===== 1. Project (Our Work) page layout — match case-study design ===== */
+/* Hide duplicate excerpt/meta dumped into the hero (keep eyebrow + title) */
+.single-project .internal-hero .hero__sub,
+.single-project .internal-hero > p {
+  display: none !important;
+}
+/* Let the content section span full width */
+.single-project .page-section {
+  max-width: none !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+/* Collapse the 2-column grid to a single full-width column */
+.single-project .page-section .grid-2 {
+  display: block !important;
+  max-width: none !important;
+}
+/* Hide redundant template meta card (Project Type / Location / Start a Similar Project) */
+.single-project .page-section .grid-2 > div:last-child {
+  display: none !important;
+}
+/* Make the content block full width so alignfull blocks reach the edges */
+.single-project .content-block {
+  width: 100% !important;
+  max-width: none !important;
+}
+/* Wide blocks: comfortable centered max width */
+.single-project .content-block > .alignwide,
+.single-project .content-block > .wp-block-group.alignwide {
+  max-width: 1200px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding-left: 24px;
+  padding-right: 24px;
+  padding: 4rem 3rem 5rem;
+  box-sizing: border-box;
+}
+/* Full-width blocks truly edge to edge */
+.single-project .content-block > .alignfull {
+  max-width: none !important;
+  width: 100% !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+/* Plain (non-aligned) paragraphs/headings: readable centered width */
+.single-project .content-block > p,
+.single-project .content-block > h2,
+.single-project .content-block > h3 {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 24px;
+  padding-right: 24px;
+  box-sizing: border-box;
+}
+
+/* Hero-to-top: lead the page with the hero Cover image, hide template title section */
+.single-project .internal-hero {
+  display: none !important;
+}
+
+/* ===== 2. Project page — typography & colours to match site ===== */
+.single-project .content-block { color: var(--text); }
+
+/* Headings -> serif with orange italic accents */
+.single-project .content-block h2,
+.single-project .content-block h3 {
+  font-family: var(--serif) !important;
+  font-weight: 300 !important;
+  color: var(--navy) !important;
+  line-height: 1.12;
+}
+.single-project .content-block h2 { font-size: 2.4rem; }
+.single-project .content-block h3 { font-size: 1.5rem; }
+.single-project .content-block h2 em,
+.single-project .content-block h3 em { color: var(--accent) !important; font-style: italic; }
+
+/* Body copy */
+.single-project .content-block p { color: var(--text-muted); }
+
+/* Eyebrow paragraphs (THE BRIEF, THE CHALLENGE, stat labels) */
+.single-project .content-block p.has-small-font-size:not(:has(strong)) {
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-weight: 500;
+  color: var(--accent);
+  font-size: 0.72rem;
+}
+/* Metadata labels (SERVICES, DURATION) */
+.single-project .content-block p.has-small-font-size strong {
+  display: block;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 600;
+  font-size: 0.68rem;
+  margin-bottom: 0.25em;
+}
+.single-project .content-block p.has-small-font-size:has(strong) {
+  color: var(--text);
+  text-transform: none;
+}
+
+/* Dark "solution" band -> site dark colour */
+.single-project .content-block .wp-block-group.alignfull.has-background {
+  background: var(--navy) !important;
+}
+.single-project .content-block .has-background h2,
+.single-project .content-block .has-background h2.has-white-color { color: #fff !important; }
+.single-project .content-block .has-background h2 em { color: var(--accent) !important; }
+.single-project .content-block .has-background p { color: rgba(255,255,255,0.72) !important; }
+.single-project .content-block .has-background p.has-small-font-size:not(:has(strong)) { color: var(--accent) !important; }
+
+/* Buttons -> brand styles */
+.single-project .content-block .wp-block-button__link {
+  background-color: var(--accent) !important;
+  color: #fff !important;
+  border-radius: 2px !important;
+  font-family: var(--sans) !important;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.76rem;
+  font-weight: 600;
+  padding: 0.95em 1.9em;
+}
+.single-project .content-block .wp-block-button.is-style-outline .wp-block-button__link {
+  background-color: transparent !important;
+  color: var(--navy) !important;
+  border: 1px solid var(--border) !important;
+}
+
+/* ===== 3. Brief sidebar fields ===== */
+.single-project .wp-block-column .brief-field {
+  margin: 0 0 1.6rem 0 !important;
+  line-height: 1.4 !important;
+  font-family: var(--serif) !important;
+  font-size: 1.25rem !important;
+  font-weight: 300 !important;
+  color: var(--text-muted) !important;
+}
+.single-project .wp-block-column .brief-field strong {
+  display: block !important;
+  font-family: var(--sans, 'DM Sans', sans-serif) !important;
+  font-size: 0.72rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.12em !important;
+  text-transform: uppercase !important;
+  color: var(--navy, #343d6e) !important;
+  margin-bottom: 0.5rem !important;
+}
+.single-project .wp-block-column .brief-field--label {
+  margin-bottom: 0.6rem !important;
+}
+.single-project .wp-block-column .brief-field--label strong {
+  margin-bottom: 0 !important;
+}
+.single-project .wp-block-buttons.brief-chips {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 0.5rem !important;
+  margin: 0 0 1.6rem 0 !important;
+}
+.single-project .brief-chips .wp-block-button { margin: 0 !important; }
+.single-project .brief-chips .wp-block-button .wp-block-button__link {
+  display: inline-block !important;
+  background: transparent !important;
+  color: var(--accent, #d36e24) !important;
+  border: 1px solid var(--accent, #d36e24) !important;
+  border-radius: 3px !important;
+  padding: 0.4rem 0.8rem !important;
+  font-family: var(--sans, 'DM Sans', sans-serif) !important;
+  font-size: 0.68rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase !important;
+  line-height: 1 !important;
+  cursor: default !important;
+  box-shadow: none !important;
+  pointer-events: none !important;
+}
+
+/* ===== 4. Brief chips override (orange, beat theme outline) ===== */
+.single-project .page-section .brief-chips .wp-block-button.is-style-outline > .wp-block-button__link,
+.single-project .page-section .brief-chips .wp-block-button > .wp-block-button__link {
+  color: var(--accent, #d36e24) !important;
+  border-color: var(--accent, #d36e24) !important;
+  background: transparent !important;
+  border-width: 1px !important;
+  border-style: solid !important;
+}
+
+/* ===== 5. Brief chips final override (beats .content-block .is-style-outline navy) ===== */
+.single-project .content-block .brief-chips .wp-block-button.is-style-outline .wp-block-button__link,
+.single-project .content-block .brief-chips .wp-block-button .wp-block-button__link {
+  color: var(--accent, #d36e24) !important;
+  border-color: var(--accent, #d36e24) !important;
+  background: transparent !important;
+  border: 1px solid var(--accent, #d36e24) !important;
+}
+
+/* ===== 6. Cover block dim overlay -> navy ===== */
+.wp-block-cover .has-background-dim:not([class*=-background-color]),
+.wp-block-cover-image .has-background-dim:not([class*=-background-color]),
+.wp-block-cover-image.has-background-dim:not([class*=-background-color]),
+.wp-block-cover.has-background-dim:not([class*=-background-color]) {
+  background-color: #383b6d;
+}
+
+/* ===== 7. Stat cards: image + stat in one bordered card ===== */
+.single-project .content-block .wp-block-columns.stat-cards {
+  gap: 1.5rem !important;
+  align-items: stretch !important;
+}
+.single-project .content-block .stat-cards .wp-block-column.stat-card {
+  border: 1px solid var(--border, #DDD6CA) !important;
+  border-radius: 4px !important;
+  overflow: hidden !important;
+  background: #fff !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+.single-project .content-block .stat-card .wp-block-image.stat-card__img {
+  margin: 0 !important;
+}
+.single-project .content-block .stat-card .wp-block-image.stat-card__img img {
+  display: block !important;
+  width: 100% !important;
+  height: 240px !important;
+  object-fit: cover !important;
+}
+.single-project .content-block .stat-card .stat-card__num {
+  font-family: var(--serif) !important;
+  font-weight: 300 !important;
+  color: var(--accent, #d36e24) !important;
+  font-size: 2.6rem !important;
+  line-height: 1 !important;
+  margin: 1.5rem 1.5rem 0.4rem !important;
+}
+.single-project .content-block .stat-card .stat-card__label {
+  font-family: var(--sans) !important;
+  font-size: 0.72rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.1em !important;
+  text-transform: uppercase !important;
+  color: var(--navy, #343d6e) !important;
+  margin: 0 1.5rem 1.5rem !important;
+}
+
+/* ===== 8. Image hover zoom ===== */
+.single-project .content-block .wp-block-image,
+.single-project .content-block .stat-card .wp-block-image.stat-card__img,
+.single-project .content-block .wp-block-gallery .wp-block-image,
+.single-project .internal-hero .wp-block-cover,
+.single-project .content-block .wp-block-cover {
+  overflow: hidden !important;
+}
+.single-project .content-block .wp-block-image img,
+.single-project .content-block .wp-block-gallery .wp-block-image img,
+.single-project .content-block .wp-block-cover .wp-block-cover__image-background {
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  will-change: transform;
+}
+.single-project .content-block .wp-block-image:hover img,
+.single-project .content-block .wp-block-gallery .wp-block-image:hover img,
+.single-project .content-block .stat-card:hover .wp-block-image.stat-card__img img {
+  transform: scale(1.05) !important;
+}
+.single-project .content-block .wp-block-cover:hover .wp-block-cover__image-background {
+  transform: scale(1.04) !important;
+}
+
+/* ===== 9. Related card (whole-card clickable) ===== */
+.single-project .content-block .wp-block-column.related-card {
+  position: relative !important;
+  transition: transform 0.5s cubic-bezier(0.4,0,0.2,1), box-shadow 0.5s cubic-bezier(0.4,0,0.2,1) !important;
+}
+.single-project .content-block .related-card .wp-block-image.related-card__image a {
+  position: static !important;
+}
+.single-project .content-block .related-card .wp-block-image.related-card__image a::after {
+  content: "" !important;
+  position: absolute !important;
+  inset: 0 !important;
+  z-index: 2 !important;
+}
+.single-project .content-block .related-card,
+.single-project .content-block .related-card a {
+  cursor: pointer !important;
+}
+.single-project .content-block .related-card h3 a {
+  color: inherit !important;
+  text-decoration: none !important;
+  position: relative !important;
+  z-index: 3 !important;
+}
+.single-project .content-block .related-card:hover {
+  transform: translateY(-4px) !important;
+  box-shadow: 0 12px 24px rgba(0,0,0,0.06) !important;
+}
+.single-project .content-block .related-card:hover h3 a {
+  color: var(--accent, #d36e24) !important;
+}
+
+/* ===== 10. Breadcrumb navigation ===== */
+.sail-breadcrumbs {
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  border-top: 1px solid var(--border);
+  margin-top: 35px;
+}
+.sail-breadcrumbs__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1.1rem 24px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.55rem;
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.sail-breadcrumbs__inner a {
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color 0.25s var(--ease);
+}
+.sail-breadcrumbs__inner a:hover,
+.sail-breadcrumbs__inner a:focus {
+  color: var(--accent);
+}
+.sail-breadcrumbs__sep {
+  color: var(--border);
+  font-weight: 400;
+  user-select: none;
+}
+.sail-breadcrumbs__inner [aria-current="page"] {
+  color: var(--navy);
+}
+@media (max-width: 640px) {
+  .sail-breadcrumbs__inner {
+    padding: 0.85rem 18px;
+    font-size: 0.66rem;
+    letter-spacing: 0.06em;
+  }
+}
+
+/* ===== 11. Project card thumbnail ===== */
+.project-card__image {
+  position: relative;
+  height: 260px;
+  overflow: hidden;
+  border-bottom: 1px solid var(--border);
+}
+.project-card__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s var(--ease);
+}
+.project-card:hover .project-card__image img {
+  transform: scale(1.05);
+}

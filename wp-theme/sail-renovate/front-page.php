@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /**
  * Front page template (set via Settings → Reading → "A static page").
  *

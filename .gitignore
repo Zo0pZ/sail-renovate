@@ -97,8 +97,12 @@ temp/
 
 # Claude / MCP tooling
 .claude/settings.local.json
+.claude/worktrees/
 .mcp.json
 .playwright-mcp/
+
+# Theme build artefacts
+wp-theme/*.zip
 
 # Working screenshots and reference images
 *-full.png

@@ -60,6 +60,10 @@ function sail_enqueue_assets() {
 		wp_enqueue_style( 'sail-project', $uri . '/css/pages/project.css', [ 'sail-global' ], SAIL_VERSION );
 	}
 
+	// Project & component styles — loaded last so they beat page-specific rules.
+	// Contains breadcrumb styles (sitewide) and project card/case-study overrides.
+	wp_enqueue_style( 'sail-project-styles', $uri . '/css/sail-project.css', [ 'sail-global' ], SAIL_VERSION );
+
 	// Main JavaScript (deferred — loaded after DOM is ready)
 	wp_enqueue_script( 'sail-main', $uri . '/js/main.js', [], SAIL_VERSION, true );
 }

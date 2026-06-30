@@ -9,6 +9,7 @@ get_header();
 $img = esc_url( get_template_directory_uri() . '/images/' );
 ?>
 <main>
+  <?php sail_breadcrumbs(); ?>
   <?php while ( have_posts() ) : the_post(); ?>
 
   <section class="internal-hero">

@@ -10,6 +10,7 @@ $phone     = sail_contact( 'phone' );
 $phone_tel = 'tel:' . preg_replace( '/[^0-9+]/', '', $phone );
 ?>
 <main>
+  <?php sail_breadcrumbs(); ?>
   <?php while ( have_posts() ) : the_post(); ?>
 
   <section class="internal-hero">

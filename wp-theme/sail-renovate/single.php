@@ -7,6 +7,7 @@
 get_header();
 ?>
 <main id="main" class="site-main">
+  <?php sail_breadcrumbs(); ?>
   <?php while ( have_posts() ) : the_post(); ?>
   <section class="internal-hero">
     <span class="section-eyebrow"><?php the_category( ', ' ); ?></span>

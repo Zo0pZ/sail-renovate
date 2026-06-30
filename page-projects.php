@@ -47,7 +47,6 @@ $phone_tel = 'tel:' . preg_replace( '/[^0-9+]/', '', $phone );
       $proj_delays = [ '', ' fade-in-delay-1', ' fade-in-delay-2', '', ' fade-in-delay-1', ' fade-in-delay-2' ];
       $pi = 0;
       while ( $proj_query->have_posts() ) : $proj_query->the_post();
-        $thumb     = get_the_post_thumbnail_url( null, 'large' );
         $p_type    = get_post_meta( get_the_ID(), 'project_type', true );
         $p_loc     = get_post_meta( get_the_ID(), 'project_location', true );
         $p_terms   = get_the_terms( get_the_ID(), 'project_cat' );
@@ -56,9 +55,9 @@ $phone_tel = 'tel:' . preg_replace( '/[^0-9+]/', '', $phone );
         $delay     = $proj_delays[ $pi % count( $proj_delays ) ];
       ?>
       <a href="<?php the_permalink(); ?>" class="project-card fade-in<?php echo esc_attr( $delay ); ?>" data-category="<?php echo esc_attr( $cat_slug ); ?>">
-        <?php if ( $thumb ) : ?>
+        <?php if ( has_post_thumbnail() ) : ?>
         <div class="project-card__image">
-          <img src="<?php echo esc_url( $thumb ); ?>" alt="<?php echo esc_attr( get_the_title() ); ?>" />
+          <?php the_post_thumbnail( 'medium_large', [ 'alt' => get_the_title() ] ); ?>
         </div>
         <?php endif; ?>
         <div class="project-card__content">

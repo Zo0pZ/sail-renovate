@@ -13,12 +13,19 @@ $phone_tel = 'tel:' . preg_replace( '/[^0-9+]/', '', $phone );
   <?php while ( have_posts() ) : the_post(); ?>
 
   <section class="internal-hero">
-    <?php if ( get_post_meta( get_the_ID(), 'service_eyebrow', true ) ) : ?>
-    <span class="section-eyebrow"><?php echo esc_html( get_post_meta( get_the_ID(), 'service_eyebrow', true ) ); ?></span>
+    <?php $s_eyebrow = get_field( 'hero_eyebrow' ); if ( $s_eyebrow ) : ?>
+    <span class="section-eyebrow"><?php echo esc_html( $s_eyebrow ); ?></span>
     <?php endif; ?>
-    <h1 class="hero__heading"><?php echo esc_html( get_the_title() ); ?></h1>
-    <?php if ( get_the_excerpt() ) : ?>
-    <p class="hero__sub"><?php the_excerpt(); ?></p>
+    <h1 class="hero__heading">
+      <?php
+      $s_heading = get_field( 'hero_heading' );
+      echo $s_heading
+        ? wp_kses( $s_heading, [ 'em' => [] ] )
+        : esc_html( get_the_title() );
+      ?>
+    </h1>
+    <?php if ( has_excerpt() ) : ?>
+    <p class="hero__sub"><?php echo esc_html( get_the_excerpt() ); ?></p>
     <?php endif; ?>
   </section>
 

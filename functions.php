@@ -310,6 +310,23 @@ function sail_register_post_types() {
 		'supports'     => [ 'title', 'editor', 'thumbnail', 'excerpt', 'page-attributes' ],
 		'menu_icon'    => 'dashicons-groups',
 	] );
+
+	// Testimonials — title = client name / source, content = quote.
+	register_post_type( 'testimonial', [
+		'labels' => [
+			'name'          => __( 'Testimonials', 'sail-renovate' ),
+			'singular_name' => __( 'Testimonial', 'sail-renovate' ),
+			'add_new_item'  => __( 'Add New Testimonial', 'sail-renovate' ),
+			'edit_item'     => __( 'Edit Testimonial', 'sail-renovate' ),
+			'not_found'     => __( 'No testimonials found', 'sail-renovate' ),
+			'menu_name'     => __( 'Testimonials', 'sail-renovate' ),
+		],
+		'public'       => false,
+		'show_ui'      => true,
+		'show_in_rest' => true,
+		'supports'     => [ 'title', 'editor', 'page-attributes' ],
+		'menu_icon'    => 'dashicons-format-quote',
+	] );
 }
 
 // ── Contact detail helper ─────────────────────────────────────────────────────

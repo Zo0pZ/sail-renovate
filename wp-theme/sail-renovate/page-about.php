@@ -195,24 +195,41 @@ $img = esc_url( get_template_directory_uri() . '/images/' );
 
     <!-- ── Tradespeople ── -->
     <div style="margin-top: 4rem; padding-top: 3.5rem; border-top: 1px solid var(--border);">
-      <span class="section-eyebrow"><?php esc_html_e( 'Our Tradespeople', 'sail-renovate' ); ?></span>
-      <h2 class="section-title" style="font-size: clamp(1.6rem, 3vw, 2.2rem);"><?php esc_html_e( 'The skilled hands', 'sail-renovate' ); ?> <em><?php esc_html_e( 'behind every finish.', 'sail-renovate' ); ?></em></h2>
+      <span class="section-eyebrow"><?php echo esc_html( sail_field( 'tradespeople_eyebrow', __( 'Our Tradespeople', 'sail-renovate' ) ) ); ?></span>
+      <?php
+        $tp_main   = sail_field( 'tradespeople_title',        __( 'The skilled hands behind', 'sail-renovate' ) );
+        $tp_accent = sail_field( 'tradespeople_title_accent', __( 'every finish.', 'sail-renovate' ) );
+      ?>
+      <h2 class="section-title" style="font-size: clamp(1.6rem, 3vw, 2.2rem);"><?php echo esc_html( $tp_main ); ?><?php if ( $tp_accent ) : ?> <em><?php echo esc_html( $tp_accent ); ?></em><?php endif; ?></h2>
       <div class="grid-2 fade-in" style="align-items: flex-start; margin-top: 2.5rem; gap: 4rem;">
         <div class="content-block">
-          <p><?php esc_html_e( 'Our tradespeople are central to every project we deliver. Over the years, we\'ve built relationships with a core group of skilled craftsmen who genuinely share our standards — and many of them have been working alongside us from the very beginning.', 'sail-renovate' ); ?></p>
-          <p><?php esc_html_e( 'Whether it\'s plastering, joinery, tiling, or decoration, you\'ll often see the same familiar faces across our projects. That consistency is something we\'re proud of: it means tradespeople who know exactly how we work, communicate without needing to be chased, and take real pride in the quality of finish they leave behind.', 'sail-renovate' ); ?></p>
-          <p><?php esc_html_e( 'We\'ll be introducing them properly soon — with photos and a little background on each person, so you know exactly who to expect before work begins on your property.', 'sail-renovate' ); ?></p>
+          <p><?php echo esc_html( sail_field( 'tradespeople_intro_1', __( "Our tradespeople are central to every project we deliver. Over the years, we've built relationships with a core group of skilled craftsmen who genuinely share our standards — and many of them have been working alongside us from the very beginning.", 'sail-renovate' ) ) ); ?></p>
+          <p><?php echo esc_html( sail_field( 'tradespeople_intro_2', __( "Whether it's plastering, joinery, tiling, or decoration, you'll often see the same familiar faces across our projects. That consistency is something we're proud of: it means tradespeople who know exactly how we work, communicate without needing to be chased, and take real pride in the quality of finish they leave behind.", 'sail-renovate' ) ) ); ?></p>
+          <p><?php echo esc_html( sail_field( 'tradespeople_intro_3', __( "We'll be introducing them properly soon — with photos and a little background on each person, so you know exactly who to expect before work begins on your property.", 'sail-renovate' ) ) ); ?></p>
         </div>
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;">
-          <?php for ( $i = 0; $i < 3; $i++ ) : ?>
-          <div style="aspect-ratio: 3/4; background: var(--cream); border: 1px solid var(--border); border-radius: 2px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.6rem; color: var(--text-muted);">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
-            <span style="font-size: 0.68rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase;"><?php esc_html_e( 'Photo coming soon', 'sail-renovate' ); ?></span>
+          <?php
+          $tp_photos = [ 'tradesperson_photo_1', 'tradesperson_photo_2', 'tradesperson_photo_3' ];
+          foreach ( $tp_photos as $i => $tp_field ) :
+            $tp_img_id = function_exists( 'get_field' ) ? get_field( $tp_field ) : 0;
+          ?>
+          <div style="aspect-ratio: 3/4; background: var(--cream); border: 1px solid var(--border); border-radius: 2px; overflow: hidden; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.6rem; color: var(--text-muted);">
+            <?php if ( $tp_img_id ) : ?>
+              <?php echo wp_get_attachment_image( $tp_img_id, 'medium', false, [ 'alt' => sprintf( __( 'Sail Renovate tradesperson %d', 'sail-renovate' ), $i + 1 ), 'style' => 'width:100%;height:100%;object-fit:cover;display:block;' ] ); ?>
+            <?php else : ?>
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+              <span style="font-size: 0.68rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase;"><?php esc_html_e( 'Photo coming soon', 'sail-renovate' ); ?></span>
+            <?php endif; ?>
           </div>
-          <?php endfor; ?>
-          <div style="aspect-ratio: 3/4; background: var(--bg-warm); border: 1px solid var(--border); border-radius: 2px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.6rem; color: var(--text-muted); padding: 1rem; text-align: center;">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true"><rect x="1" y="10" width="22" height="11" rx="2"/><path d="M1 13h22M7 10V6a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v4"/><circle cx="7" cy="21" r="1" fill="currentColor" stroke="none"/><circle cx="17" cy="21" r="1" fill="currentColor" stroke="none"/></svg>
-            <span style="font-size: 0.68rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase;"><?php esc_html_e( 'Van shot coming soon', 'sail-renovate' ); ?></span>
+          <?php endforeach; ?>
+          <?php $tp_van_id = function_exists( 'get_field' ) ? get_field( 'tradespeople_van_photo' ) : 0; ?>
+          <div style="aspect-ratio: 3/4; background: var(--bg-warm); border: 1px solid var(--border); border-radius: 2px; overflow: hidden; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.6rem; color: var(--text-muted); text-align: center;">
+            <?php if ( $tp_van_id ) : ?>
+              <?php echo wp_get_attachment_image( $tp_van_id, 'medium', false, [ 'alt' => __( 'Sail Renovate van', 'sail-renovate' ), 'style' => 'width:100%;height:100%;object-fit:cover;display:block;' ] ); ?>
+            <?php else : ?>
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true"><rect x="1" y="10" width="22" height="11" rx="2"/><path d="M1 13h22M7 10V6a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v4"/><circle cx="7" cy="21" r="1" fill="currentColor" stroke="none"/><circle cx="17" cy="21" r="1" fill="currentColor" stroke="none"/></svg>
+              <span style="font-size: 0.68rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase;"><?php esc_html_e( 'Van shot coming soon', 'sail-renovate' ); ?></span>
+            <?php endif; ?>
           </div>
         </div>
       </div>

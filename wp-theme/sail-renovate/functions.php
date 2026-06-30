@@ -409,10 +409,8 @@ function sail_breadcrumbs() {
 		$items[] = '<span aria-current="page">' . esc_html( get_the_title() ) . '</span>';
 
 	} elseif ( is_singular( 'project' ) ) {
-		$archive = get_post_type_archive_link( 'project' );
-		if ( $archive ) {
-			$items[] = '<a href="' . esc_url( $archive ) . '">' . esc_html__( 'Our Work', 'sail-renovate' ) . '</a>';
-		}
+		$archive = get_post_type_archive_link( 'project' ) ?: home_url( '/projects/' );
+		$items[] = '<a href="' . esc_url( $archive ) . '">' . esc_html__( 'Our Work', 'sail-renovate' ) . '</a>';
 		$items[] = '<span aria-current="page">' . esc_html( get_the_title() ) . '</span>';
 
 	} elseif ( is_post_type_archive( 'project' ) ) {

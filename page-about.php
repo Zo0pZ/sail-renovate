@@ -41,12 +41,11 @@ $img = esc_url( get_template_directory_uri() . '/images/' );
   <section class="page-section">
     <div class="grid-2 fade-in">
       <div class="content-block">
-        <span class="section-eyebrow"><?php echo esc_html( sail_field( 'about_story_eyebrow', __( 'Our Story', 'sail-renovate' ) ) ); ?></span>
-        <?php
-          $s_main   = sail_field( 'about_story_title',        __( 'Built on a foundation of', 'sail-renovate' ) );
-          $s_accent = sail_field( 'about_story_title_accent', __( 'trust and expertise.', 'sail-renovate' ) );
-        ?>
-        <h2 class="section-title"><?php echo esc_html( $s_main ); ?><?php if ( $s_accent ) : ?> <em><?php echo esc_html( $s_accent ); ?></em><?php endif; ?></h2>
+        <?php sail_section_heading(
+          sail_field( 'about_story_eyebrow',      __( 'Our Story', 'sail-renovate' ) ),
+          sail_field( 'about_story_title',        __( 'Built on a foundation of', 'sail-renovate' ) ),
+          sail_field( 'about_story_title_accent', __( 'trust and expertise.', 'sail-renovate' ) )
+        ); ?>
         <?php
         $story = get_the_content();
         if ( $story ) {
@@ -70,8 +69,11 @@ $img = esc_url( get_template_directory_uri() . '/images/' );
   <!-- ── Core Values ── -->
   <section class="page-section--alt">
     <div class="inner">
-      <span class="section-eyebrow"><?php esc_html_e( 'The Sail Difference', 'sail-renovate' ); ?></span>
-      <h2 class="section-title"><?php esc_html_e( 'Our core', 'sail-renovate' ); ?> <em><?php esc_html_e( 'values', 'sail-renovate' ); ?></em>.</h2>
+      <?php sail_section_heading(
+        sail_field( 'values_eyebrow',      __( 'The Sail Difference', 'sail-renovate' ) ),
+        sail_field( 'values_title',        __( 'Our core', 'sail-renovate' ) ),
+        sail_field( 'values_title_accent', __( 'values.', 'sail-renovate' ) )
+      ); ?>
 
       <div class="values-grid">
         <div class="value-card fade-in">
@@ -119,8 +121,11 @@ $img = esc_url( get_template_directory_uri() . '/images/' );
 
   <!-- ── Team ── -->
   <section class="page-section">
-    <span class="section-eyebrow"><?php esc_html_e( 'The Team', 'sail-renovate' ); ?></span>
-    <h2 class="section-title"><?php esc_html_e( 'The people behind', 'sail-renovate' ); ?> <em><?php esc_html_e( 'the projects.', 'sail-renovate' ); ?></em></h2>
+    <?php sail_section_heading(
+      sail_field( 'team_eyebrow',      __( 'The Team', 'sail-renovate' ) ),
+      sail_field( 'team_title',        __( 'The people behind', 'sail-renovate' ) ),
+      sail_field( 'team_title_accent', __( 'the projects.', 'sail-renovate' ) )
+    ); ?>
 
     <div class="team-grid">
       <?php
@@ -195,12 +200,11 @@ $img = esc_url( get_template_directory_uri() . '/images/' );
 
     <!-- ── Tradespeople ── -->
     <div style="margin-top: 4rem; padding-top: 3.5rem; border-top: 1px solid var(--border);">
-      <span class="section-eyebrow"><?php echo esc_html( sail_field( 'tradespeople_eyebrow', __( 'Our Tradespeople', 'sail-renovate' ) ) ); ?></span>
-      <?php
-        $tp_main   = sail_field( 'tradespeople_title',        __( 'The skilled hands behind', 'sail-renovate' ) );
-        $tp_accent = sail_field( 'tradespeople_title_accent', __( 'every finish.', 'sail-renovate' ) );
-      ?>
-      <h2 class="section-title" style="font-size: clamp(1.6rem, 3vw, 2.2rem);"><?php echo esc_html( $tp_main ); ?><?php if ( $tp_accent ) : ?> <em><?php echo esc_html( $tp_accent ); ?></em><?php endif; ?></h2>
+      <?php sail_section_heading(
+        sail_field( 'tradespeople_eyebrow',      __( 'Our Tradespeople', 'sail-renovate' ) ),
+        sail_field( 'tradespeople_title',        __( 'The skilled hands behind', 'sail-renovate' ) ),
+        sail_field( 'tradespeople_title_accent', __( 'every finish.', 'sail-renovate' ) )
+      ); ?>
       <div class="grid-2 fade-in" style="align-items: flex-start; margin-top: 2.5rem; gap: 4rem;">
         <div class="content-block">
           <p><?php echo esc_html( sail_field( 'tradespeople_intro_1', __( "Our tradespeople are central to every project we deliver. Over the years, we've built relationships with a core group of skilled craftsmen who genuinely share our standards — and many of them have been working alongside us from the very beginning.", 'sail-renovate' ) ) ); ?></p>

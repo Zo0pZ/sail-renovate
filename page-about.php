@@ -19,16 +19,16 @@ $img = esc_url( get_template_directory_uri() . '/images/' );
     </div>
     <div class="about-hero-stats">
       <div>
-        <div class="stat__num"><?php echo esc_html( get_theme_mod( 'sail_hero_stat1_num', '10+' ) ); ?></div>
-        <div class="stat__label"><?php echo esc_html( get_theme_mod( 'sail_hero_stat1_label', 'Years Experience' ) ); ?></div>
+        <div class="stat__num"><?php echo esc_html( get_theme_mod( 'sail_about_stat1_num', '10+' ) ); ?></div>
+        <div class="stat__label"><?php echo esc_html( get_theme_mod( 'sail_about_stat1_label', 'Years Experience' ) ); ?></div>
       </div>
       <div>
-        <div class="stat__num"><?php echo esc_html( get_theme_mod( 'sail_hero_stat2_num', '500+' ) ); ?></div>
-        <div class="stat__label"><?php echo esc_html( get_theme_mod( 'sail_hero_stat2_label', 'Projects Completed' ) ); ?></div>
+        <div class="stat__num"><?php echo esc_html( get_theme_mod( 'sail_about_stat2_num', '500+' ) ); ?></div>
+        <div class="stat__label"><?php echo esc_html( get_theme_mod( 'sail_about_stat2_label', 'Projects Completed' ) ); ?></div>
       </div>
       <div>
         <div class="stat__num" style="color: var(--accent);">&#10003;</div>
-        <div class="stat__label"><?php echo esc_html( get_theme_mod( 'sail_hero_stat3_label', 'Insurance Approved' ) ); ?></div>
+        <div class="stat__label"><?php echo esc_html( get_theme_mod( 'sail_about_stat3_label', 'Insurance Approved' ) ); ?></div>
       </div>
     </div>
   </section>

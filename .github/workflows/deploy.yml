@@ -8,6 +8,8 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -19,7 +21,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           SPLIT=$(git subtree split --prefix wp-theme/sail-renovate HEAD)
-          git push origin ${SPLIT}:refs/heads/deploy --force
+          git push "https://x-access-token:${GITHUB_TOKEN}@github.com/Zo0pZ/sail-renovate.git" ${SPLIT}:refs/heads/deploy --force
 
       - name: Trigger Deployer for Git
         env:

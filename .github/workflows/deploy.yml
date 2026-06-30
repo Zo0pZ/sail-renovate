@@ -10,13 +10,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Trigger Deployer for Git
+        env:
+          DFG_URL: ${{ secrets.DFG_THEME_DEPLOY_URL }}
         run: |
-          curl -s -o response.json -w "%{http_code}" \
-            --max-time 60 \
-            "${{ secrets.DFG_THEME_DEPLOY_URL }}" > http_code.txt
-          HTTP_CODE=$(cat http_code.txt)
+          echo "URL length: ${#DFG_URL}"
+          echo "URL prefix (8 chars): ${DFG_URL:0:8}"
+          HTTP_CODE=$(curl -s -o response.json -w "%{http_code}" --max-time 60 "$DFG_URL" || echo "curl_failed_$?")
           echo "HTTP status: $HTTP_CODE"
-          cat response.json
+          cat response.json 2>/dev/null || echo "(no response body)"
           if [ "$HTTP_CODE" != "200" ]; then
             echo "Deployment failed with HTTP $HTTP_CODE"
             exit 1

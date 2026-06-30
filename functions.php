@@ -363,9 +363,11 @@ function sail_register_acf_fields() {
 	// ── Service CPT ────────────────────────────────────────────────────────────
 	acf_add_local_field_group( [
 		'key'    => 'group_sail_service',
-		'title'  => 'Service — Card Tag',
+		'title'  => 'Service — Card & Hero',
 		'fields' => [
-			[ 'key' => 'field_service_tag', 'label' => 'Card Tag (short label, e.g. "Insurance Approved")', 'name' => 'service_tag', 'type' => 'text', 'default_value' => '' ],
+			[ 'key' => 'field_service_tag',          'label' => 'Card Tag (short label, e.g. "Insurance Approved")',                                                            'name' => 'service_tag',    'type' => 'text', 'default_value' => '' ],
+			[ 'key' => 'field_service_hero_eyebrow', 'label' => 'Hero Eyebrow',      'name' => 'hero_eyebrow', 'type' => 'text', 'instructions' => 'Small label above the heading, e.g. "Insurance Reinstatement".', 'default_value' => '' ],
+			[ 'key' => 'field_service_hero_heading', 'label' => 'Hero Heading (rich)', 'name' => 'hero_heading', 'type' => 'text', 'instructions' => 'Full hero sentence. Wrap highlighted word(s) in <em>…</em> for orange italic styling. Leave blank to use the page title.', 'default_value' => '' ],
 		],
 		'location' => [ [ [ 'param' => 'post_type', 'operator' => '==', 'value' => 'service' ] ] ],
 	] );

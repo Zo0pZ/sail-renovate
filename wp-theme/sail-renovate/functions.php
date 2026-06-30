@@ -337,6 +337,25 @@ function sail_field( $key, $default = '' ) {
 	return $default;
 }
 
+// Renders a section eyebrow + h2.section-title with optional italic accent.
+// Usage: sail_section_heading( sail_field('eyebrow','…'), sail_field('title','…'), sail_field('accent','…') )
+function sail_section_heading( $eyebrow = '', $title = '', $title_accent = '' ) {
+	if ( ! $eyebrow && ! $title && ! $title_accent ) {
+		return;
+	}
+	if ( $eyebrow ) {
+		echo '<span class="section-eyebrow">' . esc_html( $eyebrow ) . '</span>';
+	}
+	if ( $title || $title_accent ) {
+		echo '<h2 class="section-title">';
+		echo esc_html( $title );
+		if ( $title_accent ) {
+			echo ' <em>' . esc_html( $title_accent ) . '</em>';
+		}
+		echo '</h2>';
+	}
+}
+
 // ── ACF field group registration ─────────────────────────────────────────────
 // Registers field groups in PHP so they appear automatically when ACF Free is
 // installed — no manual setup required in the admin UI.
@@ -387,7 +406,11 @@ function sail_register_acf_fields() {
 			[ 'key' => 'field_about_story_eyebrow', 'label' => 'Story Eyebrow', 'name' => 'about_story_eyebrow', 'type' => 'text', 'default_value' => 'Our Story' ],
 			[ 'key' => 'field_about_story_title',  'label' => 'Story Heading',  'name' => 'about_story_title',  'type' => 'text', 'default_value' => 'Built on a foundation of' ],
 			[ 'key' => 'field_about_story_accent', 'label' => 'Story Heading Accent (italic/orange)', 'name' => 'about_story_title_accent', 'type' => 'text', 'default_value' => 'trust and expertise.' ],
-			// Values
+			// Values heading
+			[ 'key' => 'field_values_eyebrow', 'label' => 'Values Eyebrow',                    'name' => 'values_eyebrow',      'type' => 'text', 'default_value' => 'The Sail Difference' ],
+			[ 'key' => 'field_values_title',   'label' => 'Values Heading',                    'name' => 'values_title',        'type' => 'text', 'default_value' => 'Our core' ],
+			[ 'key' => 'field_values_accent',  'label' => 'Values Heading Accent (italic/orange)', 'name' => 'values_title_accent', 'type' => 'text', 'default_value' => 'values.' ],
+			// Values cards
 			[ 'key' => 'field_values_msg',    'label' => 'Core Values section', 'name' => '', 'type' => 'message', 'message' => 'Edit the three values cards. Icons are fixed in the design.' ],
 			[ 'key' => 'field_value_1_title', 'label' => 'Value 1 — Title', 'name' => 'value_1_title', 'type' => 'text',     'default_value' => 'Surveyor-Led Delivery' ],
 			[ 'key' => 'field_value_1_body',  'label' => 'Value 1 — Body',  'name' => 'value_1_body',  'type' => 'textarea', 'rows' => 2, 'default_value' => 'Every project is assessed, scoped, and overseen by a qualified surveyor. This ensures accuracy in our quoting and adherence to the highest building standards throughout the build.' ],
@@ -405,6 +428,10 @@ function sail_register_acf_fields() {
 			[ 'key' => 'field_about_cta_text',    'label' => 'CTA Body Text', 'name' => 'cta_text', 'type' => 'textarea', 'rows' => 2, 'default_value' => 'Our rigorous standards have earned us the trust of major insurance providers to handle complex reinstatement works. We bring that exact same level of scrutiny, project management, and attention to detail to our private home renovations.' ],
 			[ 'key' => 'field_about_cta_btn_url', 'label' => 'CTA Button URL', 'name' => 'cta_button_url', 'type' => 'url', 'default_value' => '/contact/' ],
 			[ 'key' => 'field_about_cta_btn_lbl', 'label' => 'CTA Button Label', 'name' => 'cta_button_label', 'type' => 'text', 'default_value' => 'Get a Free Quote' ],
+			// Team heading
+			[ 'key' => 'field_team_eyebrow', 'label' => 'Team Eyebrow',                    'name' => 'team_eyebrow',      'type' => 'text', 'default_value' => 'The Team' ],
+			[ 'key' => 'field_team_title',   'label' => 'Team Heading',                    'name' => 'team_title',        'type' => 'text', 'default_value' => 'The people behind' ],
+			[ 'key' => 'field_team_accent',  'label' => 'Team Heading Accent (italic/orange)', 'name' => 'team_title_accent', 'type' => 'text', 'default_value' => 'the projects.' ],
 			// Our Tradespeople
 			[ 'key' => 'field_tp_msg',       'label' => 'Our Tradespeople section', 'name' => '', 'type' => 'message', 'message' => 'Edit the tradespeople section heading, intro copy, and photo slots.' ],
 			[ 'key' => 'field_tp_eyebrow',   'label' => 'Eyebrow',                  'name' => 'tradespeople_eyebrow',      'type' => 'text',     'default_value' => 'Our Tradespeople' ],

@@ -5,7 +5,7 @@
  * @package sail-renovate
  */
 
-define( 'SAIL_VERSION', '1.1.0' );
+define( 'SAIL_VERSION', '1.2.0' );
 
 // ── Theme Setup ─────────────────────────────────────────────────────────────
 add_action( 'after_setup_theme', 'sail_setup' );

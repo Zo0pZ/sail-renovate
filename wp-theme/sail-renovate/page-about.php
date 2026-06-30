@@ -6,7 +6,6 @@
  */
 get_header();
 if ( have_posts() ) the_post();
-$img = esc_url( get_template_directory_uri() . '/images/' );
 ?>
 <main>
   <!-- ── Internal Hero ── -->
@@ -18,8 +17,12 @@ $img = esc_url( get_template_directory_uri() . '/images/' );
     ?>
     <h1 class="hero__heading"><?php echo esc_html( $h_main ); ?><?php if ( $h_accent ) : ?> <em><?php echo esc_html( $h_accent ); ?></em><?php endif; ?></h1>
     <p class="hero__sub"><?php echo esc_html( sail_field( 'about_hero_sub', __( 'We are a surveyor-led renovation and reinstatement company, dedicated to bringing professionalism, transparency, and exceptional craftsmanship to every project.', 'sail-renovate' ) ) ); ?></p>
+    <?php
+      $hero_cta_url   = sail_field( 'hero_cta_url',   home_url( '/contact/' ) );
+      $hero_cta_label = sail_field( 'hero_cta_label', __( 'Get a Free Quote', 'sail-renovate' ) );
+    ?>
     <div style="margin-top: 2rem;">
-      <a href="<?php echo esc_url( home_url( '/contact/' ) ); ?>" class="btn btn--primary"><?php esc_html_e( 'Get a Free Quote', 'sail-renovate' ); ?></a>
+      <a href="<?php echo esc_url( $hero_cta_url ); ?>" class="btn btn--primary"><?php echo esc_html( $hero_cta_label ); ?></a>
     </div>
     <div class="about-hero-stats">
       <div>
@@ -61,7 +64,7 @@ $img = esc_url( get_template_directory_uri() . '/images/' );
         ?>
       </div>
       <div class="about-image">
-        <img src="<?php echo $img; ?>2-rear.jpg" alt="<?php esc_attr_e( 'Sail Renovate team working on site', 'sail-renovate' ); ?>" />
+        <?php sail_acf_image( sail_field( 'about_story_image' ), 'large', sail_field( 'about_story_image_alt' ) ); ?>
       </div>
     </div>
   </section>
@@ -244,7 +247,7 @@ $img = esc_url( get_template_directory_uri() . '/images/' );
   <section class="page-section--alt">
     <div class="grid-2 fade-in" style="align-items: center;">
       <div class="about-image" style="order: -1;">
-        <img src="<?php echo $img; ?>19-kitchen.jpg" alt="<?php esc_attr_e( 'Finished high quality renovation', 'sail-renovate' ); ?>" />
+        <?php sail_acf_image( sail_field( 'trust_banner_image' ), 'large', sail_field( 'trust_banner_image_alt' ) ); ?>
       </div>
       <div class="content-block">
         <?php $cta_h = sail_field( 'cta_heading', 'Trusted by homeowners and <em>insurers alike.</em>' ); ?>
@@ -256,7 +259,11 @@ $img = esc_url( get_template_directory_uri() . '/images/' );
         ?>
         <div style="margin-top: 2rem; display: flex; gap: 1rem; flex-wrap: wrap;">
           <a href="<?php echo esc_url( $cta_url ); ?>" class="btn btn--primary"><?php echo esc_html( $cta_label ); ?></a>
-          <a href="<?php echo esc_url( home_url( '/projects/' ) ); ?>" class="btn btn--navy"><?php esc_html_e( 'View Our Work', 'sail-renovate' ); ?></a>
+          <?php
+            $cta2_url   = sail_field( 'trust_cta2_url',   home_url( '/projects/' ) );
+            $cta2_label = sail_field( 'trust_cta2_label', __( 'View Our Work', 'sail-renovate' ) );
+          ?>
+          <a href="<?php echo esc_url( $cta2_url ); ?>" class="btn btn--navy"><?php echo esc_html( $cta2_label ); ?></a>
         </div>
       </div>
     </div>

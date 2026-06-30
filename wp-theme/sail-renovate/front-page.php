@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 /**
  * Front page template (set via Settings → Reading → "A static page").
  *
@@ -99,8 +99,45 @@ $phone_tel = 'tel:' . preg_replace( '/[^0-9+]/', '', $phone );
   </div>
 
   <div class="services-grid">
+    <?php
+    $service_q = new WP_Query( [
+      'post_type'      => 'service',
+      'posts_per_page' => 4,
+      'orderby'        => 'menu_order',
+      'order'          => 'ASC',
+    ] );
+    $service_delays = [ '', ' fade-in-delay-1', ' fade-in-delay-2', ' fade-in-delay-3' ];
+    $si = 0;
+    if ( $service_q->have_posts() ) :
+      while ( $service_q->have_posts() ) : $service_q->the_post();
+        $s_thumb = get_the_post_thumbnail_url( null, 'large' );
+        $s_tag   = sail_field( 'service_tag', '' );
+        $s_delay = $service_delays[ $si % 4 ];
+    ?>
+    <a href="<?php the_permalink(); ?>" class="service-card fade-in<?php echo esc_attr( $s_delay ); ?>">
+      <img class="service-card__img"
+           src="<?php echo $s_thumb ? esc_url( $s_thumb ) : esc_url( $img ) . '12-bathroom.jpg'; ?>"
+           alt="<?php echo esc_attr( get_the_title() ); ?>" />
+      <div class="service-card__content">
+        <?php if ( $s_tag ) : ?>
+        <p class="service-card__tag"><?php echo esc_html( $s_tag ); ?></p>
+        <?php endif; ?>
+        <h3 class="service-card__title"><?php echo esc_html( get_the_title() ); ?></h3>
+        <span class="service-card__cta">
+          <?php esc_html_e( 'Learn More', 'sail-renovate' ); ?>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </span>
+      </div>
+    </a>
+    <?php
+      $si++;
+      endwhile;
+      wp_reset_postdata();
+    else :
+      // Fallback when no service posts exist yet in the CMS.
+    ?>
     <a href="<?php echo esc_url( home_url( '/services/insurance-reinstatement/' ) ); ?>" class="service-card fade-in">
-      <img class="service-card__img" src="<?php echo $img; ?>12-bathroom.jpg" alt="<?php esc_attr_e( 'Home repair and restoration work', 'sail-renovate' ); ?>" />
+      <img class="service-card__img" src="<?php echo esc_url( $img ); ?>12-bathroom.jpg" alt="<?php esc_attr_e( 'Home repair and restoration work', 'sail-renovate' ); ?>" />
       <div class="service-card__content">
         <p class="service-card__tag"><?php esc_html_e( 'Insurance Approved', 'sail-renovate' ); ?></p>
         <h3 class="service-card__title"><?php esc_html_e( 'Home Repairs & Restoration', 'sail-renovate' ); ?></h3>
@@ -110,9 +147,8 @@ $phone_tel = 'tel:' . preg_replace( '/[^0-9+]/', '', $phone );
         </span>
       </div>
     </a>
-
     <a href="<?php echo esc_url( home_url( '/services/property-refurbishment/' ) ); ?>" class="service-card fade-in fade-in-delay-1">
-      <img class="service-card__img" src="<?php echo $img; ?>3-kitchen.jpg" alt="<?php esc_attr_e( 'Professional property renovation', 'sail-renovate' ); ?>" />
+      <img class="service-card__img" src="<?php echo esc_url( $img ); ?>3-kitchen.jpg" alt="<?php esc_attr_e( 'Professional property renovation', 'sail-renovate' ); ?>" />
       <div class="service-card__content">
         <p class="service-card__tag"><?php esc_html_e( 'Full Project Management', 'sail-renovate' ); ?></p>
         <h3 class="service-card__title"><?php esc_html_e( 'Property Renovations', 'sail-renovate' ); ?></h3>
@@ -122,9 +158,8 @@ $phone_tel = 'tel:' . preg_replace( '/[^0-9+]/', '', $phone );
         </span>
       </div>
     </a>
-
     <a href="<?php echo esc_url( home_url( '/services/property-maintenance/' ) ); ?>" class="service-card fade-in fade-in-delay-2">
-      <img class="service-card__img" src="<?php echo $img; ?>15-garden.jpg" alt="<?php esc_attr_e( 'Eco-friendly home improvements', 'sail-renovate' ); ?>" />
+      <img class="service-card__img" src="<?php echo esc_url( $img ); ?>15-garden.jpg" alt="<?php esc_attr_e( 'Eco-friendly home improvements', 'sail-renovate' ); ?>" />
       <div class="service-card__content">
         <p class="service-card__tag"><?php esc_html_e( 'Sustainable Living', 'sail-renovate' ); ?></p>
         <h3 class="service-card__title"><?php esc_html_e( 'Eco Home Improvements', 'sail-renovate' ); ?></h3>
@@ -134,18 +169,18 @@ $phone_tel = 'tel:' . preg_replace( '/[^0-9+]/', '', $phone );
         </span>
       </div>
     </a>
-
-    <a href="<?php echo esc_url( home_url( '/services/project-management/' ) ); ?>" class="service-card fade-in fade-in-delay-3">
-      <img class="service-card__img" src="<?php echo $img; ?>6-study.jpg" alt="<?php esc_attr_e( 'Smart home systems installation', 'sail-renovate' ); ?>" />
+    <a href="<?php echo esc_url( home_url( '/services/claims-management/' ) ); ?>" class="service-card fade-in fade-in-delay-3">
+      <img class="service-card__img" src="<?php echo esc_url( $img ); ?>6-study.jpg" alt="<?php esc_attr_e( 'Claims management service', 'sail-renovate' ); ?>" />
       <div class="service-card__content">
-        <p class="service-card__tag"><?php esc_html_e( 'Technology & Automation', 'sail-renovate' ); ?></p>
-        <h3 class="service-card__title"><?php esc_html_e( 'Smart Home Systems', 'sail-renovate' ); ?></h3>
+        <p class="service-card__tag"><?php esc_html_e( 'Insurance Approved', 'sail-renovate' ); ?></p>
+        <h3 class="service-card__title"><?php esc_html_e( 'Claims Management', 'sail-renovate' ); ?></h3>
         <span class="service-card__cta">
           <?php esc_html_e( 'Learn More', 'sail-renovate' ); ?>
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </span>
       </div>
     </a>
+    <?php endif; ?>
   </div>
 </section>
 
@@ -207,46 +242,50 @@ $phone_tel = 'tel:' . preg_replace( '/[^0-9+]/', '', $phone );
   </div>
 
   <div class="portfolio-grid">
+    <?php
+    $port_q = new WP_Query( [
+      'post_type'      => 'project',
+      'posts_per_page' => 5,
+      'orderby'        => 'menu_order',
+      'order'          => 'ASC',
+    ] );
+    $port_delays = [ '', ' fade-in-delay-1', ' fade-in-delay-2', '', ' fade-in-delay-1' ];
+    $pi2 = 0;
+    if ( $port_q->have_posts() ) :
+      while ( $port_q->have_posts() ) : $port_q->the_post();
+        $p_thumb = get_the_post_thumbnail_url( null, 'large' );
+        $p_type  = get_post_meta( get_the_ID(), 'project_type', true );
+        $p_loc   = get_post_meta( get_the_ID(), 'project_location', true );
+        $p_disp  = trim( implode( ' &middot; ', array_filter( [ $p_type, $p_loc ] ) ) );
+        $p_delay = $port_delays[ $pi2 % 5 ];
+    ?>
+    <a href="<?php the_permalink(); ?>" class="proj-card fade-in<?php echo esc_attr( $p_delay ); ?>">
+      <img src="<?php echo $p_thumb ? esc_url( $p_thumb ) : esc_url( $img ) . '1-front.jpg'; ?>"
+           alt="<?php echo esc_attr( get_the_title() ); ?>" />
+      <div class="proj-card__overlay"></div>
+      <div class="proj-card__info">
+        <?php if ( $p_disp ) : ?>
+        <p class="proj-card__type"><?php echo wp_kses_post( $p_disp ); ?></p>
+        <?php endif; ?>
+        <p class="proj-card__title"><?php echo esc_html( get_the_title() ); ?></p>
+      </div>
+    </a>
+    <?php
+      $pi2++;
+      endwhile;
+      wp_reset_postdata();
+    else :
+      // Fallback: one real project card when CPT is empty.
+    ?>
     <a href="<?php echo esc_url( home_url( '/projects/period-property-transformation/' ) ); ?>" class="proj-card fade-in">
-      <img src="<?php echo $img; ?>1-front.jpg" alt="<?php esc_attr_e( 'Full renovation, Bristol', 'sail-renovate' ); ?>" />
+      <img src="<?php echo esc_url( $img ); ?>1-front.jpg" alt="<?php esc_attr_e( 'Full renovation, Bristol', 'sail-renovate' ); ?>" />
       <div class="proj-card__overlay"></div>
       <div class="proj-card__info">
         <p class="proj-card__type"><?php esc_html_e( 'Full Renovation · Clifton', 'sail-renovate' ); ?></p>
         <p class="proj-card__title"><?php esc_html_e( 'Period Property Transformation', 'sail-renovate' ); ?></p>
       </div>
     </a>
-    <a href="<?php echo esc_url( home_url( '/projects/' ) ); ?>" class="proj-card fade-in fade-in-delay-1">
-      <img src="<?php echo $img; ?>11-bathroom.jpg" alt="<?php esc_attr_e( 'Bathroom renovation Bristol', 'sail-renovate' ); ?>" />
-      <div class="proj-card__overlay"></div>
-      <div class="proj-card__info">
-        <p class="proj-card__type"><?php esc_html_e( 'Bathroom · Redland', 'sail-renovate' ); ?></p>
-        <p class="proj-card__title"><?php esc_html_e( 'Luxury Bathroom Suite', 'sail-renovate' ); ?></p>
-      </div>
-    </a>
-    <a href="<?php echo esc_url( home_url( '/projects/' ) ); ?>" class="proj-card fade-in fade-in-delay-2">
-      <img src="<?php echo $img; ?>4-diner.jpg" alt="<?php esc_attr_e( 'Kitchen-diner extension Bristol', 'sail-renovate' ); ?>" />
-      <div class="proj-card__overlay"></div>
-      <div class="proj-card__info">
-        <p class="proj-card__type"><?php esc_html_e( 'Extension · Westbury Park', 'sail-renovate' ); ?></p>
-        <p class="proj-card__title"><?php esc_html_e( 'Kitchen-Diner Extension', 'sail-renovate' ); ?></p>
-      </div>
-    </a>
-    <a href="<?php echo esc_url( home_url( '/projects/' ) ); ?>" class="proj-card fade-in">
-      <img src="<?php echo $img; ?>15-garden.jpg" alt="<?php esc_attr_e( 'Eco garden and outdoor upgrade', 'sail-renovate' ); ?>" />
-      <div class="proj-card__overlay"></div>
-      <div class="proj-card__info">
-        <p class="proj-card__type"><?php esc_html_e( 'Eco Upgrade · Bishopston', 'sail-renovate' ); ?></p>
-        <p class="proj-card__title"><?php esc_html_e( 'Solar & Smart Heating', 'sail-renovate' ); ?></p>
-      </div>
-    </a>
-    <a href="<?php echo esc_url( home_url( '/projects/' ) ); ?>" class="proj-card fade-in fade-in-delay-1">
-      <img src="<?php echo $img; ?>16-hallway.jpg" alt="<?php esc_attr_e( 'Insurance restoration project', 'sail-renovate' ); ?>" />
-      <div class="proj-card__overlay"></div>
-      <div class="proj-card__info">
-        <p class="proj-card__type"><?php esc_html_e( 'Insurance Repair · Horfield', 'sail-renovate' ); ?></p>
-        <p class="proj-card__title"><?php esc_html_e( 'Fire Damage Restoration', 'sail-renovate' ); ?></p>
-      </div>
-    </a>
+    <?php endif; ?>
   </div>
 
   <div class="portfolio-cta fade-in">

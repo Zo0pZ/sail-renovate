@@ -397,27 +397,70 @@ function sail_register_acf_fields() {
 		return;
 	}
 
-	// ── Homepage sections ─────────────────────────────────────────────────────
+	// ── Homepage — comprehensive field group ─────────────────────────────────
 	acf_add_local_field_group( [
-		'key'    => 'group_sail_homepage',
-		'title'  => 'Homepage — Intro Band & Why Us',
+		'key'    => 'group_sail_home',
+		'title'  => 'Homepage — All Sections',
 		'fields' => [
+			// Hero
+			[ 'key' => 'field_home_hero_msg',              'label' => 'Hero',                    'name' => '',                       'type' => 'message',  'message' => 'Edit the hero banner copy and calls-to-action.' ],
+			[ 'key' => 'field_home_hero_eyebrow',          'label' => 'Hero Eyebrow',            'name' => 'home_hero_eyebrow',      'type' => 'text',     'default_value' => 'Trusted Renovation Experts — Bristol & the South West' ],
+			[ 'key' => 'field_home_hero_heading',          'label' => 'Hero Heading',            'name' => 'home_hero_heading',      'type' => 'text',     'default_value' => 'Exceptional Renovations,' ],
+			[ 'key' => 'field_home_hero_heading_accent',   'label' => 'Hero Heading Accent',     'name' => 'home_hero_heading_accent', 'type' => 'text',   'default_value' => 'Trusted Results.' ],
+			[ 'key' => 'field_home_hero_sub',              'label' => 'Hero Sub-heading',        'name' => 'home_hero_sub',          'type' => 'textarea', 'rows' => 2, 'default_value' => 'From insurance reinstatement to full home renovations — surveyor-led, no hidden costs, and trusted by Bristol homeowners.' ],
+			[ 'key' => 'field_home_hero_cta1_label',       'label' => 'CTA 1 Label',             'name' => 'home_hero_cta1_label',   'type' => 'text',     'default_value' => 'Start Your Project' ],
+			[ 'key' => 'field_home_hero_cta1_url',         'label' => 'CTA 1 URL',               'name' => 'home_hero_cta1_url',     'type' => 'url',      'default_value' => '/contact/' ],
+			[ 'key' => 'field_home_hero_cta2_label',       'label' => 'CTA 2 Label',             'name' => 'home_hero_cta2_label',   'type' => 'text',     'default_value' => 'View Our Work' ],
+			[ 'key' => 'field_home_hero_cta2_url',         'label' => 'CTA 2 URL',               'name' => 'home_hero_cta2_url',     'type' => 'url',      'default_value' => '/projects/' ],
+			[ 'key' => 'field_home_hero_reassurance',      'label' => 'Reassurance Note',        'name' => 'home_hero_reassurance',  'type' => 'text',     'default_value' => 'Free quote · No obligation · Bristol & South West based' ],
 			// Intro Band
-			[ 'key' => 'field_intro_band_msg',  'label' => 'Intro Band (dark strip below hero)', 'name' => '', 'type' => 'message', 'message' => 'Edit the three feature items in the dark band below the hero image.' ],
-			[ 'key' => 'field_intro_1_title', 'label' => 'Item 1 — Title', 'name' => 'intro_1_title', 'type' => 'text',     'default_value' => 'Renovations & Repairs' ],
-			[ 'key' => 'field_intro_1_body',  'label' => 'Item 1 — Body',  'name' => 'intro_1_body',  'type' => 'textarea', 'rows' => 2, 'default_value' => 'From insurance reinstatements to complete home renovations, trusted by homeowners and insurers across Bristol and the South West.' ],
-			[ 'key' => 'field_intro_2_title', 'label' => 'Item 2 — Title', 'name' => 'intro_2_title', 'type' => 'text',     'default_value' => 'Accredited & Qualified' ],
-			[ 'key' => 'field_intro_2_body',  'label' => 'Item 2 — Body',  'name' => 'intro_2_body',  'type' => 'textarea', 'rows' => 2, 'default_value' => 'Qualified surveyors and certified tradespeople ensuring every project meets the highest standards.' ],
-			[ 'key' => 'field_intro_3_title', 'label' => 'Item 3 — Title', 'name' => 'intro_3_title', 'type' => 'text',     'default_value' => 'Eco & Smart Upgrades' ],
-			[ 'key' => 'field_intro_3_body',  'label' => 'Item 3 — Body',  'name' => 'intro_3_body',  'type' => 'textarea', 'rows' => 2, 'default_value' => 'Solar panels, smart heating, and sustainable materials for a greener, more efficient home.' ],
-			// Why Us
-			[ 'key' => 'field_why_us_msg',    'label' => 'Why Sail Renovate section', 'name' => '', 'type' => 'message', 'message' => 'Edit the three reason bullets in the Why Sail Renovate section.' ],
-			[ 'key' => 'field_why_1_title', 'label' => 'Reason 1 — Title', 'name' => 'why_1_title', 'type' => 'text',     'default_value' => 'Over a Decade of Expertise' ],
-			[ 'key' => 'field_why_1_body',  'label' => 'Reason 1 — Body',  'name' => 'why_1_body',  'type' => 'textarea', 'rows' => 2, 'default_value' => "With more than ten years serving homeowners and insurers across Bristol and the South West, we've earned a reputation for reliability, quality, and transparency on every project — large or small." ],
-			[ 'key' => 'field_why_2_title', 'label' => 'Reason 2 — Title', 'name' => 'why_2_title', 'type' => 'text',     'default_value' => 'Qualified Surveyor-Led Projects' ],
-			[ 'key' => 'field_why_2_body',  'label' => 'Reason 2 — Body',  'name' => 'why_2_body',  'type' => 'textarea', 'rows' => 2, 'default_value' => 'Every project is overseen by a qualified surveyor, ensuring accurate scoping, fair pricing, and a finished result that meets industry standards and your expectations.' ],
-			[ 'key' => 'field_why_3_title', 'label' => 'Reason 3 — Title', 'name' => 'why_3_title', 'type' => 'text',     'default_value' => 'Dedicated Customer Care' ],
-			[ 'key' => 'field_why_3_body',  'label' => 'Reason 3 — Body',  'name' => 'why_3_body',  'type' => 'textarea', 'rows' => 2, 'default_value' => "Your dedicated project contact keeps you informed at every stage — no surprises, no delays, just clear communication and a home you'll love." ],
+			[ 'key' => 'field_home_intro_msg',             'label' => 'Intro Band',              'name' => '',                       'type' => 'message',  'message' => 'Edit the three feature tiles in the dark band below the hero.' ],
+			[ 'key' => 'field_home_intro_1_title',         'label' => 'Item 1 — Title',          'name' => 'home_intro_1_title',     'type' => 'text',     'default_value' => 'Renovations & Repairs' ],
+			[ 'key' => 'field_home_intro_1_body',          'label' => 'Item 1 — Body',           'name' => 'home_intro_1_body',      'type' => 'textarea', 'rows' => 2, 'default_value' => 'From insurance reinstatements to complete home renovations, trusted by homeowners and insurers across Bristol and the South West.' ],
+			[ 'key' => 'field_home_intro_2_title',         'label' => 'Item 2 — Title',          'name' => 'home_intro_2_title',     'type' => 'text',     'default_value' => 'Accredited & Qualified' ],
+			[ 'key' => 'field_home_intro_2_body',          'label' => 'Item 2 — Body',           'name' => 'home_intro_2_body',      'type' => 'textarea', 'rows' => 2, 'default_value' => 'Qualified surveyors and certified tradespeople ensuring every project meets the highest standards.' ],
+			[ 'key' => 'field_home_intro_3_title',         'label' => 'Item 3 — Title',          'name' => 'home_intro_3_title',     'type' => 'text',     'default_value' => 'Eco & Smart Upgrades' ],
+			[ 'key' => 'field_home_intro_3_body',          'label' => 'Item 3 — Body',           'name' => 'home_intro_3_body',      'type' => 'textarea', 'rows' => 2, 'default_value' => 'Solar panels, smart heating, and sustainable materials for a greener, more efficient home.' ],
+			// Services section heading
+			[ 'key' => 'field_home_services_msg',          'label' => 'Services Section',        'name' => '',                       'type' => 'message',  'message' => 'Heading for the Services section.' ],
+			[ 'key' => 'field_home_services_eyebrow',      'label' => 'Services Eyebrow',        'name' => 'home_services_eyebrow',  'type' => 'text',     'default_value' => 'What We Do' ],
+			[ 'key' => 'field_home_services_title',        'label' => 'Services Title',          'name' => 'home_services_title',    'type' => 'text',     'default_value' => 'Our' ],
+			[ 'key' => 'field_home_services_title_accent', 'label' => 'Services Title Accent',   'name' => 'home_services_title_accent', 'type' => 'text', 'default_value' => 'Services' ],
+			// Why Us section
+			[ 'key' => 'field_home_why_msg',               'label' => 'Why Us Section',          'name' => '',                       'type' => 'message',  'message' => 'Edit the "Why Sail Renovate" heading and three reason points.' ],
+			[ 'key' => 'field_home_why_eyebrow',           'label' => 'Why Us Eyebrow',          'name' => 'home_why_eyebrow',       'type' => 'text',     'default_value' => 'Why Choose Us' ],
+			[ 'key' => 'field_home_why_title',             'label' => 'Why Us Title',            'name' => 'home_why_title',         'type' => 'text',     'default_value' => 'A team you can' ],
+			[ 'key' => 'field_home_why_title_accent',      'label' => 'Why Us Title Accent',     'name' => 'home_why_title_accent',  'type' => 'text',     'default_value' => 'truly rely on.' ],
+			[ 'key' => 'field_home_why_1_title',           'label' => 'Reason 1 — Title',        'name' => 'home_why_1_title',       'type' => 'text',     'default_value' => 'Over a Decade of Expertise' ],
+			[ 'key' => 'field_home_why_1_body',            'label' => 'Reason 1 — Body',         'name' => 'home_why_1_body',        'type' => 'textarea', 'rows' => 2, 'default_value' => "With more than ten years serving homeowners and insurers across Bristol and the South West, we've earned a reputation for reliability, quality, and transparency on every project — large or small." ],
+			[ 'key' => 'field_home_why_2_title',           'label' => 'Reason 2 — Title',        'name' => 'home_why_2_title',       'type' => 'text',     'default_value' => 'Qualified Surveyor-Led Projects' ],
+			[ 'key' => 'field_home_why_2_body',            'label' => 'Reason 2 — Body',         'name' => 'home_why_2_body',        'type' => 'textarea', 'rows' => 2, 'default_value' => 'Every project is overseen by a qualified surveyor, ensuring accurate scoping, fair pricing, and a finished result that meets industry standards and your expectations.' ],
+			[ 'key' => 'field_home_why_3_title',           'label' => 'Reason 3 — Title',        'name' => 'home_why_3_title',       'type' => 'text',     'default_value' => 'Dedicated Customer Care' ],
+			[ 'key' => 'field_home_why_3_body',            'label' => 'Reason 3 — Body',         'name' => 'home_why_3_body',        'type' => 'textarea', 'rows' => 2, 'default_value' => "Your dedicated project contact keeps you informed at every stage — no surprises, no delays, just clear communication and a home you'll love." ],
+			[ 'key' => 'field_home_why_badge_num',         'label' => 'Badge Number',            'name' => 'home_why_badge_num',     'type' => 'text',     'default_value' => '10+' ],
+			[ 'key' => 'field_home_why_badge_label',       'label' => 'Badge Label',             'name' => 'home_why_badge_label',   'type' => 'text',     'default_value' => 'Years Trusted' ],
+			// Portfolio section heading
+			[ 'key' => 'field_home_portfolio_msg',         'label' => 'Portfolio Section',       'name' => '',                       'type' => 'message',  'message' => 'Heading for the Recent Projects section.' ],
+			[ 'key' => 'field_home_portfolio_eyebrow',     'label' => 'Portfolio Eyebrow',       'name' => 'home_portfolio_eyebrow', 'type' => 'text',     'default_value' => 'Recent Projects' ],
+			[ 'key' => 'field_home_portfolio_title',       'label' => 'Portfolio Title',         'name' => 'home_portfolio_title',   'type' => 'text',     'default_value' => 'Our' ],
+			[ 'key' => 'field_home_portfolio_title_accent','label' => 'Portfolio Title Accent',  'name' => 'home_portfolio_title_accent', 'type' => 'text','default_value' => 'Work' ],
+			// Philosophy / quote
+			[ 'key' => 'field_home_philosophy_msg',        'label' => 'Philosophy Quote',        'name' => '',                       'type' => 'message',  'message' => 'Edit the full-bleed quote block.' ],
+			[ 'key' => 'field_home_philosophy_quote',      'label' => 'Quote',                   'name' => 'home_philosophy_quote',  'type' => 'textarea', 'rows' => 3, 'default_value' => "We want you to feel proud and excited every time you come home — that's the standard we hold ourselves to on every single project." ],
+			[ 'key' => 'field_home_philosophy_attr',       'label' => 'Attribution',             'name' => 'home_philosophy_attr',   'type' => 'text',     'default_value' => '— The Sail Renovate Team' ],
+			// FAQ section heading
+			[ 'key' => 'field_home_faq_msg',               'label' => 'FAQ Section',             'name' => '',                       'type' => 'message',  'message' => 'Heading for the FAQ accordion. Add FAQ posts via WordPress Admin → FAQs.' ],
+			[ 'key' => 'field_home_faq_eyebrow',           'label' => 'FAQ Eyebrow',             'name' => 'home_faq_eyebrow',       'type' => 'text',     'default_value' => 'Common Questions' ],
+			[ 'key' => 'field_home_faq_title',             'label' => 'FAQ Title',               'name' => 'home_faq_title',         'type' => 'text',     'default_value' => 'Frequently Asked' ],
+			// Contact / CTA section
+			[ 'key' => 'field_home_contact_msg',           'label' => 'Contact Section',         'name' => '',                       'type' => 'message',  'message' => 'Edit the contact section heading and CTA panel copy.' ],
+			[ 'key' => 'field_home_contact_eyebrow',       'label' => 'Contact Eyebrow',         'name' => 'home_contact_eyebrow',   'type' => 'text',     'default_value' => 'Get In Touch' ],
+			[ 'key' => 'field_home_contact_title',         'label' => 'Contact Title',           'name' => 'home_contact_title',     'type' => 'text',     'default_value' => 'Start Your' ],
+			[ 'key' => 'field_home_contact_title_accent',  'label' => 'Contact Title Accent',    'name' => 'home_contact_title_accent', 'type' => 'text',  'default_value' => 'Project' ],
+			[ 'key' => 'field_home_contact_intro',         'label' => 'Contact Intro',           'name' => 'home_contact_intro',     'type' => 'textarea', 'rows' => 2, 'default_value' => 'Whether you require an urgent insurance repair or are planning a comprehensive home renovation, our team is ready to assist. Contact us today to arrange a free, no-obligation surveyor visit.' ],
+			[ 'key' => 'field_home_cta_eyebrow',           'label' => 'CTA Panel Eyebrow',       'name' => 'home_cta_eyebrow',       'type' => 'text',     'default_value' => 'Ready to Transform Your Home?' ],
+			[ 'key' => 'field_home_cta_title',             'label' => 'CTA Panel Title',         'name' => 'home_cta_title',         'type' => 'text',     'default_value' => 'Ready to start your project?' ],
+			[ 'key' => 'field_home_cta_body',              'label' => 'CTA Panel Body',          'name' => 'home_cta_body',          'type' => 'textarea', 'rows' => 2, 'default_value' => 'Join our satisfied clients and experience professional renovation services across Bristol and the South West. Free consultation, no obligation.' ],
 		],
 		'location' => [ [ [ 'param' => 'page_type', 'operator' => '==', 'value' => 'front_page' ] ] ],
 	] );

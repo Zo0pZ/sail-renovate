@@ -27,6 +27,9 @@ $phone_tel = 'tel:' . preg_replace( '/[^0-9+]/', '', $phone );
     <?php if ( has_excerpt() ) : ?>
     <p class="hero__sub"><?php echo esc_html( get_the_excerpt() ); ?></p>
     <?php endif; ?>
+    <?php if ( has_post_thumbnail() ) : ?>
+    <div class="hero__image"><?php the_post_thumbnail( 'large', [ 'alt' => get_the_title() ] ); ?></div>
+    <?php endif; ?>
   </section>
 
   <section class="page-section">

@@ -11,9 +11,13 @@ $img = esc_url( get_template_directory_uri() . '/images/' );
 <main>
   <!-- ── Internal Hero ── -->
   <section class="internal-hero">
-    <span class="section-eyebrow"><?php esc_html_e( 'About Us', 'sail-renovate' ); ?></span>
-    <h1 class="hero__heading"><?php esc_html_e( 'Trusted renovation specialists across', 'sail-renovate' ); ?> <em><?php esc_html_e( 'Bristol & the South West', 'sail-renovate' ); ?></em>.</h1>
-    <p class="hero__sub"><?php esc_html_e( 'We are a surveyor-led renovation and reinstatement company, dedicated to bringing professionalism, transparency, and exceptional craftsmanship to every project.', 'sail-renovate' ); ?></p>
+    <span class="section-eyebrow"><?php echo esc_html( sail_field( 'about_hero_eyebrow', __( 'About Us', 'sail-renovate' ) ) ); ?></span>
+    <?php
+      $h_main   = sail_field( 'about_hero_heading',        __( 'Trusted renovation specialists across', 'sail-renovate' ) );
+      $h_accent = sail_field( 'about_hero_heading_accent', __( 'Bristol & the South West', 'sail-renovate' ) );
+    ?>
+    <h1 class="hero__heading"><?php echo esc_html( $h_main ); ?><?php if ( $h_accent ) : ?> <em><?php echo esc_html( $h_accent ); ?></em><?php endif; ?></h1>
+    <p class="hero__sub"><?php echo esc_html( sail_field( 'about_hero_sub', __( 'We are a surveyor-led renovation and reinstatement company, dedicated to bringing professionalism, transparency, and exceptional craftsmanship to every project.', 'sail-renovate' ) ) ); ?></p>
     <div style="margin-top: 2rem;">
       <a href="<?php echo esc_url( home_url( '/contact/' ) ); ?>" class="btn btn--primary"><?php esc_html_e( 'Get a Free Quote', 'sail-renovate' ); ?></a>
     </div>
@@ -37,8 +41,12 @@ $img = esc_url( get_template_directory_uri() . '/images/' );
   <section class="page-section">
     <div class="grid-2 fade-in">
       <div class="content-block">
-        <span class="section-eyebrow"><?php esc_html_e( 'Our Story', 'sail-renovate' ); ?></span>
-        <h2 class="section-title"><?php esc_html_e( 'Built on a foundation of', 'sail-renovate' ); ?> <em><?php esc_html_e( 'trust and expertise.', 'sail-renovate' ); ?></em></h2>
+        <span class="section-eyebrow"><?php echo esc_html( sail_field( 'about_story_eyebrow', __( 'Our Story', 'sail-renovate' ) ) ); ?></span>
+        <?php
+          $s_main   = sail_field( 'about_story_title',        __( 'Built on a foundation of', 'sail-renovate' ) );
+          $s_accent = sail_field( 'about_story_title_accent', __( 'trust and expertise.', 'sail-renovate' ) );
+        ?>
+        <h2 class="section-title"><?php echo esc_html( $s_main ); ?><?php if ( $s_accent ) : ?> <em><?php echo esc_html( $s_accent ); ?></em><?php endif; ?></h2>
         <?php
         $story = get_the_content();
         if ( $story ) {
@@ -218,10 +226,15 @@ $img = esc_url( get_template_directory_uri() . '/images/' );
         <img src="<?php echo $img; ?>19-kitchen.jpg" alt="<?php esc_attr_e( 'Finished high quality renovation', 'sail-renovate' ); ?>" />
       </div>
       <div class="content-block">
-        <h2 class="section-title"><?php esc_html_e( 'Trusted by homeowners and', 'sail-renovate' ); ?> <em><?php esc_html_e( 'insurers alike.', 'sail-renovate' ); ?></em></h2>
-        <p><?php esc_html_e( 'Our rigorous standards have earned us the trust of major insurance providers to handle complex reinstatement works. We bring that exact same level of scrutiny, project management, and attention to detail to our private home renovations.', 'sail-renovate' ); ?></p>
+        <?php $cta_h = sail_field( 'cta_heading', 'Trusted by homeowners and <em>insurers alike.</em>' ); ?>
+        <h2 class="section-title"><?php echo wp_kses( $cta_h, [ 'em' => [] ] ); ?></h2>
+        <p><?php echo esc_html( sail_field( 'cta_text', __( 'Our rigorous standards have earned us the trust of major insurance providers to handle complex reinstatement works. We bring that exact same level of scrutiny, project management, and attention to detail to our private home renovations.', 'sail-renovate' ) ) ); ?></p>
+        <?php
+          $cta_url   = sail_field( 'cta_button_url',   home_url( '/contact/' ) );
+          $cta_label = sail_field( 'cta_button_label', __( 'Get a Free Quote', 'sail-renovate' ) );
+        ?>
         <div style="margin-top: 2rem; display: flex; gap: 1rem; flex-wrap: wrap;">
-          <a href="<?php echo esc_url( home_url( '/contact/' ) ); ?>" class="btn btn--primary"><?php esc_html_e( 'Get a Free Quote', 'sail-renovate' ); ?></a>
+          <a href="<?php echo esc_url( $cta_url ); ?>" class="btn btn--primary"><?php echo esc_html( $cta_label ); ?></a>
           <a href="<?php echo esc_url( home_url( '/projects/' ) ); ?>" class="btn btn--navy"><?php esc_html_e( 'View Our Work', 'sail-renovate' ); ?></a>
         </div>
       </div>

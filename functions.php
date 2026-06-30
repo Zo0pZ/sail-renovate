@@ -374,8 +374,19 @@ function sail_register_acf_fields() {
 	// ── About page ────────────────────────────────────────────────────────────
 	acf_add_local_field_group( [
 		'key'    => 'group_sail_about',
-		'title'  => 'About — Values & Testimonial',
+		'title'  => 'About Page — Content',
 		'fields' => [
+			// Hero
+			[ 'key' => 'field_about_hero_msg',     'label' => 'Hero section',   'name' => '', 'type' => 'message', 'message' => 'Edit the top hero banner. Leave blank to use the defaults.' ],
+			[ 'key' => 'field_about_hero_eyebrow', 'label' => 'Hero Eyebrow',   'name' => 'about_hero_eyebrow', 'type' => 'text', 'default_value' => 'About Us' ],
+			[ 'key' => 'field_about_hero_heading', 'label' => 'Hero Heading',   'name' => 'about_hero_heading', 'type' => 'text', 'default_value' => 'Trusted renovation specialists across' ],
+			[ 'key' => 'field_about_hero_accent',  'label' => 'Hero Heading Accent (italic/orange)', 'name' => 'about_hero_heading_accent', 'type' => 'text', 'default_value' => 'Bristol & the South West' ],
+			[ 'key' => 'field_about_hero_sub',     'label' => 'Hero Sub-heading', 'name' => 'about_hero_sub', 'type' => 'textarea', 'rows' => 2, 'default_value' => 'We are a surveyor-led renovation and reinstatement company, dedicated to bringing professionalism, transparency, and exceptional craftsmanship to every project.' ],
+			// Our Story heading
+			[ 'key' => 'field_about_story_msg',    'label' => 'Our Story section', 'name' => '', 'type' => 'message', 'message' => 'Edit the Our Story section heading. Body copy comes from the page editor.' ],
+			[ 'key' => 'field_about_story_eyebrow', 'label' => 'Story Eyebrow', 'name' => 'about_story_eyebrow', 'type' => 'text', 'default_value' => 'Our Story' ],
+			[ 'key' => 'field_about_story_title',  'label' => 'Story Heading',  'name' => 'about_story_title',  'type' => 'text', 'default_value' => 'Built on a foundation of' ],
+			[ 'key' => 'field_about_story_accent', 'label' => 'Story Heading Accent (italic/orange)', 'name' => 'about_story_title_accent', 'type' => 'text', 'default_value' => 'trust and expertise.' ],
 			// Values
 			[ 'key' => 'field_values_msg',    'label' => 'Core Values section', 'name' => '', 'type' => 'message', 'message' => 'Edit the three values cards. Icons are fixed in the design.' ],
 			[ 'key' => 'field_value_1_title', 'label' => 'Value 1 — Title', 'name' => 'value_1_title', 'type' => 'text',     'default_value' => 'Surveyor-Led Delivery' ],
@@ -388,6 +399,12 @@ function sail_register_acf_fields() {
 			[ 'key' => 'field_test_msg',   'label' => 'Testimonial section', 'name' => '', 'type' => 'message', 'message' => 'Edit the featured testimonial quote.' ],
 			[ 'key' => 'field_test_quote', 'label' => 'Quote', 'name' => 'testimonial_quote', 'type' => 'textarea', 'rows' => 4, 'default_value' => "We've worked together for nearly 10 years on a wide range of insurance reinstatement projects, and the service has always been reliable, professional, and completed to a high standard. Communication is excellent, works are handled efficiently, and we know our clients are in safe hands throughout the process. We would have no hesitation in recommending their services." ],
 			[ 'key' => 'field_test_attr',  'label' => 'Attribution (name — company)', 'name' => 'testimonial_attr', 'type' => 'text', 'default_value' => 'Steve — Ellipta' ],
+			// CTA banner
+			[ 'key' => 'field_about_cta_msg',     'label' => 'CTA Banner section', 'name' => '', 'type' => 'message', 'message' => 'Edit the bottom call-to-action banner.' ],
+			[ 'key' => 'field_about_cta_heading', 'label' => 'CTA Heading', 'name' => 'cta_heading', 'type' => 'text', 'instructions' => 'Wrap italic/orange words in <em>…</em>.', 'default_value' => 'Trusted by homeowners and <em>insurers alike.</em>' ],
+			[ 'key' => 'field_about_cta_text',    'label' => 'CTA Body Text', 'name' => 'cta_text', 'type' => 'textarea', 'rows' => 2, 'default_value' => 'Our rigorous standards have earned us the trust of major insurance providers to handle complex reinstatement works. We bring that exact same level of scrutiny, project management, and attention to detail to our private home renovations.' ],
+			[ 'key' => 'field_about_cta_btn_url', 'label' => 'CTA Button URL', 'name' => 'cta_button_url', 'type' => 'url', 'default_value' => '/contact/' ],
+			[ 'key' => 'field_about_cta_btn_lbl', 'label' => 'CTA Button Label', 'name' => 'cta_button_label', 'type' => 'text', 'default_value' => 'Get a Free Quote' ],
 		],
 		'location' => [ [ [ 'param' => 'page_slug', 'operator' => '==', 'value' => 'about' ] ] ],
 	] );
@@ -465,3 +482,12 @@ function sail_breadcrumbs() {
 		. implode( $sep, $items )
 		. '</div></nav>';
 }
+
+// ACF JSON — version-control field groups alongside the theme.
+add_filter( 'acf/settings/save_json', function () {
+	return get_stylesheet_directory() . '/acf-json';
+} );
+add_filter( 'acf/settings/load_json', function ( $paths ) {
+	$paths[] = get_stylesheet_directory() . '/acf-json';
+	return $paths;
+} );

@@ -163,6 +163,34 @@ function sail_customizer_register( $wp_customize ) {
 		] );
 	}
 
+	// ── Section: About Page ──────────────────────────────────────────────────
+	$wp_customize->add_section( 'sail_about', [
+		'title'    => __( 'About Page', 'sail-renovate' ),
+		'panel'    => 'sail_panel',
+		'priority' => 25,
+	] );
+
+	$about_stats = [
+		'sail_about_stat1_num'   => [ __( 'Stat 1 — Number/Value', 'sail-renovate' ), '10+' ],
+		'sail_about_stat1_label' => [ __( 'Stat 1 — Label', 'sail-renovate' ),        'Years Experience' ],
+		'sail_about_stat2_num'   => [ __( 'Stat 2 — Number/Value', 'sail-renovate' ), '500+' ],
+		'sail_about_stat2_label' => [ __( 'Stat 2 — Label', 'sail-renovate' ),        'Projects Completed' ],
+		'sail_about_stat3_label' => [ __( 'Stat 3 — Label', 'sail-renovate' ),        'Insurance Approved' ],
+	];
+
+	foreach ( $about_stats as $id => [ $label, $default ] ) {
+		$wp_customize->add_setting( $id, [
+			'default'           => $default,
+			'sanitize_callback' => 'sanitize_text_field',
+			'transport'         => 'refresh',
+		] );
+		$wp_customize->add_control( $id, [
+			'label'   => $label,
+			'section' => 'sail_about',
+			'type'    => 'text',
+		] );
+	}
+
 	// ── Section: Philosophy Quote ─────────────────────────────────────────────
 	$wp_customize->add_section( 'sail_philosophy', [
 		'title'    => __( 'Philosophy Quote', 'sail-renovate' ),

@@ -467,7 +467,11 @@ function sail_register_acf_fields() {
 			[ 'key' => 'field_tp_photo_1',   'label' => 'Tradesperson Photo 1',     'name' => 'tradesperson_photo_1',      'type' => 'image', 'return_format' => 'id', 'preview_size' => 'thumbnail' ],
 			[ 'key' => 'field_tp_photo_2',   'label' => 'Tradesperson Photo 2',     'name' => 'tradesperson_photo_2',      'type' => 'image', 'return_format' => 'id', 'preview_size' => 'thumbnail' ],
 			[ 'key' => 'field_tp_photo_3',   'label' => 'Tradesperson Photo 3',     'name' => 'tradesperson_photo_3',      'type' => 'image', 'return_format' => 'id', 'preview_size' => 'thumbnail' ],
-			[ 'key' => 'field_tp_van_photo', 'label' => 'Van Photo',                'name' => 'tradespeople_van_photo',    'type' => 'image', 'return_format' => 'id', 'preview_size' => 'thumbnail' ],
+			[ 'key' => 'field_tp_van_photo',   'label' => 'Van Photo',                'name' => 'tradespeople_van_photo',    'type' => 'image', 'return_format' => 'id', 'preview_size' => 'thumbnail' ],
+			[ 'key' => 'field_tp_photo_1_alt', 'label' => 'Tradesperson Photo 1 Alt', 'name' => 'tradesperson_photo_1_alt', 'type' => 'text', 'instructions' => 'Descriptive alt text for screen readers. Leave blank to use the media library alt.' ],
+			[ 'key' => 'field_tp_photo_2_alt', 'label' => 'Tradesperson Photo 2 Alt', 'name' => 'tradesperson_photo_2_alt', 'type' => 'text', 'instructions' => 'Descriptive alt text for screen readers. Leave blank to use the media library alt.' ],
+			[ 'key' => 'field_tp_photo_3_alt', 'label' => 'Tradesperson Photo 3 Alt', 'name' => 'tradesperson_photo_3_alt', 'type' => 'text', 'instructions' => 'Descriptive alt text for screen readers. Leave blank to use the media library alt.' ],
+			[ 'key' => 'field_tp_van_photo_alt', 'label' => 'Van Photo Alt',          'name' => 'tradespeople_van_photo_alt', 'type' => 'text', 'instructions' => 'Descriptive alt text for screen readers. Leave blank to use the media library alt.' ],
 		],
 		'location' => [ [ [ 'param' => 'page_slug', 'operator' => '==', 'value' => 'about' ] ] ],
 	] );

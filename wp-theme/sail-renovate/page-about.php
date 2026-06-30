@@ -216,23 +216,31 @@ if ( have_posts() ) the_post();
         </div>
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;">
           <?php
-          $tp_photos = [ 'tradesperson_photo_1', 'tradesperson_photo_2', 'tradesperson_photo_3' ];
-          foreach ( $tp_photos as $i => $tp_field ) :
-            $tp_img_id = function_exists( 'get_field' ) ? get_field( $tp_field ) : 0;
+          $tp_photos = [
+            [ 'photo' => 'tradesperson_photo_1', 'alt' => 'tradesperson_photo_1_alt' ],
+            [ 'photo' => 'tradesperson_photo_2', 'alt' => 'tradesperson_photo_2_alt' ],
+            [ 'photo' => 'tradesperson_photo_3', 'alt' => 'tradesperson_photo_3_alt' ],
+          ];
+          foreach ( $tp_photos as $i => $tp ) :
+            $tp_img_id = sail_field( $tp['photo'] );
+            $tp_alt    = sail_field( $tp['alt'], sprintf( __( 'Sail Renovate tradesperson %d', 'sail-renovate' ), $i + 1 ) );
           ?>
           <div style="aspect-ratio: 3/4; background: var(--cream); border: 1px solid var(--border); border-radius: 2px; overflow: hidden; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.6rem; color: var(--text-muted);">
             <?php if ( $tp_img_id ) : ?>
-              <?php echo wp_get_attachment_image( $tp_img_id, 'medium', false, [ 'alt' => sprintf( __( 'Sail Renovate tradesperson %d', 'sail-renovate' ), $i + 1 ), 'style' => 'width:100%;height:100%;object-fit:cover;display:block;' ] ); ?>
+              <?php sail_acf_image( $tp_img_id, 'medium', $tp_alt, 'tradesperson__photo' ); ?>
             <?php else : ?>
               <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
               <span style="font-size: 0.68rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase;"><?php esc_html_e( 'Photo coming soon', 'sail-renovate' ); ?></span>
             <?php endif; ?>
           </div>
           <?php endforeach; ?>
-          <?php $tp_van_id = function_exists( 'get_field' ) ? get_field( 'tradespeople_van_photo' ) : 0; ?>
+          <?php
+          $tp_van_id  = sail_field( 'tradespeople_van_photo' );
+          $tp_van_alt = sail_field( 'tradespeople_van_photo_alt', __( 'Sail Renovate van', 'sail-renovate' ) );
+          ?>
           <div style="aspect-ratio: 3/4; background: var(--bg-warm); border: 1px solid var(--border); border-radius: 2px; overflow: hidden; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.6rem; color: var(--text-muted); text-align: center;">
             <?php if ( $tp_van_id ) : ?>
-              <?php echo wp_get_attachment_image( $tp_van_id, 'medium', false, [ 'alt' => __( 'Sail Renovate van', 'sail-renovate' ), 'style' => 'width:100%;height:100%;object-fit:cover;display:block;' ] ); ?>
+              <?php sail_acf_image( $tp_van_id, 'medium', $tp_van_alt, 'tradespeople__van' ); ?>
             <?php else : ?>
               <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true"><rect x="1" y="10" width="22" height="11" rx="2"/><path d="M1 13h22M7 10V6a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v4"/><circle cx="7" cy="21" r="1" fill="currentColor" stroke="none"/><circle cx="17" cy="21" r="1" fill="currentColor" stroke="none"/></svg>
               <span style="font-size: 0.68rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase;"><?php esc_html_e( 'Van shot coming soon', 'sail-renovate' ); ?></span>

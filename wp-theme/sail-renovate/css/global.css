@@ -441,3 +441,7 @@ footer::before {
 .mobile-services__list a:hover,
 .mobile-services__list .mobile-services__all { color: var(--accent); }
 .mobile-services__list .mobile-services__all { font-weight: 500; }
+
+/* Tradespeople photo tiles — fill the aspect-ratio container */
+.tradesperson__photo,
+.tradespeople__van { width: 100%; height: 100%; object-fit: cover; display: block; }

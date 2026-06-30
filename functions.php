@@ -388,3 +388,50 @@ function sail_register_acf_fields() {
 	// Team Member CPT: title = name, excerpt = job role, content = bio, thumbnail = photo.
 	// No extra ACF fields needed — WordPress built-ins cover the full profile.
 }
+
+/**
+ * Plugin-free breadcrumb trail.
+ * Outputs nothing on the front page. Handles pages, singular service/project CPTs, and archives.
+ */
+function sail_breadcrumbs() {
+	if ( is_front_page() ) return;
+
+	$sep   = '<span class="sail-breadcrumbs__sep" aria-hidden="true">/</span>';
+	$items = [];
+
+	$items[] = '<a href="' . esc_url( home_url( '/' ) ) . '">' . esc_html__( 'Home', 'sail-renovate' ) . '</a>';
+
+	if ( is_singular( 'service' ) ) {
+		$services_page = get_page_by_path( 'services' );
+		if ( $services_page ) {
+			$items[] = '<a href="' . esc_url( get_permalink( $services_page ) ) . '">' . esc_html__( 'Services', 'sail-renovate' ) . '</a>';
+		}
+		$items[] = '<span aria-current="page">' . esc_html( get_the_title() ) . '</span>';
+
+	} elseif ( is_singular( 'project' ) ) {
+		$archive = get_post_type_archive_link( 'project' );
+		if ( $archive ) {
+			$items[] = '<a href="' . esc_url( $archive ) . '">' . esc_html__( 'Our Work', 'sail-renovate' ) . '</a>';
+		}
+		$items[] = '<span aria-current="page">' . esc_html( get_the_title() ) . '</span>';
+
+	} elseif ( is_post_type_archive( 'project' ) ) {
+		$items[] = '<span aria-current="page">' . esc_html__( 'Our Work', 'sail-renovate' ) . '</span>';
+
+	} elseif ( is_page() ) {
+		foreach ( array_reverse( get_post_ancestors( get_the_ID() ) ) as $ancestor ) {
+			$items[] = '<a href="' . esc_url( get_permalink( $ancestor ) ) . '">' . esc_html( get_the_title( $ancestor ) ) . '</a>';
+		}
+		$items[] = '<span aria-current="page">' . esc_html( get_the_title() ) . '</span>';
+
+	} elseif ( is_single() ) {
+		$items[] = '<span aria-current="page">' . esc_html( get_the_title() ) . '</span>';
+
+	} elseif ( is_category() || is_tax() || is_archive() ) {
+		$items[] = '<span aria-current="page">' . esc_html( wp_strip_all_tags( get_the_archive_title() ) ) . '</span>';
+	}
+
+	echo '<nav class="sail-breadcrumbs" aria-label="' . esc_attr__( 'Breadcrumb', 'sail-renovate' ) . '"><div class="sail-breadcrumbs__inner">'
+		. implode( $sep, $items )
+		. '</div></nav>';
+}

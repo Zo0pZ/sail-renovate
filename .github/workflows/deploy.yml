@@ -13,8 +13,6 @@ jobs:
         env:
           DFG_URL: ${{ secrets.DFG_THEME_DEPLOY_URL }}
         run: |
-          echo "URL length: ${#DFG_URL}"
-          echo "URL prefix (8 chars): ${DFG_URL:0:8}"
           HTTP_CODE=$(curl -s -o response.json -w "%{http_code}" --max-time 60 "$DFG_URL" || echo "curl_failed_$?")
           echo "HTTP status: $HTTP_CODE"
           cat response.json 2>/dev/null || echo "(no response body)"

@@ -337,6 +337,21 @@ function sail_field( $key, $default = '' ) {
 	return $default;
 }
 
+// Renders an ACF image (stored as attachment ID). Renders nothing if $image_id is falsy.
+function sail_acf_image( $image_id, $size = 'large', $alt = '', $class = '' ) {
+	if ( ! $image_id ) {
+		return;
+	}
+	$atts = [];
+	if ( $class ) {
+		$atts['class'] = $class;
+	}
+	if ( $alt ) {
+		$atts['alt'] = $alt;
+	}
+	echo wp_get_attachment_image( (int) $image_id, $size, false, $atts );
+}
+
 // Renders a section eyebrow + h2.section-title with optional italic accent.
 // Usage: sail_section_heading( sail_field('eyebrow','…'), sail_field('title','…'), sail_field('accent','…') )
 function sail_section_heading( $eyebrow = '', $title = '', $title_accent = '' ) {
@@ -401,11 +416,15 @@ function sail_register_acf_fields() {
 			[ 'key' => 'field_about_hero_heading', 'label' => 'Hero Heading',   'name' => 'about_hero_heading', 'type' => 'text', 'default_value' => 'Trusted renovation specialists across' ],
 			[ 'key' => 'field_about_hero_accent',  'label' => 'Hero Heading Accent (italic/orange)', 'name' => 'about_hero_heading_accent', 'type' => 'text', 'default_value' => 'Bristol & the South West' ],
 			[ 'key' => 'field_about_hero_sub',     'label' => 'Hero Sub-heading', 'name' => 'about_hero_sub', 'type' => 'textarea', 'rows' => 2, 'default_value' => 'We are a surveyor-led renovation and reinstatement company, dedicated to bringing professionalism, transparency, and exceptional craftsmanship to every project.' ],
+			[ 'key' => 'field_hero_cta_label',    'label' => 'Hero Button Label', 'name' => 'hero_cta_label', 'type' => 'text', 'default_value' => 'Get a Free Quote' ],
+			[ 'key' => 'field_hero_cta_url',      'label' => 'Hero Button URL',   'name' => 'hero_cta_url',   'type' => 'url',  'default_value' => '/contact/' ],
 			// Our Story heading
 			[ 'key' => 'field_about_story_msg',    'label' => 'Our Story section', 'name' => '', 'type' => 'message', 'message' => 'Edit the Our Story section heading. Body copy comes from the page editor.' ],
 			[ 'key' => 'field_about_story_eyebrow', 'label' => 'Story Eyebrow', 'name' => 'about_story_eyebrow', 'type' => 'text', 'default_value' => 'Our Story' ],
 			[ 'key' => 'field_about_story_title',  'label' => 'Story Heading',  'name' => 'about_story_title',  'type' => 'text', 'default_value' => 'Built on a foundation of' ],
-			[ 'key' => 'field_about_story_accent', 'label' => 'Story Heading Accent (italic/orange)', 'name' => 'about_story_title_accent', 'type' => 'text', 'default_value' => 'trust and expertise.' ],
+			[ 'key' => 'field_about_story_accent',   'label' => 'Story Heading Accent (italic/orange)', 'name' => 'about_story_title_accent', 'type' => 'text', 'default_value' => 'trust and expertise.' ],
+			[ 'key' => 'field_story_image',          'label' => 'Our Story Image',     'name' => 'about_story_image',     'type' => 'image', 'return_format' => 'id', 'preview_size' => 'thumbnail' ],
+			[ 'key' => 'field_story_image_alt',      'label' => 'Our Story Image Alt', 'name' => 'about_story_image_alt', 'type' => 'text',  'instructions' => 'Leave blank to use the image\'s alt text from the media library.' ],
 			// Values heading
 			[ 'key' => 'field_values_eyebrow', 'label' => 'Values Eyebrow',                    'name' => 'values_eyebrow',      'type' => 'text', 'default_value' => 'The Sail Difference' ],
 			[ 'key' => 'field_values_title',   'label' => 'Values Heading',                    'name' => 'values_title',        'type' => 'text', 'default_value' => 'Our core' ],
@@ -427,7 +446,11 @@ function sail_register_acf_fields() {
 			[ 'key' => 'field_about_cta_heading', 'label' => 'CTA Heading', 'name' => 'cta_heading', 'type' => 'text', 'instructions' => 'Wrap italic/orange words in <em>…</em>.', 'default_value' => 'Trusted by homeowners and <em>insurers alike.</em>' ],
 			[ 'key' => 'field_about_cta_text',    'label' => 'CTA Body Text', 'name' => 'cta_text', 'type' => 'textarea', 'rows' => 2, 'default_value' => 'Our rigorous standards have earned us the trust of major insurance providers to handle complex reinstatement works. We bring that exact same level of scrutiny, project management, and attention to detail to our private home renovations.' ],
 			[ 'key' => 'field_about_cta_btn_url', 'label' => 'CTA Button URL', 'name' => 'cta_button_url', 'type' => 'url', 'default_value' => '/contact/' ],
-			[ 'key' => 'field_about_cta_btn_lbl', 'label' => 'CTA Button Label', 'name' => 'cta_button_label', 'type' => 'text', 'default_value' => 'Get a Free Quote' ],
+			[ 'key' => 'field_about_cta_btn_lbl',    'label' => 'CTA Button Label',       'name' => 'cta_button_label',       'type' => 'text', 'default_value' => 'Get a Free Quote' ],
+			[ 'key' => 'field_trust_banner_image',   'label' => 'Trust Banner Image',     'name' => 'trust_banner_image',     'type' => 'image', 'return_format' => 'id', 'preview_size' => 'thumbnail' ],
+			[ 'key' => 'field_trust_banner_img_alt', 'label' => 'Trust Banner Image Alt', 'name' => 'trust_banner_image_alt', 'type' => 'text',  'instructions' => 'Leave blank to use the image\'s alt text from the media library.' ],
+			[ 'key' => 'field_trust_cta2_label',     'label' => 'Secondary Button Label', 'name' => 'trust_cta2_label',       'type' => 'text', 'default_value' => 'View Our Work' ],
+			[ 'key' => 'field_trust_cta2_url',       'label' => 'Secondary Button URL',   'name' => 'trust_cta2_url',         'type' => 'url',  'default_value' => '/projects/' ],
 			// Team heading
 			[ 'key' => 'field_team_eyebrow', 'label' => 'Team Eyebrow',                    'name' => 'team_eyebrow',      'type' => 'text', 'default_value' => 'The Team' ],
 			[ 'key' => 'field_team_title',   'label' => 'Team Heading',                    'name' => 'team_title',        'type' => 'text', 'default_value' => 'The people behind' ],

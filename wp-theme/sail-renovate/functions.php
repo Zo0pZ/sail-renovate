@@ -194,12 +194,14 @@ function sail_org_schema() : void {
 		'logo'       => get_template_directory_uri() . '/images/Sail_Renovate_Primary_Orange_MAIN-300x229.png',
 		'telephone'  => sail_contact( 'phone' ),
 		'email'      => sail_contact( 'email' ),
-		'address'    => [
+		'address'    => array_filter( [
 			'@type'           => 'PostalAddress',
-			'addressLocality' => 'Bristol',
+			'streetAddress'   => sail_contact( 'address_street' ),
+			'addressLocality' => sail_contact( 'address_city' ) ?: 'Bristol',
+			'postalCode'      => sail_contact( 'address_postcode' ),
 			'addressRegion'   => 'England',
 			'addressCountry'  => 'GB',
-		],
+		] ),
 		'areaServed'  => [ 'Bristol', 'South West England' ],
 		'knowsAbout'  => [
 			'Insurance Reinstatement',
@@ -254,6 +256,60 @@ function sail_faq_schema() : void {
 	echo '<script type="application/ld+json">' . wp_json_encode( $schema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE ) . '</script>' . "\n";
 }
 
+add_action( 'wp_head', 'sail_breadcrumb_schema', 5 );
+function sail_breadcrumb_schema() : void {
+	if ( is_front_page() ) {
+		return;
+	}
+	$items = [];
+	$pos   = 1;
+	$items[] = [ '@type' => 'ListItem', 'position' => $pos++, 'name' => __( 'Home', 'sail-renovate' ), 'item' => home_url( '/' ) ];
+
+	if ( is_singular( 'service' ) ) {
+		$items[] = [ '@type' => 'ListItem', 'position' => $pos++, 'name' => __( 'Services', 'sail-renovate' ), 'item' => home_url( '/services/' ) ];
+		$items[] = [ '@type' => 'ListItem', 'position' => $pos,   'name' => get_the_title(), 'item' => get_permalink() ];
+	} elseif ( is_singular( 'project' ) ) {
+		$items[] = [ '@type' => 'ListItem', 'position' => $pos++, 'name' => __( 'Our Work', 'sail-renovate' ), 'item' => home_url( '/projects/' ) ];
+		$items[] = [ '@type' => 'ListItem', 'position' => $pos,   'name' => get_the_title(), 'item' => get_permalink() ];
+	} elseif ( is_page() ) {
+		foreach ( array_reverse( get_post_ancestors( get_the_ID() ) ) as $ancestor ) {
+			$items[] = [ '@type' => 'ListItem', 'position' => $pos++, 'name' => get_the_title( $ancestor ), 'item' => get_permalink( $ancestor ) ];
+		}
+		$items[] = [ '@type' => 'ListItem', 'position' => $pos, 'name' => get_the_title(), 'item' => get_permalink() ];
+	}
+
+	if ( count( $items ) < 2 ) {
+		return;
+	}
+	$schema = [
+		'@context'        => 'https://schema.org',
+		'@type'           => 'BreadcrumbList',
+		'itemListElement' => $items,
+	];
+	echo '<script type="application/ld+json">' . wp_json_encode( $schema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE ) . '</script>' . "\n";
+}
+
+add_action( 'wp_head', 'sail_service_schema', 5 );
+function sail_service_schema() : void {
+	if ( ! is_singular( 'service' ) ) {
+		return;
+	}
+	$schema = [
+		'@context'    => 'https://schema.org',
+		'@type'       => 'Service',
+		'name'        => get_the_title(),
+		'description' => wp_strip_all_tags( get_the_excerpt() ),
+		'provider'    => [
+			'@type' => 'HomeAndConstructionBusiness',
+			'name'  => 'Sail Renovate',
+			'url'   => home_url( '/' ),
+		],
+		'areaServed'  => [ 'Bristol', 'South West England' ],
+		'url'         => get_permalink(),
+	];
+	echo '<script type="application/ld+json">' . wp_json_encode( $schema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE ) . '</script>' . "\n";
+}
+
 // ── Customizer ───────────────────────────────────────────────────────────────
 add_action( 'customize_register', 'sail_customizer_register' );
 function sail_customizer_register( $wp_customize ) {
@@ -273,8 +329,11 @@ function sail_customizer_register( $wp_customize ) {
 	$contact_settings = [
 		'sail_phone'         => [ __( 'Phone Number', 'sail-renovate' ),        '0117 476 7858',           'text' ],
 		'sail_email'         => [ __( 'Email Address', 'sail-renovate' ),        'team@sailrenovate.co.uk', 'text' ],
-		'sail_location'      => [ __( 'Service Area / Location', 'sail-renovate' ), 'Bristol & Surrounding Areas', 'text' ],
-		'sail_instagram_url' => [ __( 'Instagram URL', 'sail-renovate' ),        '#',                       'url' ],
+		'sail_location'         => [ __( 'Service Area / Location', 'sail-renovate' ), 'Bristol & Surrounding Areas', 'text' ],
+		'sail_address_street'   => [ __( 'Street Address', 'sail-renovate' ),        '',                        'text' ],
+		'sail_address_city'     => [ __( 'City', 'sail-renovate' ),                  'Bristol',                 'text' ],
+		'sail_address_postcode' => [ __( 'Postcode', 'sail-renovate' ),              '',                        'text' ],
+		'sail_instagram_url'    => [ __( 'Instagram URL', 'sail-renovate' ),         '#',                       'url' ],
 		'sail_facebook_url'  => [ __( 'Facebook URL', 'sail-renovate' ),         '#',                       'url' ],
 	];
 
@@ -494,11 +553,14 @@ function sail_register_post_types() {
 // Usage: sail_contact('phone'), sail_contact('email'), etc.
 function sail_contact( $key ) {
 	$defaults = [
-		'phone'         => '0117 476 7858',
-		'email'         => 'team@sailrenovate.co.uk',
-		'location'      => 'Bristol & Surrounding Areas',
-		'instagram_url' => '#',
-		'facebook_url'  => '#',
+		'phone'           => '0117 476 7858',
+		'email'           => 'team@sailrenovate.co.uk',
+		'location'        => 'Bristol & Surrounding Areas',
+		'address_street'  => '',
+		'address_city'    => 'Bristol',
+		'address_postcode' => '',
+		'instagram_url'   => '#',
+		'facebook_url'    => '#',
 	];
 	return get_theme_mod( 'sail_' . $key, $defaults[ $key ] ?? '' );
 }

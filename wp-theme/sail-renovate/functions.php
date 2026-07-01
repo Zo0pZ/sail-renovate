@@ -95,6 +95,165 @@ function sail_preconnect_fonts() {
 	<?php
 }
 
+// ── SEO — Meta Descriptions, Open Graph & JSON-LD Schema ────────────────────
+
+// Shared helper: returns the appropriate meta description string for the current page.
+// Called by both sail_meta_description() and sail_og_tags() to keep logic in one place.
+function sail_get_meta_description() : string {
+	if ( is_front_page() ) {
+		return 'Insurance reinstatement, property refurbishment, and home renovations in Bristol & the South West. Surveyor-led, trusted by homeowners and insurers.';
+	}
+	if ( is_page( 'about' ) ) {
+		return 'Learn about Sail Renovate — surveyor-led renovation specialists with 10+ years experience in Bristol and the South West.';
+	}
+	if ( is_page( 'contact' ) ) {
+		return 'Contact Sail Renovate for a free, no-obligation quote. Insurance reinstatement and home renovation specialists in Bristol & the South West.';
+	}
+	if ( is_page( 'services' ) ) {
+		return 'Renovation, reinstatement, and refurbishment services across Bristol & the South West. Surveyor-led, fully accredited, trusted by homeowners and insurers.';
+	}
+	if ( is_page( 'projects' ) || is_page( 'our-work' ) ) {
+		return 'Browse completed renovation and reinstatement projects by Sail Renovate across Bristol and the South West.';
+	}
+	if ( is_page( 'testimonials' ) ) {
+		return 'Read client reviews for Sail Renovate — renovation and reinstatement specialists trusted by homeowners and insurers across Bristol & the South West.';
+	}
+	if ( is_singular( 'service' ) ) {
+		$desc = function_exists( 'get_field' ) ? (string) get_field( 'service_meta_description' ) : '';
+		return $desc ?: wp_strip_all_tags( get_the_excerpt() );
+	}
+	if ( is_singular( 'project' ) ) {
+		$desc = function_exists( 'get_field' ) ? (string) get_field( 'project_meta_description' ) : '';
+		return $desc ?: wp_strip_all_tags( get_the_excerpt() );
+	}
+	return get_bloginfo( 'description' );
+}
+
+add_action( 'wp_head', 'sail_meta_description', 5 );
+function sail_meta_description() : void {
+	$desc = sail_get_meta_description();
+	if ( ! $desc ) {
+		return;
+	}
+	echo '<meta name="description" content="' . esc_attr( mb_substr( $desc, 0, 160 ) ) . '">' . "\n";
+}
+
+add_action( 'wp_head', 'sail_og_tags', 5 );
+function sail_og_tags() : void {
+	// Title
+	$title = is_front_page()
+		? get_bloginfo( 'name' ) . ' — ' . get_bloginfo( 'description' )
+		: get_the_title() . ' — ' . get_bloginfo( 'name' );
+
+	// Description
+	$desc = mb_substr( sail_get_meta_description(), 0, 160 );
+
+	// Image — featured image or theme fallback
+	$og_image = '';
+	if ( is_singular() && has_post_thumbnail() ) {
+		$og_image = (string) get_the_post_thumbnail_url( null, 'large' );
+	}
+	if ( ! $og_image ) {
+		$og_image = get_template_directory_uri() . '/images/og-image.jpg';
+	}
+
+	// URL
+	$url = is_front_page() ? home_url( '/' ) : ( get_permalink() ?: home_url( '/' ) );
+
+	// Type — use "article" for CPT single posts, "website" everywhere else
+	$type = is_singular( [ 'service', 'project' ] ) ? 'article' : 'website';
+
+	?>
+<meta property="og:title" content="<?php echo esc_attr( $title ); ?>">
+<meta property="og:description" content="<?php echo esc_attr( $desc ); ?>">
+<meta property="og:image" content="<?php echo esc_url( $og_image ); ?>">
+<meta property="og:url" content="<?php echo esc_url( $url ); ?>">
+<meta property="og:type" content="<?php echo esc_attr( $type ); ?>">
+<meta property="og:site_name" content="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="<?php echo esc_attr( $title ); ?>">
+<meta name="twitter:description" content="<?php echo esc_attr( $desc ); ?>">
+<meta name="twitter:image" content="<?php echo esc_url( $og_image ); ?>">
+	<?php
+}
+
+add_action( 'wp_head', 'sail_org_schema', 5 );
+function sail_org_schema() : void {
+	if ( ! is_front_page() ) {
+		return;
+	}
+	$social = array_values( array_filter(
+		[ sail_contact( 'instagram_url' ), sail_contact( 'facebook_url' ) ],
+		static fn( $u ) => ! empty( $u ) && $u !== '#'
+	) );
+	$schema = [
+		'@context'   => 'https://schema.org',
+		'@type'      => 'HomeAndConstructionBusiness',
+		'name'       => 'Sail Renovate',
+		'url'        => home_url( '/' ),
+		'logo'       => get_template_directory_uri() . '/images/Sail_Renovate_Primary_Orange_MAIN-300x229.png',
+		'telephone'  => sail_contact( 'phone' ),
+		'email'      => sail_contact( 'email' ),
+		'address'    => [
+			'@type'           => 'PostalAddress',
+			'addressLocality' => 'Bristol',
+			'addressRegion'   => 'England',
+			'addressCountry'  => 'GB',
+		],
+		'areaServed'  => [ 'Bristol', 'South West England' ],
+		'knowsAbout'  => [
+			'Insurance Reinstatement',
+			'Property Refurbishment',
+			'Home Renovation',
+			'Property Maintenance',
+			'Claims Management',
+		],
+	];
+	if ( $social ) {
+		$schema['sameAs'] = $social;
+	}
+	echo '<script type="application/ld+json">' . wp_json_encode( $schema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE ) . '</script>' . "\n";
+}
+
+add_action( 'wp_head', 'sail_faq_schema', 5 );
+function sail_faq_schema() : void {
+	if ( ! is_front_page() ) {
+		return;
+	}
+	$faq_q = new WP_Query( [
+		'post_type'      => 'faq',
+		'posts_per_page' => -1,
+		'orderby'        => 'menu_order',
+		'order'          => 'ASC',
+		'no_found_rows'  => true,
+	] );
+	if ( ! $faq_q->have_posts() ) {
+		return;
+	}
+	$entities = [];
+	while ( $faq_q->have_posts() ) {
+		$faq_q->the_post();
+		$entities[] = [
+			'@type' => 'Question',
+			'name'  => get_the_title(),
+			'acceptedAnswer' => [
+				'@type' => 'Answer',
+				'text'  => wp_strip_all_tags( get_the_content() ),
+			],
+		];
+	}
+	wp_reset_postdata();
+	if ( empty( $entities ) ) {
+		return;
+	}
+	$schema = [
+		'@context'   => 'https://schema.org',
+		'@type'      => 'FAQPage',
+		'mainEntity' => $entities,
+	];
+	echo '<script type="application/ld+json">' . wp_json_encode( $schema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE ) . '</script>' . "\n";
+}
+
 // ── Customizer ───────────────────────────────────────────────────────────────
 add_action( 'customize_register', 'sail_customizer_register' );
 function sail_customizer_register( $wp_customize ) {
@@ -557,6 +716,7 @@ function sail_register_acf_fields() {
 			[ 'key' => 'field_service_tag',          'label' => 'Card Tag (short label, e.g. "Insurance Approved")',                                                            'name' => 'service_tag',    'type' => 'text', 'default_value' => '' ],
 			[ 'key' => 'field_service_hero_eyebrow', 'label' => 'Hero Eyebrow',      'name' => 'hero_eyebrow', 'type' => 'text', 'instructions' => 'Small label above the heading, e.g. "Insurance Reinstatement".', 'default_value' => '' ],
 			[ 'key' => 'field_service_hero_heading', 'label' => 'Hero Heading (rich)', 'name' => 'hero_heading', 'type' => 'text', 'instructions' => 'Full hero sentence. Wrap highlighted word(s) in <em>…</em> for orange italic styling. Leave blank to use the page title.', 'default_value' => '' ],
+			[ 'key' => 'field_service_meta_description', 'label' => 'Meta Description', 'name' => 'service_meta_description', 'type' => 'textarea', 'rows' => 2, 'instructions' => 'Search engine snippet (max 160 characters). Leave blank to use the excerpt.' ],
 		],
 		'location' => [ [ [ 'param' => 'post_type', 'operator' => '==', 'value' => 'service' ] ] ],
 	] );
@@ -571,6 +731,7 @@ function sail_register_acf_fields() {
 			[ 'key' => 'field_project_type',     'label' => 'Project Type (e.g. Full Renovation)',  'name' => 'project_type',     'type' => 'text', 'default_value' => '' ],
 			[ 'key' => 'field_project_location', 'label' => 'Location (e.g. Clifton, Bristol)',     'name' => 'project_location', 'type' => 'text', 'default_value' => '' ],
 			[ 'key' => 'field_project_date',     'label' => 'Completion Date (e.g. October 2024)', 'name' => 'project_date',     'type' => 'text', 'default_value' => '' ],
+			[ 'key' => 'field_project_meta_description', 'label' => 'Meta Description', 'name' => 'project_meta_description', 'type' => 'textarea', 'rows' => 2, 'instructions' => 'Search engine snippet (max 160 characters). Leave blank to use the excerpt.' ],
 		],
 		'location' => [ [ [ 'param' => 'post_type', 'operator' => '==', 'value' => 'project' ] ] ],
 	] );

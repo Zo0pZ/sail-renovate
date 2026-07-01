@@ -42,13 +42,20 @@ $phone_tel = 'tel:' . preg_replace( '/[^0-9+]/', '', $phone );
     </div>
   </div>
   <div class="hero__image">
+    <?php
+    $hero_video  = sail_field( 'home_hero_video', '' );
+    $hero_poster = sail_field( 'home_hero_poster', $img . '5-living-room.jpg' );
+    if ( ! $hero_video ) {
+        $hero_video = get_template_directory_uri() . '/video/Drone_Footage_Video_Generation.mp4';
+    }
+    ?>
     <video autoplay muted loop playsinline
-           poster="<?php echo $img; ?>5-living-room.jpg">
-      <source src="<?php echo esc_url( get_template_directory_uri() ); ?>/video/Drone_Footage_Video_Generation.mp4" type="video/mp4">
+           poster="<?php echo esc_url( $hero_poster ); ?>">
+      <source src="<?php echo esc_url( $hero_video ); ?>" type="video/mp4">
     </video>
     <div class="hero__badge">
-      <p class="hero__badge-text"><?php esc_html_e( 'We make your home feel', 'sail-renovate' ); ?> <em><?php esc_html_e( 'extraordinary', 'sail-renovate' ); ?></em> <?php esc_html_e( 'again.', 'sail-renovate' ); ?></p>
-      <span class="hero__badge-sub"><?php esc_html_e( 'Bristol & Surrounding Areas', 'sail-renovate' ); ?></span>
+      <p class="hero__badge-text"><?php echo esc_html( sail_field( 'home_hero_badge_text', __( 'We make your home feel extraordinary again.', 'sail-renovate' ) ) ); ?></p>
+      <span class="hero__badge-sub"><?php echo esc_html( sail_field( 'home_hero_badge_location', __( 'Bristol & Surrounding Areas', 'sail-renovate' ) ) ); ?></span>
     </div>
   </div>
 </section>
@@ -91,8 +98,8 @@ $phone_tel = 'tel:' . preg_replace( '/[^0-9+]/', '', $phone );
         <?php echo esc_html( sail_field( 'home_services_title', __( 'Our', 'sail-renovate' ) ) ); ?> <em><?php echo esc_html( sail_field( 'home_services_title_accent', __( 'Services', 'sail-renovate' ) ) ); ?></em>
       </h2>
     </div>
-    <a href="<?php echo esc_url( home_url( '/services/' ) ); ?>" class="section-link">
-      <?php esc_html_e( 'All Services', 'sail-renovate' ); ?>
+    <a href="<?php echo esc_url( sail_field( 'home_services_link_url', home_url( '/services/' ) ) ); ?>" class="section-link">
+      <?php echo esc_html( sail_field( 'home_services_link_label', __( 'All Services', 'sail-renovate' ) ) ); ?>
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
     </a>
   </div>
@@ -217,7 +224,14 @@ $phone_tel = 'tel:' . preg_replace( '/[^0-9+]/', '', $phone );
     </div>
   </div>
   <div class="why-us__image">
-    <img src="<?php echo $img; ?>18-front.jpg" alt="<?php esc_attr_e( 'Completed renovation by Sail Renovate', 'sail-renovate' ); ?>" />
+    <?php
+    $why_img_id  = sail_field( 'home_why_image', 0 );
+    $why_img_alt = sail_field( 'home_why_image_alt', __( 'Completed renovation by Sail Renovate', 'sail-renovate' ) );
+    if ( $why_img_id ) :
+        echo wp_get_attachment_image( (int) $why_img_id, 'large', false, [ 'alt' => esc_attr( $why_img_alt ) ] );
+    else : ?>
+    <img src="<?php echo esc_url( $img ); ?>18-front.jpg" alt="<?php echo esc_attr( $why_img_alt ); ?>" />
+    <?php endif; ?>
     <div class="why-us__image-badge">
       <strong><?php echo esc_html( sail_field( 'home_why_badge_num', '10+' ) ); ?></strong>
       <span><?php echo esc_html( sail_field( 'home_why_badge_label', __( 'Years Trusted', 'sail-renovate' ) ) ); ?></span>
@@ -234,8 +248,8 @@ $phone_tel = 'tel:' . preg_replace( '/[^0-9+]/', '', $phone );
         <?php echo esc_html( sail_field( 'home_portfolio_title', __( 'Our', 'sail-renovate' ) ) ); ?> <em><?php echo esc_html( sail_field( 'home_portfolio_title_accent', __( 'Work', 'sail-renovate' ) ) ); ?></em>
       </h2>
     </div>
-    <a href="<?php echo esc_url( home_url( '/projects/' ) ); ?>" class="section-link">
-      <?php esc_html_e( 'View all projects', 'sail-renovate' ); ?>
+    <a href="<?php echo esc_url( sail_field( 'home_portfolio_link_url', home_url( '/projects/' ) ) ); ?>" class="section-link">
+      <?php echo esc_html( sail_field( 'home_portfolio_link_label', __( 'View all projects', 'sail-renovate' ) ) ); ?>
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
     </a>
   </div>
@@ -288,7 +302,7 @@ $phone_tel = 'tel:' . preg_replace( '/[^0-9+]/', '', $phone );
   </div>
 
   <div class="portfolio-cta fade-in">
-    <a href="<?php echo esc_url( home_url( '/contact/' ) ); ?>" class="btn btn--outline"><?php esc_html_e( 'Discuss Your Project', 'sail-renovate' ); ?></a>
+    <a href="<?php echo esc_url( sail_field( 'home_portfolio_link_url', home_url( '/projects/' ) ) ); ?>" class="btn btn--outline"><?php echo esc_html( sail_field( 'home_portfolio_link_label', __( 'View all projects', 'sail-renovate' ) ) ); ?></a>
   </div>
 </section>
 

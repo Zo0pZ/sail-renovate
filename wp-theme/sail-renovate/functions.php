@@ -563,6 +563,63 @@ function sail_register_acf_fields() {
 	] );
 	// Team Member CPT: title = name, excerpt = job role, content = bio, thumbnail = photo.
 	// No extra ACF fields needed — WordPress built-ins cover the full profile.
+
+	// ── Services page ─────────────────────────────────────────────────────────
+	acf_add_local_field_group( [
+		'key'    => 'group_sail_services_page',
+		'title'  => 'Services Page — Hero & CTA',
+		'fields' => [
+			[ 'key' => 'field_svc_hero_msg',     'label' => 'Hero section',                         'name' => '',                          'type' => 'message',  'message' => 'Edit the Services page hero text. Leave any field blank to use the default.' ],
+			[ 'key' => 'field_svc_hero_eyebrow', 'label' => 'Hero Eyebrow',                         'name' => 'services_hero_eyebrow',     'type' => 'text',     'default_value' => 'Services' ],
+			[ 'key' => 'field_svc_hero_heading', 'label' => 'Hero Heading',                         'name' => 'services_hero_heading',     'type' => 'text',     'default_value' => 'One contractor for reinstatement, refurbishment, and' ],
+			[ 'key' => 'field_svc_hero_accent',  'label' => 'Hero Heading Accent (italic/orange)',  'name' => 'services_hero_heading_accent', 'type' => 'text',  'default_value' => 'everything in between.' ],
+			[ 'key' => 'field_svc_hero_intro',   'label' => 'Hero Intro',                           'name' => 'services_hero_intro',       'type' => 'textarea', 'rows' => 2, 'default_value' => 'From insurance reinstatement projects to planned refurbishment and claims management, Sail Renovate provides end-to-end delivery with qualified oversight and strong communication.' ],
+			[ 'key' => 'field_svc_cta_msg',      'label' => 'CTA section',                          'name' => '',                          'type' => 'message',  'message' => 'Edit the bottom call-to-action block.' ],
+			[ 'key' => 'field_svc_cta_eyebrow',  'label' => 'CTA Eyebrow',                          'name' => 'services_cta_eyebrow',      'type' => 'text',     'default_value' => 'Ready to get started?' ],
+			[ 'key' => 'field_svc_cta_heading',  'label' => 'CTA Heading',                          'name' => 'services_cta_heading',      'type' => 'text',     'default_value' => 'Not sure what you need? Get in touch and' ],
+			[ 'key' => 'field_svc_cta_accent',   'label' => 'CTA Heading Accent (italic/orange)',   'name' => 'services_cta_heading_accent', 'type' => 'text',  'default_value' => "we'll guide you." ],
+			[ 'key' => 'field_svc_cta_btn_lbl',  'label' => 'CTA Button Label',                     'name' => 'services_cta_button_label', 'type' => 'text',     'default_value' => 'Talk to the Team' ],
+			[ 'key' => 'field_svc_cta_btn_url',  'label' => 'CTA Button URL',                       'name' => 'services_cta_button_url',   'type' => 'url',      'default_value' => '/contact/' ],
+		],
+		'location' => [ [ [ 'param' => 'page_slug', 'operator' => '==', 'value' => 'services' ] ] ],
+	] );
+
+	// ── Our Work / Projects page ──────────────────────────────────────────────
+	acf_add_local_field_group( [
+		'key'    => 'group_sail_work_page',
+		'title'  => 'Our Work Page — Hero & CTA',
+		'fields' => [
+			[ 'key' => 'field_work_hero_msg',     'label' => 'Hero section',                        'name' => '',                        'type' => 'message',  'message' => 'Edit the Our Work page hero text. Leave any field blank to use the default.' ],
+			[ 'key' => 'field_work_hero_eyebrow', 'label' => 'Hero Eyebrow',                        'name' => 'work_hero_eyebrow',       'type' => 'text',     'default_value' => 'Our Work' ],
+			[ 'key' => 'field_work_hero_heading', 'label' => 'Hero Heading',                        'name' => 'work_hero_heading',       'type' => 'text',     'default_value' => 'From first call to final sign-off —' ],
+			[ 'key' => 'field_work_hero_accent',  'label' => 'Hero Heading Accent (italic/orange)', 'name' => 'work_hero_heading_accent', 'type' => 'text',    'default_value' => "here's the evidence." ],
+			[ 'key' => 'field_work_hero_intro',   'label' => 'Hero Intro',                          'name' => 'work_hero_intro',         'type' => 'textarea', 'rows' => 2, 'default_value' => 'Explore our recent projects across Bristol and the South West, from insurance reinstatements and home repairs to full property renovations.' ],
+			[ 'key' => 'field_work_cta_msg',      'label' => 'CTA section',                         'name' => '',                        'type' => 'message',  'message' => 'Edit the bottom call-to-action block.' ],
+			[ 'key' => 'field_work_cta_eyebrow',  'label' => 'CTA Eyebrow',                         'name' => 'work_cta_eyebrow',        'type' => 'text',     'default_value' => 'Ready to get started?' ],
+			[ 'key' => 'field_work_cta_heading',  'label' => 'CTA Heading',                         'name' => 'work_cta_heading',        'type' => 'text',     'default_value' => 'Seen enough?' ],
+			[ 'key' => 'field_work_cta_accent',   'label' => 'CTA Heading Accent (italic/orange)',  'name' => 'work_cta_heading_accent', 'type' => 'text',     'default_value' => "Let's talk about your project." ],
+			[ 'key' => 'field_work_cta_text',     'label' => 'CTA Body Text',                       'name' => 'work_cta_text',           'type' => 'textarea', 'rows' => 1, 'default_value' => 'Free quote, no obligation. We cover Bristol and the surrounding area.' ],
+			[ 'key' => 'field_work_cta_btn_lbl',  'label' => 'CTA Button Label',                    'name' => 'work_cta_button_label',   'type' => 'text',     'default_value' => 'Get a Free Quote' ],
+			[ 'key' => 'field_work_cta_btn_url',  'label' => 'CTA Button URL',                      'name' => 'work_cta_button_url',     'type' => 'url',      'default_value' => '/contact/' ],
+		],
+		'location' => [ [ [ 'param' => 'page_slug', 'operator' => '==', 'value' => 'projects' ] ] ],
+	] );
+
+	// ── Contact page ──────────────────────────────────────────────────────────
+	// Phone, email, and service area come from Customizer (sail_contact()). Only
+	// the hero copy is ACF-driven so the CMS editor can update it without code.
+	acf_add_local_field_group( [
+		'key'    => 'group_sail_contact_page',
+		'title'  => 'Contact Page — Hero',
+		'fields' => [
+			[ 'key' => 'field_ct_hero_msg',     'label' => 'Hero section',                        'name' => '',                           'type' => 'message',  'message' => 'Edit the Contact page hero copy. Phone, email and service area are set in Appearance → Customise → Sail Renovate → Contact Details.' ],
+			[ 'key' => 'field_ct_hero_eyebrow', 'label' => 'Hero Eyebrow',                        'name' => 'contact_hero_eyebrow',       'type' => 'text',     'default_value' => 'Get In Touch' ],
+			[ 'key' => 'field_ct_hero_heading', 'label' => 'Hero Heading',                        'name' => 'contact_hero_heading',       'type' => 'text',     'default_value' => "Let's discuss your" ],
+			[ 'key' => 'field_ct_hero_accent',  'label' => 'Hero Heading Accent (italic/orange)', 'name' => 'contact_hero_heading_accent', 'type' => 'text',    'default_value' => 'next project.' ],
+			[ 'key' => 'field_ct_hero_intro',   'label' => 'Hero Intro',                          'name' => 'contact_hero_intro',         'type' => 'textarea', 'rows' => 2, 'default_value' => 'Whether you require an urgent insurance repair or are planning a comprehensive home renovation, our team is ready to assist. Contact us today to arrange a free, no-obligation surveyor visit.' ],
+		],
+		'location' => [ [ [ 'param' => 'page_slug', 'operator' => '==', 'value' => 'contact' ] ] ],
+	] );
 }
 
 /**

@@ -11,9 +11,12 @@ $phone_tel = 'tel:' . preg_replace( '/[^0-9+]/', '', $phone );
 ?>
 <main>
   <section class="internal-hero">
-    <span class="section-eyebrow"><?php esc_html_e( 'Our Work', 'sail-renovate' ); ?></span>
-    <h1 class="hero__heading"><?php esc_html_e( 'From first call to final sign-off —', 'sail-renovate' ); ?> <em><?php esc_html_e( 'here\'s the evidence.', 'sail-renovate' ); ?></em></h1>
-    <p class="hero__sub"><?php esc_html_e( 'Explore our recent projects across Bristol and the South West, from insurance reinstatements and home repairs to full property renovations.', 'sail-renovate' ); ?></p>
+    <span class="section-eyebrow"><?php echo esc_html( sail_field( 'work_hero_eyebrow', __( 'Our Work', 'sail-renovate' ) ) ); ?></span>
+    <h1 class="hero__heading">
+      <?php echo esc_html( sail_field( 'work_hero_heading', __( 'From first call to final sign-off —', 'sail-renovate' ) ) ); ?>
+      <?php $work_acc = sail_field( 'work_hero_heading_accent', __( "here's the evidence.", 'sail-renovate' ) ); if ( $work_acc ) : ?> <em><?php echo esc_html( $work_acc ); ?></em><?php endif; ?>
+    </h1>
+    <p class="hero__sub"><?php echo esc_html( sail_field( 'work_hero_intro', __( 'Explore our recent projects across Bristol and the South West, from insurance reinstatements and home repairs to full property renovations.', 'sail-renovate' ) ) ); ?></p>
     <div class="hero__badges">
       <span class="badge-pill"><?php esc_html_e( 'Qualified Surveyors', 'sail-renovate' ); ?></span>
       <span class="badge-pill"><?php esc_html_e( 'Insurance Approved', 'sail-renovate' ); ?></span>
@@ -84,11 +87,14 @@ $phone_tel = 'tel:' . preg_replace( '/[^0-9+]/', '', $phone );
 
   <section class="page-section--alt">
     <div class="inner" style="display: flex; flex-direction: column; align-items: center; text-align: center;">
-      <span class="section-eyebrow"><?php esc_html_e( 'Ready to get started?', 'sail-renovate' ); ?></span>
-      <h2 class="section-title"><?php esc_html_e( 'Seen enough?', 'sail-renovate' ); ?> <em><?php esc_html_e( 'Let\'s talk about your project.', 'sail-renovate' ); ?></em></h2>
-      <p style="color: var(--text-muted); font-size: 1.05rem; max-width: 520px; margin: 1rem auto 0;"><?php esc_html_e( 'Free quote, no obligation. We cover Bristol and the surrounding area.', 'sail-renovate' ); ?></p>
+      <span class="section-eyebrow"><?php echo esc_html( sail_field( 'work_cta_eyebrow', __( 'Ready to get started?', 'sail-renovate' ) ) ); ?></span>
+      <h2 class="section-title">
+        <?php echo esc_html( sail_field( 'work_cta_heading', __( 'Seen enough?', 'sail-renovate' ) ) ); ?>
+        <?php $work_cta_acc = sail_field( 'work_cta_heading_accent', __( "Let's talk about your project.", 'sail-renovate' ) ); if ( $work_cta_acc ) : ?> <em><?php echo esc_html( $work_cta_acc ); ?></em><?php endif; ?>
+      </h2>
+      <p style="color: var(--text-muted); font-size: 1.05rem; max-width: 520px; margin: 1rem auto 0;"><?php echo esc_html( sail_field( 'work_cta_text', __( 'Free quote, no obligation. We cover Bristol and the surrounding area.', 'sail-renovate' ) ) ); ?></p>
       <div style="display: flex; gap: 1rem; margin-top: 2rem; flex-wrap: wrap; justify-content: center;">
-        <a href="<?php echo esc_url( home_url( '/contact/' ) ); ?>" class="btn btn--primary"><?php esc_html_e( 'Get a Free Quote', 'sail-renovate' ); ?></a>
+        <a href="<?php echo esc_url( sail_field( 'work_cta_button_url', home_url( '/contact/' ) ) ); ?>" class="btn btn--primary"><?php echo esc_html( sail_field( 'work_cta_button_label', __( 'Get a Free Quote', 'sail-renovate' ) ) ); ?></a>
         <a href="<?php echo esc_url( $phone_tel ); ?>" class="btn btn--navy">
           <?php
           /* translators: %s: phone number */

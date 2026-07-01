@@ -380,40 +380,40 @@ $phone_tel = 'tel:' . preg_replace( '/[^0-9+]/', '', $phone );
       <h2 class="section-title" id="contact-heading">
         <?php echo esc_html( sail_field( 'home_contact_title', __( 'Start Your', 'sail-renovate' ) ) ); ?> <em><?php echo esc_html( sail_field( 'home_contact_title_accent', __( 'Project', 'sail-renovate' ) ) ); ?></em>
       </h2>
-      <p class="contact__intro"><?php echo esc_html( sail_field( 'home_contact_intro', __( 'Whether you require an urgent insurance repair or are planning a comprehensive home renovation, our team is ready to assist. Contact us today to arrange a free, no-obligation surveyor visit.', 'sail-renovate' ) ) ); ?></p>
+      <p><?php echo esc_html( sail_field( 'home_contact_intro', __( 'Whether you require an urgent insurance repair or are planning a comprehensive home renovation, our team is ready to assist. Contact us today to arrange a free, no-obligation surveyor visit.', 'sail-renovate' ) ) ); ?></p>
     </div>
 
     <div class="contact__detail">
       <svg class="contact__detail-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.12 1.18 2 2 0 012.11 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
       <div>
-        <p class="contact__detail-label"><?php esc_html_e( 'Phone', 'sail-renovate' ); ?></p>
-        <div class="contact__detail-value"><a href="<?php echo esc_url( $phone_tel ); ?>"><?php echo esc_html( $phone ); ?></a></div>
+        <span><?php esc_html_e( 'Phone', 'sail-renovate' ); ?></span>
+        <a href="<?php echo esc_attr( $phone_tel ); ?>"><?php echo esc_html( $phone ); ?></a>
       </div>
     </div>
 
     <div class="contact__detail">
       <svg class="contact__detail-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
       <div>
-        <p class="contact__detail-label"><?php esc_html_e( 'Email', 'sail-renovate' ); ?></p>
-        <div class="contact__detail-value"><a href="mailto:<?php echo esc_attr( sail_contact( 'email' ) ); ?>"><?php echo esc_html( sail_contact( 'email' ) ); ?></a></div>
+        <span><?php esc_html_e( 'Email', 'sail-renovate' ); ?></span>
+        <a href="mailto:<?php echo esc_attr( sail_contact( 'email' ) ); ?>"><?php echo esc_html( sail_contact( 'email' ) ); ?></a>
       </div>
     </div>
 
     <div class="contact__detail">
       <svg class="contact__detail-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
       <div>
-        <p class="contact__detail-label"><?php esc_html_e( 'Location', 'sail-renovate' ); ?></p>
-        <div class="contact__detail-value"><?php echo esc_html( sail_contact( 'location' ) ); ?></div>
+        <span><?php esc_html_e( 'Location', 'sail-renovate' ); ?></span>
+        <span><?php echo esc_html( sail_contact( 'location' ) ); ?></span>
       </div>
     </div>
 
     <div>
-      <p class="contact__detail-label" style="margin-bottom:0.75rem;"><?php esc_html_e( 'Follow Us', 'sail-renovate' ); ?></p>
+      <p><?php esc_html_e( 'Follow us', 'sail-renovate' ); ?></p>
       <div class="contact__socials">
-        <a href="<?php echo esc_url( sail_contact( 'instagram_url' ) ); ?>" class="social-btn" aria-label="<?php esc_attr_e( 'Instagram', 'sail-renovate' ); ?>">
+        <a href="<?php echo esc_url( sail_contact( 'instagram_url' ) ); ?>" aria-label="<?php esc_attr_e( 'Instagram', 'sail-renovate' ); ?>" rel="noopener noreferrer" target="_blank">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
         </a>
-        <a href="<?php echo esc_url( sail_contact( 'facebook_url' ) ); ?>" class="social-btn" aria-label="<?php esc_attr_e( 'Facebook', 'sail-renovate' ); ?>">
+        <a href="<?php echo esc_url( sail_contact( 'facebook_url' ) ); ?>" aria-label="<?php esc_attr_e( 'Facebook', 'sail-renovate' ); ?>" rel="noopener noreferrer" target="_blank">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
         </a>
       </div>
@@ -421,13 +421,13 @@ $phone_tel = 'tel:' . preg_replace( '/[^0-9+]/', '', $phone );
   </div>
 
   <div class="contact__cta">
-    <div style="text-align: center; max-width: 640px; margin: 0 auto;">
+    <div>
       <p class="section-eyebrow"><?php echo esc_html( sail_field( 'home_cta_eyebrow', __( 'Ready to Transform Your Home?', 'sail-renovate' ) ) ); ?></p>
-      <h3 class="cta-card__title"><?php echo esc_html( sail_field( 'home_cta_title', __( 'Ready to start your project?', 'sail-renovate' ) ) ); ?></h3>
-      <p style="color: var(--text-muted); font-size: 1.05rem; line-height: 1.7; margin: 1.5rem 0 2.5rem;">
+      <h2><?php echo esc_html( sail_field( 'home_cta_title', __( 'Ready to start your project?', 'sail-renovate' ) ) ); ?></h2>
+      <p>
         <?php echo esc_html( sail_field( 'home_cta_body', __( 'Join our satisfied clients and experience professional renovation services across Bristol and the South West. Free consultation, no obligation.', 'sail-renovate' ) ) ); ?>
       </p>
-      <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+      <div>
         <a href="<?php echo esc_url( $phone_tel ); ?>" class="btn btn--primary">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.12 1.18 2 2 0 012.11 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
           <?php
@@ -435,7 +435,9 @@ $phone_tel = 'tel:' . preg_replace( '/[^0-9+]/', '', $phone );
           printf( esc_html__( 'Call %s', 'sail-renovate' ), esc_html( $phone ) );
           ?>
         </a>
-        <a href="<?php echo esc_url( home_url( '/contact/' ) ); ?>" class="btn btn--outline"><?php esc_html_e( 'Get Started Today', 'sail-renovate' ); ?></a>
+        <a href="<?php echo esc_url( sail_field( 'home_hero_cta1_url', home_url( '/contact/' ) ) ); ?>" class="btn btn--outline">
+          <?php esc_html_e( 'Get a Free Quote', 'sail-renovate' ); ?>
+        </a>
       </div>
     </div>
   </div>

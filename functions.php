@@ -52,6 +52,8 @@ function sail_enqueue_assets() {
 		wp_enqueue_style( 'sail-services', $uri . '/css/pages/services.css', [ 'sail-global' ], SAIL_VERSION );
 	} elseif ( is_page( 'projects' ) || is_page( 'our-work' ) ) {
 		wp_enqueue_style( 'sail-projects', $uri . '/css/pages/projects.css', [ 'sail-global' ], SAIL_VERSION );
+	} elseif ( is_page( 'testimonials' ) ) {
+		wp_enqueue_style( 'sail-testimonials', $uri . '/css/pages/testimonials.css', [ 'sail-global' ], SAIL_VERSION );
 	} elseif ( is_page( 'privacy-policy' ) ) {
 		wp_enqueue_style( 'sail-privacy', $uri . '/css/pages/privacy-policy.css', [ 'sail-global' ], SAIL_VERSION );
 	} elseif ( is_singular( 'service' ) ) {
@@ -603,6 +605,38 @@ function sail_register_acf_fields() {
 			[ 'key' => 'field_work_cta_btn_url',  'label' => 'CTA Button URL',                      'name' => 'work_cta_button_url',     'type' => 'url',      'default_value' => '/contact/' ],
 		],
 		'location' => [ [ [ 'param' => 'page_slug', 'operator' => '==', 'value' => 'projects' ] ] ],
+	] );
+
+	// ── Testimonials page ─────────────────────────────────────────────────────
+	acf_add_local_field_group( [
+		'key'    => 'group_testimonials_page',
+		'title'  => 'Testimonials Page — Hero & CTA',
+		'fields' => [
+			[ 'key' => 'field_tpage_hero_msg',     'label' => 'Hero section',  'name' => '',                           'type' => 'message',  'message' => 'Edit the Testimonials page hero text. Testimonial cards come from WordPress Admin → Testimonials.' ],
+			[ 'key' => 'field_tpage_hero_eyebrow', 'label' => 'Hero Eyebrow',  'name' => 'testimonials_hero_eyebrow', 'type' => 'text',     'default_value' => 'Client Reviews' ],
+			[ 'key' => 'field_tpage_hero_heading', 'label' => 'Hero Heading',  'name' => 'testimonials_hero_heading', 'type' => 'text',     'default_value' => 'What our clients say about us.' ],
+			[ 'key' => 'field_tpage_hero_intro',   'label' => 'Hero Intro',    'name' => 'testimonials_hero_intro',   'type' => 'textarea', 'rows' => 2, 'default_value' => 'Real feedback from homeowners and insurers across Bristol and the South West.' ],
+			[ 'key' => 'field_tpage_cta_msg',      'label' => 'CTA section',   'name' => '',                           'type' => 'message',  'message' => 'Edit the bottom call-to-action block. Leave all fields blank to hide the CTA entirely.' ],
+			[ 'key' => 'field_tpage_cta_eyebrow',  'label' => 'CTA Eyebrow',   'name' => 'testimonials_cta_eyebrow', 'type' => 'text',     'default_value' => 'Ready to get started?' ],
+			[ 'key' => 'field_tpage_cta_heading',  'label' => 'CTA Heading',   'name' => 'testimonials_cta_heading', 'type' => 'text',     'default_value' => 'Start your project today.' ],
+			[ 'key' => 'field_tpage_cta_text',     'label' => 'CTA Body Text', 'name' => 'testimonials_cta_text',    'type' => 'textarea', 'rows' => 2, 'default_value' => 'Free quote, no obligation. Bristol & the South West.' ],
+			[ 'key' => 'field_tpage_cta_btn_lbl',  'label' => 'CTA Button Label', 'name' => 'testimonials_cta_button_label', 'type' => 'text', 'default_value' => 'Get a Free Quote' ],
+			[ 'key' => 'field_tpage_cta_btn_url',  'label' => 'CTA Button URL',   'name' => 'testimonials_cta_button_url',   'type' => 'url',  'default_value' => '/contact/' ],
+		],
+		'location' => [ [ [ 'param' => 'page_slug', 'operator' => '==', 'value' => 'testimonials' ] ] ],
+	] );
+
+	// ── Testimonial CPT — per-card optional fields ────────────────────────────
+	// title = client name, content = quote body (both WP built-ins).
+	// rating + role are optional: omit from a card to get 5 stars and no role line.
+	acf_add_local_field_group( [
+		'key'    => 'group_sail_testimonial_cpt',
+		'title'  => 'Testimonial — Rating & Role',
+		'fields' => [
+			[ 'key' => 'field_testi_rating', 'label' => 'Star Rating (1–5)', 'name' => 'testimonial_rating', 'type' => 'number', 'min' => 1, 'max' => 5, 'default_value' => 5, 'instructions' => 'Leave blank to show 5 stars.' ],
+			[ 'key' => 'field_testi_role',   'label' => 'Role / Location',   'name' => 'testimonial_role',   'type' => 'text',   'instructions' => 'Optional — appears below the client name, e.g. "Insurance Reinstatement, Clifton".' ],
+		],
+		'location' => [ [ [ 'param' => 'post_type', 'operator' => '==', 'value' => 'testimonial' ] ] ],
 	] );
 
 	// ── Contact page ──────────────────────────────────────────────────────────

@@ -18,7 +18,7 @@ if ( have_posts() ) the_post();
     <h1 class="hero__heading"><?php echo esc_html( $h_main ); ?><?php if ( $h_accent ) : ?> <em><?php echo esc_html( $h_accent ); ?></em><?php endif; ?></h1>
     <p class="hero__sub"><?php echo esc_html( sail_field( 'about_hero_sub', __( 'We are a surveyor-led renovation and reinstatement company, dedicated to bringing professionalism, transparency, and exceptional craftsmanship to every project.', 'sail-renovate' ) ) ); ?></p>
     <?php
-      $hero_cta_url   = sail_field( 'hero_cta_url',   home_url( '/contact/' ) );
+      $hero_cta_url   = esc_url( sail_field( 'hero_cta_url' ) ? home_url( sail_field( 'hero_cta_url' ) ) : home_url( '/contact/' ) );
       $hero_cta_label = sail_field( 'hero_cta_label', __( 'Get a Free Quote', 'sail-renovate' ) );
     ?>
     <div style="margin-top: 2rem;">
@@ -262,13 +262,13 @@ if ( have_posts() ) the_post();
         <h2 class="section-title"><?php echo wp_kses( $cta_h, [ 'em' => [] ] ); ?></h2>
         <p><?php echo esc_html( sail_field( 'cta_text', __( 'Our rigorous standards have earned us the trust of major insurance providers to handle complex reinstatement works. We bring that exact same level of scrutiny, project management, and attention to detail to our private home renovations.', 'sail-renovate' ) ) ); ?></p>
         <?php
-          $cta_url   = sail_field( 'cta_button_url',   home_url( '/contact/' ) );
+          $cta_url   = esc_url( sail_field( 'cta_button_url' ) ? home_url( sail_field( 'cta_button_url' ) ) : home_url( '/contact/' ) );
           $cta_label = sail_field( 'cta_button_label', __( 'Get a Free Quote', 'sail-renovate' ) );
         ?>
         <div style="margin-top: 2rem; display: flex; gap: 1rem; flex-wrap: wrap;">
           <a href="<?php echo esc_url( $cta_url ); ?>" class="btn btn--primary"><?php echo esc_html( $cta_label ); ?></a>
           <?php
-            $cta2_url   = sail_field( 'trust_cta2_url',   home_url( '/projects/' ) );
+            $cta2_url   = esc_url( sail_field( 'trust_cta2_url' ) ? home_url( sail_field( 'trust_cta2_url' ) ) : home_url( '/projects/' ) );
             $cta2_label = sail_field( 'trust_cta2_label', __( 'View Our Work', 'sail-renovate' ) );
           ?>
           <a href="<?php echo esc_url( $cta2_url ); ?>" class="btn btn--navy"><?php echo esc_html( $cta2_label ); ?></a>

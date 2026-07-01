@@ -11,9 +11,12 @@ $phone_tel = 'tel:' . preg_replace( '/[^0-9+]/', '', $phone );
 <main class="contact-page">
   <!-- ── Left: Info ── -->
   <div class="contact__info-side fade-in">
-    <span class="section-eyebrow"><?php esc_html_e( 'Get In Touch', 'sail-renovate' ); ?></span>
-    <h1 class="hero__heading"><?php esc_html_e( 'Let\'s discuss your', 'sail-renovate' ); ?><br><em><?php esc_html_e( 'next project.', 'sail-renovate' ); ?></em></h1>
-    <p class="hero__sub"><?php esc_html_e( 'Whether you require an urgent insurance repair or are planning a comprehensive home renovation, our team is ready to assist. Contact us today to arrange a free, no-obligation surveyor visit.', 'sail-renovate' ); ?></p>
+    <span class="section-eyebrow"><?php echo esc_html( sail_field( 'contact_hero_eyebrow', __( 'Get In Touch', 'sail-renovate' ) ) ); ?></span>
+    <h1 class="hero__heading">
+      <?php echo esc_html( sail_field( 'contact_hero_heading', __( "Let's discuss your", 'sail-renovate' ) ) ); ?><br>
+      <?php $ct_acc = sail_field( 'contact_hero_heading_accent', __( 'next project.', 'sail-renovate' ) ); if ( $ct_acc ) : ?><em><?php echo esc_html( $ct_acc ); ?></em><?php endif; ?>
+    </h1>
+    <p class="hero__sub"><?php echo esc_html( sail_field( 'contact_hero_intro', __( 'Whether you require an urgent insurance repair or are planning a comprehensive home renovation, our team is ready to assist. Contact us today to arrange a free, no-obligation surveyor visit.', 'sail-renovate' ) ) ); ?></p>
 
     <div class="contact-details">
       <div class="contact__detail">

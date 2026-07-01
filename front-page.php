@@ -43,15 +43,16 @@ $phone_tel = 'tel:' . preg_replace( '/[^0-9+]/', '', $phone );
   </div>
   <div class="hero__image">
     <?php
-    $hero_video  = sail_field( 'home_hero_video', '' );
-    $hero_poster = sail_field( 'home_hero_poster', $img . '5-living-room.jpg' );
-    if ( ! $hero_video ) {
-        $hero_video = get_template_directory_uri() . '/video/Drone_Footage_Video_Generation.mp4';
-    }
+    $hero_video_mp4  = sail_field( 'home_hero_video',      $img . 'hero-video.mp4' );
+    $hero_video_webm = sail_field( 'home_hero_video_webm', '' );
+    $hero_poster     = sail_field( 'home_hero_poster',     $img . '5-living-room.jpg' );
     ?>
     <video autoplay muted loop playsinline
            poster="<?php echo esc_url( $hero_poster ); ?>">
-      <source src="<?php echo esc_url( $hero_video ); ?>" type="video/mp4">
+      <?php if ( $hero_video_webm ) : ?>
+        <source src="<?php echo esc_url( $hero_video_webm ); ?>" type="video/webm">
+      <?php endif; ?>
+      <source src="<?php echo esc_url( $hero_video_mp4 ); ?>" type="video/mp4">
     </video>
     <div class="hero__badge">
       <p class="hero__badge-text"><?php echo esc_html( sail_field( 'home_hero_badge_text', __( 'We make your home feel extraordinary again.', 'sail-renovate' ) ) ); ?></p>

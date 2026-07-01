@@ -15,6 +15,12 @@
     <li><a href="<?php echo esc_url( home_url( '/contact/' ) ); ?>"><?php esc_html_e( 'Contact', 'sail-renovate' ); ?></a></li>
   </ul>
 
+  <div class="footer__contact">
+    <a href="tel:<?php echo esc_attr( str_replace( ' ', '', sail_contact( 'phone' ) ) ); ?>"><?php echo esc_html( sail_contact( 'phone' ) ); ?></a>
+    <a href="mailto:<?php echo esc_attr( sail_contact( 'email' ) ); ?>"><?php echo esc_html( sail_contact( 'email' ) ); ?></a>
+    <span><?php echo esc_html( sail_contact( 'location' ) ); ?></span>
+  </div>
+
   <div class="footer__badges">
     <span class="badge-pill"><?php esc_html_e( 'Qualified Surveyors', 'sail-renovate' ); ?></span>
     <span class="badge-pill"><?php esc_html_e( 'Insurance Approved', 'sail-renovate' ); ?></span>

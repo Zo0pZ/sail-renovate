@@ -701,6 +701,21 @@ function sail_breadcrumbs() {
 		. '</div></nav>';
 }
 
+/**
+ * Add a slug-based body class to all top-level pages.
+ * WordPress omits page-{slug} for top-level pages, only adding page-id-{n}.
+ * This restores predictable slug-based selectors without hardcoded IDs.
+ */
+add_filter( 'body_class', function( array $classes ) : array {
+	if ( is_page() ) {
+		$slug = get_post_field( 'post_name', get_queried_object_id() );
+		if ( $slug ) {
+			$classes[] = 'page-' . sanitize_html_class( $slug );
+		}
+	}
+	return $classes;
+} );
+
 // ACF JSON — version-control field groups alongside the theme.
 add_filter( 'acf/settings/save_json', function () {
 	return get_stylesheet_directory() . '/acf-json';

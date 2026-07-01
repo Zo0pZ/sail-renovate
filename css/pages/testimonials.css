@@ -1,6 +1,58 @@
 /* Testimonials page styles */
 /* Card and grid styles reuse about-testimonial__* from global.css */
 
+/* ── Testimonial card overrides (grid layout on /testimonials/) ─── */
+.page-slug-testimonials .about-testimonial {
+  max-width: none;
+  margin: 0;
+  padding: 2rem;
+  text-align: left;
+  border: 1px solid var(--border);
+  background: #fff;
+  border-radius: 2px;
+}
+
+.page-slug-testimonials .about-testimonial__stars {
+  font-size: 1rem;
+  letter-spacing: 0.08em;
+  margin-bottom: 1.25rem;
+}
+
+.page-slug-testimonials .about-testimonial__quote {
+  font-size: 1rem;
+  line-height: 1.7;
+  margin-bottom: 0;
+}
+
+.page-slug-testimonials .about-testimonial__quote p {
+  margin: 0;
+  font-size: inherit;
+  font-style: italic;
+}
+
+/* Divider between quote and author — no <hr> needed in PHP */
+.page-slug-testimonials .about-testimonial__author {
+  margin-top: 1.75rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+  display: block;
+  font-size: 1rem;
+  font-weight: 700;
+  font-family: var(--sans);
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--navy);
+}
+
+.page-slug-testimonials .about-testimonial__role {
+  margin-top: 0.25rem;
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+/* Empty state */
 .testimonials-empty {
   grid-column: 1 / -1;
   text-align: center;

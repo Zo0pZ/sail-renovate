@@ -60,7 +60,7 @@ $phone_tel = 'tel:' . preg_replace( '/[^0-9+]/', '', $phone );
       <a href="<?php the_permalink(); ?>" class="project-card fade-in<?php echo esc_attr( $delay ); ?>" data-category="<?php echo esc_attr( $cat_slug ); ?>">
         <?php if ( has_post_thumbnail() ) : ?>
         <div class="project-card__image">
-          <?php the_post_thumbnail( 'medium_large', [ 'alt' => get_the_title() ] ); ?>
+          <?php the_post_thumbnail( 'medium_large', [ 'alt' => get_the_title(), 'loading' => 'lazy' ] ); ?>
         </div>
         <?php endif; ?>
         <div class="project-card__content">

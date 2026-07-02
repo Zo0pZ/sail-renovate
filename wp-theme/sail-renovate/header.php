@@ -91,15 +91,7 @@
           <h4><?php esc_html_e( 'Property Refurbishment', 'sail-renovate' ); ?></h4>
           <p><?php esc_html_e( 'Complete home makeovers from kitchens and bathrooms to full transformations.', 'sail-renovate' ); ?></p>
         </a>
-        <a href="<?php echo esc_url( home_url( '/services/property-maintenance/' ) ); ?>" class="mega-nav__card">
-          <svg class="mega-nav__card-icon" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-            <path d="M28 8 L32 12 L16 28 L10 30 L12 24 Z"/>
-            <path d="M24 12 L28 16"/>
-            <circle cx="12" cy="28" r="2" fill="currentColor" stroke="none"/>
-          </svg>
-          <h4><?php esc_html_e( 'Property Maintenance', 'sail-renovate' ); ?></h4>
-          <p><?php esc_html_e( 'Scheduled repairs and upkeep to protect and maintain your property.', 'sail-renovate' ); ?></p>
-        </a>
+
         <a href="<?php echo esc_url( home_url( '/services/project-management/' ) ); ?>" class="mega-nav__card">
           <svg class="mega-nav__card-icon" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
             <rect x="10" y="8" width="20" height="26" rx="1"/>

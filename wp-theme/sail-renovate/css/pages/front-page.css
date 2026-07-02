@@ -543,6 +543,7 @@
   margin: 0;
 }
 .cta-card__title em { color: var(--accent); font-style: italic; }
+.cta-card__btns { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 2rem; }
 
 /* ── Responsive ──────────────────────────────────────────── */
 @media (max-width: 1100px) {

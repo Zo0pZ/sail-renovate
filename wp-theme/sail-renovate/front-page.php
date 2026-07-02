@@ -425,7 +425,7 @@ $phone_tel = 'tel:' . preg_replace( '/[^0-9+]/', '', $phone );
     <div>
       <p class="section-eyebrow"><?php echo esc_html( sail_field( 'home_cta_eyebrow', __( 'Ready to Transform Your Home?', 'sail-renovate' ) ) ); ?></p>
       <h2 class="cta-card__title">
-        <?php echo wp_kses( sail_field( 'home_cta_title', 'Ready to start your <em>project?</em>' ), [ 'em' => [] ] ); ?>
+        <?php echo esc_html( sail_field( 'home_cta_title', __( 'Ready to start your', 'sail-renovate' ) ) ); ?> <em><?php echo esc_html( sail_field( 'home_cta_title_accent', __( 'project?', 'sail-renovate' ) ) ); ?></em>
       </h2>
       <p class="contact__intro">
         <?php echo esc_html( sail_field( 'home_cta_body', __( 'Join our satisfied clients and experience professional renovation services across Bristol and the South West. Free consultation, no obligation.', 'sail-renovate' ) ) ); ?>

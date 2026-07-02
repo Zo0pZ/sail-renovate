@@ -12,9 +12,10 @@ $phone_tel = 'tel:' . preg_replace( '/[^0-9+]/', '', $phone );
 <main>
   <section class="internal-hero">
     <span class="section-eyebrow"><?php echo esc_html( sail_field( 'work_hero_eyebrow', __( 'Our Work', 'sail-renovate' ) ) ); ?></span>
+    <?php $work_h = sail_field( 'work_hero_heading', __( 'From first call to final sign-off —', 'sail-renovate' ) ); $work_acc = sail_field( 'work_hero_heading_accent', __( "here's the evidence.", 'sail-renovate' ) ); ?>
     <h1 class="hero__heading">
-      <?php echo esc_html( sail_field( 'work_hero_heading', __( 'From first call to final sign-off —', 'sail-renovate' ) ) ); ?>
-      <?php $work_acc = sail_field( 'work_hero_heading_accent', __( "here's the evidence.", 'sail-renovate' ) ); if ( $work_acc ) : ?> <em><?php echo esc_html( $work_acc ); ?></em><?php endif; ?>
+      <?php echo esc_html( sail_strip_accent( $work_h, $work_acc ) ); ?>
+      <?php if ( $work_acc ) : ?> <em><?php echo esc_html( $work_acc ); ?></em><?php endif; ?>
     </h1>
     <p class="hero__sub"><?php echo esc_html( sail_field( 'work_hero_intro', __( 'Explore our recent projects across Bristol and the South West, from insurance reinstatements and home repairs to full property renovations.', 'sail-renovate' ) ) ); ?></p>
     <div class="hero__badges">
@@ -88,9 +89,10 @@ $phone_tel = 'tel:' . preg_replace( '/[^0-9+]/', '', $phone );
   <section class="page-section--alt">
     <div class="inner" style="display: flex; flex-direction: column; align-items: center; text-align: center;">
       <span class="section-eyebrow"><?php echo esc_html( sail_field( 'work_cta_eyebrow', __( 'Ready to get started?', 'sail-renovate' ) ) ); ?></span>
+      <?php $work_cta_h = sail_field( 'work_cta_heading', __( 'Seen enough?', 'sail-renovate' ) ); $work_cta_acc = sail_field( 'work_cta_heading_accent', __( "Let's talk about your project.", 'sail-renovate' ) ); ?>
       <h2 class="section-title">
-        <?php echo esc_html( sail_field( 'work_cta_heading', __( 'Seen enough?', 'sail-renovate' ) ) ); ?>
-        <?php $work_cta_acc = sail_field( 'work_cta_heading_accent', __( "Let's talk about your project.", 'sail-renovate' ) ); if ( $work_cta_acc ) : ?> <em><?php echo esc_html( $work_cta_acc ); ?></em><?php endif; ?>
+        <?php echo esc_html( sail_strip_accent( $work_cta_h, $work_cta_acc ) ); ?>
+        <?php if ( $work_cta_acc ) : ?> <em><?php echo esc_html( $work_cta_acc ); ?></em><?php endif; ?>
       </h2>
       <p style="color: var(--text-muted); font-size: 1.05rem; max-width: 520px; margin: 1rem auto 0;"><?php echo esc_html( sail_field( 'work_cta_text', __( 'Free quote, no obligation. We cover Bristol and the surrounding area.', 'sail-renovate' ) ) ); ?></p>
       <div style="display: flex; gap: 1rem; margin-top: 2rem; flex-wrap: wrap; justify-content: center;">

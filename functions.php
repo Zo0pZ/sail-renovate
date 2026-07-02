@@ -592,6 +592,21 @@ function sail_acf_image( $image_id, $size = 'large', $alt = '', $class = '' ) {
 	echo wp_get_attachment_image( (int) $image_id, $size, false, $atts );
 }
 
+// Strips the accent phrase from the end of a title if it's already there.
+// Self-heals DB values that were saved as full phrases before the two-field pattern was introduced.
+function sail_strip_accent( string $title, string $accent ) : string {
+	$title  = trim( $title );
+	$accent = trim( $accent );
+	if ( '' === $accent ) {
+		return $title;
+	}
+	$len = mb_strlen( $accent );
+	if ( mb_strlen( $title ) >= $len && mb_strtolower( mb_substr( $title, -$len ) ) === mb_strtolower( $accent ) ) {
+		return rtrim( mb_substr( $title, 0, -$len ) );
+	}
+	return $title;
+}
+
 // Renders a section eyebrow + h2.section-title with optional italic accent.
 // Usage: sail_section_heading( sail_field('eyebrow','…'), sail_field('title','…'), sail_field('accent','…') )
 function sail_section_heading( $eyebrow = '', $title = '', $title_accent = '' ) {
@@ -602,10 +617,11 @@ function sail_section_heading( $eyebrow = '', $title = '', $title_accent = '' ) 
 		echo '<span class="section-eyebrow">' . esc_html( $eyebrow ) . '</span>';
 	}
 	if ( $title || $title_accent ) {
+		$base = sail_strip_accent( (string) $title, (string) $title_accent );
 		echo '<h2 class="section-title">';
-		echo esc_html( $title );
+		echo esc_html( $base );
 		if ( $title_accent ) {
-			echo ' <em>' . esc_html( $title_accent ) . '</em>';
+			echo ' <em>' . esc_html( trim( (string) $title_accent ) ) . '</em>';
 		}
 		echo '</h2>';
 	}

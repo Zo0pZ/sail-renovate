@@ -10,9 +10,10 @@ $img = esc_url( get_template_directory_uri() . '/images/' );
 <main>
   <section class="internal-hero">
     <span class="section-eyebrow"><?php echo esc_html( sail_field( 'services_hero_eyebrow', __( 'Services', 'sail-renovate' ) ) ); ?></span>
+    <?php $svc_h = sail_field( 'services_hero_heading', __( 'One contractor for reinstatement, refurbishment, and', 'sail-renovate' ) ); $svc_acc = sail_field( 'services_hero_heading_accent', __( 'everything in between.', 'sail-renovate' ) ); ?>
     <h1 class="hero__heading">
-      <?php echo esc_html( sail_field( 'services_hero_heading', __( 'One contractor for reinstatement, refurbishment, and', 'sail-renovate' ) ) ); ?>
-      <?php $svc_acc = sail_field( 'services_hero_heading_accent', __( 'everything in between.', 'sail-renovate' ) ); if ( $svc_acc ) : ?> <em><?php echo esc_html( $svc_acc ); ?></em><?php endif; ?>
+      <?php echo esc_html( sail_strip_accent( $svc_h, $svc_acc ) ); ?>
+      <?php if ( $svc_acc ) : ?> <em><?php echo esc_html( $svc_acc ); ?></em><?php endif; ?>
     </h1>
     <p class="hero__sub"><?php echo esc_html( sail_field( 'services_hero_intro', __( 'From insurance reinstatement projects to planned refurbishment and claims management, Sail Renovate provides end-to-end delivery with qualified oversight and strong communication.', 'sail-renovate' ) ) ); ?></p>
     <div class="hero__badges">
@@ -92,9 +93,10 @@ $img = esc_url( get_template_directory_uri() . '/images/' );
   <section class="page-section--alt">
     <div class="inner" style="display: flex; flex-direction: column; align-items: center; text-align: center;">
       <span class="section-eyebrow"><?php echo esc_html( sail_field( 'services_cta_eyebrow', __( 'Ready to get started?', 'sail-renovate' ) ) ); ?></span>
+      <?php $svc_cta_h = sail_field( 'services_cta_heading', __( 'Not sure what you need? Get in touch and', 'sail-renovate' ) ); $svc_cta_acc = sail_field( 'services_cta_heading_accent', __( "we'll guide you.", 'sail-renovate' ) ); ?>
       <h2 class="section-title">
-        <?php echo esc_html( sail_field( 'services_cta_heading', __( 'Not sure what you need? Get in touch and', 'sail-renovate' ) ) ); ?>
-        <?php $svc_cta_acc = sail_field( 'services_cta_heading_accent', __( "we'll guide you.", 'sail-renovate' ) ); if ( $svc_cta_acc ) : ?> <em><?php echo esc_html( $svc_cta_acc ); ?></em><?php endif; ?>
+        <?php echo esc_html( sail_strip_accent( $svc_cta_h, $svc_cta_acc ) ); ?>
+        <?php if ( $svc_cta_acc ) : ?> <em><?php echo esc_html( $svc_cta_acc ); ?></em><?php endif; ?>
       </h2>
       <a href="<?php echo esc_url( sail_field( 'services_cta_button_url', home_url( '/contact/' ) ) ); ?>" class="btn btn--primary" style="margin-top: 1rem;"><?php echo esc_html( sail_field( 'services_cta_button_label', __( 'Talk to the Team', 'sail-renovate' ) ) ); ?></a>
     </div>

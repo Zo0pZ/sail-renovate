@@ -497,6 +497,7 @@
 .contact__detail { display: flex; gap: 1rem; align-items: flex-start; }
 .contact__detail-icon { width: 22px; height: 22px; flex-shrink: 0; margin-top: 2px; color: var(--accent); }
 .contact__detail-label {
+  display: block;
   font-size: 0.75rem;
   font-weight: 500;
   letter-spacing: 0.1em;
@@ -504,9 +505,8 @@
   color: var(--text-muted);
   margin-bottom: 0.4rem;
 }
-.contact__detail-value { font-family: var(--serif); font-size: 1.3rem; font-weight: 400; color: var(--navy); }
-.contact__detail-value a { transition: color 0.2s; }
-.contact__detail-value a:hover { color: var(--accent); }
+.contact__detail-value { display: block; font-family: var(--serif); font-size: 1.3rem; font-weight: 400; color: var(--navy); transition: color 0.2s; }
+a.contact__detail-value:hover { color: var(--accent); }
 .contact__socials { display: flex; gap: 1rem; margin-top: 0.5rem; }
 .social-btn {
   display: inline-flex;

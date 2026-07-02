@@ -124,7 +124,7 @@ $phone_tel = 'tel:' . preg_replace( '/[^0-9+]/', '', $phone );
     <a href="<?php the_permalink(); ?>" class="service-card fade-in<?php echo esc_attr( $s_delay ); ?>">
       <img class="service-card__img"
            src="<?php echo $s_thumb ? esc_url( $s_thumb ) : esc_url( $img ) . '12-bathroom.jpg'; ?>"
-           alt="<?php echo esc_attr( get_the_title() ); ?>" />
+           alt="<?php echo esc_attr( get_the_title() ); ?>" loading="lazy" />
       <div class="service-card__content">
         <?php if ( $s_tag ) : ?>
         <p class="service-card__tag"><?php echo esc_html( $s_tag ); ?></p>
@@ -144,7 +144,7 @@ $phone_tel = 'tel:' . preg_replace( '/[^0-9+]/', '', $phone );
       // Fallback when no service posts exist yet in the CMS.
     ?>
     <a href="<?php echo esc_url( home_url( '/services/insurance-reinstatement/' ) ); ?>" class="service-card fade-in">
-      <img class="service-card__img" src="<?php echo esc_url( $img ); ?>12-bathroom.jpg" alt="<?php esc_attr_e( 'Home repair and restoration work', 'sail-renovate' ); ?>" />
+      <img class="service-card__img" src="<?php echo esc_url( $img ); ?>12-bathroom.jpg" alt="<?php esc_attr_e( 'Home repair and restoration work', 'sail-renovate' ); ?>" loading="lazy" />
       <div class="service-card__content">
         <p class="service-card__tag"><?php esc_html_e( 'Insurance Approved', 'sail-renovate' ); ?></p>
         <h3 class="service-card__title"><?php esc_html_e( 'Home Repairs & Restoration', 'sail-renovate' ); ?></h3>
@@ -155,7 +155,7 @@ $phone_tel = 'tel:' . preg_replace( '/[^0-9+]/', '', $phone );
       </div>
     </a>
     <a href="<?php echo esc_url( home_url( '/services/property-refurbishment/' ) ); ?>" class="service-card fade-in fade-in-delay-1">
-      <img class="service-card__img" src="<?php echo esc_url( $img ); ?>3-kitchen.jpg" alt="<?php esc_attr_e( 'Professional property renovation', 'sail-renovate' ); ?>" />
+      <img class="service-card__img" src="<?php echo esc_url( $img ); ?>3-kitchen.jpg" alt="<?php esc_attr_e( 'Professional property renovation', 'sail-renovate' ); ?>" loading="lazy" />
       <div class="service-card__content">
         <p class="service-card__tag"><?php esc_html_e( 'Full Project Management', 'sail-renovate' ); ?></p>
         <h3 class="service-card__title"><?php esc_html_e( 'Property Renovations', 'sail-renovate' ); ?></h3>
@@ -166,7 +166,7 @@ $phone_tel = 'tel:' . preg_replace( '/[^0-9+]/', '', $phone );
       </div>
     </a>
     <a href="<?php echo esc_url( home_url( '/services/property-maintenance/' ) ); ?>" class="service-card fade-in fade-in-delay-2">
-      <img class="service-card__img" src="<?php echo esc_url( $img ); ?>15-garden.jpg" alt="<?php esc_attr_e( 'Eco-friendly home improvements', 'sail-renovate' ); ?>" />
+      <img class="service-card__img" src="<?php echo esc_url( $img ); ?>15-garden.jpg" alt="<?php esc_attr_e( 'Eco-friendly home improvements', 'sail-renovate' ); ?>" loading="lazy" />
       <div class="service-card__content">
         <p class="service-card__tag"><?php esc_html_e( 'Sustainable Living', 'sail-renovate' ); ?></p>
         <h3 class="service-card__title"><?php esc_html_e( 'Eco Home Improvements', 'sail-renovate' ); ?></h3>
@@ -177,7 +177,7 @@ $phone_tel = 'tel:' . preg_replace( '/[^0-9+]/', '', $phone );
       </div>
     </a>
     <a href="<?php echo esc_url( home_url( '/services/claims-management/' ) ); ?>" class="service-card fade-in fade-in-delay-3">
-      <img class="service-card__img" src="<?php echo esc_url( $img ); ?>6-study.jpg" alt="<?php esc_attr_e( 'Claims management service', 'sail-renovate' ); ?>" />
+      <img class="service-card__img" src="<?php echo esc_url( $img ); ?>6-study.jpg" alt="<?php esc_attr_e( 'Claims management service', 'sail-renovate' ); ?>" loading="lazy" />
       <div class="service-card__content">
         <p class="service-card__tag"><?php esc_html_e( 'Insurance Approved', 'sail-renovate' ); ?></p>
         <h3 class="service-card__title"><?php esc_html_e( 'Claims Management', 'sail-renovate' ); ?></h3>
@@ -231,7 +231,7 @@ $phone_tel = 'tel:' . preg_replace( '/[^0-9+]/', '', $phone );
     if ( $why_img_id ) :
         echo wp_get_attachment_image( (int) $why_img_id, 'large', false, [ 'alt' => esc_attr( $why_img_alt ) ] );
     else : ?>
-    <img src="<?php echo esc_url( $img ); ?>18-front.jpg" alt="<?php echo esc_attr( $why_img_alt ); ?>" />
+    <img src="<?php echo esc_url( $img ); ?>18-front.jpg" alt="<?php echo esc_attr( $why_img_alt ); ?>" loading="lazy" />
     <?php endif; ?>
     <div class="why-us__image-badge">
       <strong><?php echo esc_html( sail_field( 'home_why_badge_num', '10+' ) ); ?></strong>
@@ -275,7 +275,7 @@ $phone_tel = 'tel:' . preg_replace( '/[^0-9+]/', '', $phone );
     ?>
     <a href="<?php the_permalink(); ?>" class="proj-card fade-in<?php echo esc_attr( $p_delay ); ?>">
       <img src="<?php echo $p_thumb ? esc_url( $p_thumb ) : esc_url( $img ) . '1-front.jpg'; ?>"
-           alt="<?php echo esc_attr( get_the_title() ); ?>" />
+           alt="<?php echo esc_attr( get_the_title() ); ?>" loading="lazy" />
       <div class="proj-card__overlay"></div>
       <div class="proj-card__info">
         <?php if ( $p_disp ) : ?>
@@ -292,7 +292,7 @@ $phone_tel = 'tel:' . preg_replace( '/[^0-9+]/', '', $phone );
       // Fallback: one real project card when CPT is empty.
     ?>
     <a href="<?php echo esc_url( home_url( '/projects/period-property-transformation/' ) ); ?>" class="proj-card fade-in">
-      <img src="<?php echo esc_url( $img ); ?>1-front.jpg" alt="<?php esc_attr_e( 'Full renovation, Bristol', 'sail-renovate' ); ?>" />
+      <img src="<?php echo esc_url( $img ); ?>1-front.jpg" alt="<?php esc_attr_e( 'Full renovation, Bristol', 'sail-renovate' ); ?>" loading="lazy" />
       <div class="proj-card__overlay"></div>
       <div class="proj-card__info">
         <p class="proj-card__type"><?php esc_html_e( 'Full Renovation · Clifton', 'sail-renovate' ); ?></p>

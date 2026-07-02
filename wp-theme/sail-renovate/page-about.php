@@ -148,7 +148,7 @@ if ( have_posts() ) the_post();
       <div class="team-card fade-in<?php echo esc_attr( $t_delay ); ?>">
         <div class="team-card__photo">
           <?php if ( $t_thumb ) : ?>
-          <img src="<?php echo esc_url( $t_thumb ); ?>" alt="<?php echo esc_attr( get_the_title() ); ?>" />
+          <img src="<?php echo esc_url( $t_thumb ); ?>" alt="<?php echo esc_attr( get_the_title() ); ?>" loading="lazy" />
           <?php else : ?>
           <div class="team-card__photo-placeholder">
             <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
@@ -198,8 +198,6 @@ if ( have_posts() ) the_post();
       endif;
       ?>
     </div>
-
-    <p class="team-placeholder-note"><?php esc_html_e( 'Add team members via WordPress Admin → Team. Use the title for the name, excerpt for job role, and content for the bio. Upload a featured image for the photo.', 'sail-renovate' ); ?></p>
 
     <!-- ── Tradespeople ── -->
     <div style="margin-top: 4rem; padding-top: 3.5rem; border-top: 1px solid var(--border);">

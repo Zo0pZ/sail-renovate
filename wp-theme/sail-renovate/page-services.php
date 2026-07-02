@@ -38,7 +38,7 @@ $img = esc_url( get_template_directory_uri() . '/images/' );
         $delay = $svc_delays[ $si % count( $svc_delays ) ];
       ?>
       <a href="<?php the_permalink(); ?>" class="card-img fade-in<?php echo esc_attr( $delay ); ?>">
-        <?php the_post_thumbnail( 'large', [ 'alt' => get_the_title() ] ); ?>
+        <?php the_post_thumbnail( 'large', [ 'alt' => get_the_title(), 'loading' => 'lazy' ] ); ?>
         <div class="card-img__content">
           <?php if ( $tag ) : ?><p class="card-img__tag"><?php echo esc_html( $tag ); ?></p><?php endif; ?>
           <h3><?php echo esc_html( get_the_title() ); ?></h3>

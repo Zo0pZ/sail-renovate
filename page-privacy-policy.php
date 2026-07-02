@@ -53,7 +53,7 @@ get_header();
 
 	<h2><?php esc_html_e( '4. How We Use Your Personal Data', 'sail-renovate' ); ?></h2>
 	<p><?php esc_html_e( 'We use your personal data for the following purposes, relying on the lawful bases set out in the UK GDPR:', 'sail-renovate' ); ?></p>
-	<table>
+	<table class="policy-table">
 		<thead>
 			<tr>
 				<th><?php esc_html_e( 'Purpose', 'sail-renovate' ); ?></th>

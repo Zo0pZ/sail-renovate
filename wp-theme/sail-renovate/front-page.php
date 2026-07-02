@@ -95,9 +95,8 @@ $phone_tel = 'tel:' . preg_replace( '/[^0-9+]/', '', $phone );
   <div class="section-header">
     <div>
       <p class="section-eyebrow"><?php echo esc_html( sail_field( 'home_services_eyebrow', __( 'What We Do', 'sail-renovate' ) ) ); ?></p>
-      <h2 class="section-title" id="services-heading">
-        <?php echo esc_html( sail_field( 'home_services_title', __( 'Our', 'sail-renovate' ) ) ); ?> <em><?php echo esc_html( sail_field( 'home_services_title_accent', __( 'Services', 'sail-renovate' ) ) ); ?></em>
-      </h2>
+      <?php $svc_t = sail_field( 'home_services_title', __( 'Our', 'sail-renovate' ) ); $svc_a = sail_field( 'home_services_title_accent', __( 'Services', 'sail-renovate' ) ); ?>
+      <h2 class="section-title" id="services-heading"><?php echo esc_html( sail_strip_accent( $svc_t, $svc_a ) ); ?> <em><?php echo esc_html( $svc_a ); ?></em></h2>
     </div>
     <a href="<?php echo esc_url( sail_field( 'home_services_link_url', home_url( '/services/' ) ) ); ?>" class="section-link">
       <?php echo esc_html( sail_field( 'home_services_link_label', __( 'All Services', 'sail-renovate' ) ) ); ?>
@@ -196,9 +195,8 @@ $phone_tel = 'tel:' . preg_replace( '/[^0-9+]/', '', $phone );
   <div class="why-us__content">
     <div>
       <p class="section-eyebrow"><?php echo esc_html( sail_field( 'home_why_eyebrow', __( 'Why Choose Us', 'sail-renovate' ) ) ); ?></p>
-      <h2 class="section-title" id="why-heading">
-        <?php echo esc_html( sail_field( 'home_why_title', __( 'A team you can', 'sail-renovate' ) ) ); ?><br><em><?php echo esc_html( sail_field( 'home_why_title_accent', __( 'truly rely on.', 'sail-renovate' ) ) ); ?></em>
-      </h2>
+      <?php $why_t = sail_field( 'home_why_title', __( 'A team you can', 'sail-renovate' ) ); $why_a = sail_field( 'home_why_title_accent', __( 'truly rely on.', 'sail-renovate' ) ); ?>
+      <h2 class="section-title" id="why-heading"><?php echo esc_html( sail_strip_accent( $why_t, $why_a ) ); ?><br><em><?php echo esc_html( $why_a ); ?></em></h2>
     </div>
     <div class="why-us__list">
       <div class="why-item fade-in">
@@ -245,9 +243,8 @@ $phone_tel = 'tel:' . preg_replace( '/[^0-9+]/', '', $phone );
   <div class="section-header">
     <div>
       <p class="section-eyebrow"><?php echo esc_html( sail_field( 'home_portfolio_eyebrow', __( 'Recent Projects', 'sail-renovate' ) ) ); ?></p>
-      <h2 class="section-title" id="portfolio-heading">
-        <?php echo esc_html( sail_field( 'home_portfolio_title', __( 'Our', 'sail-renovate' ) ) ); ?> <em><?php echo esc_html( sail_field( 'home_portfolio_title_accent', __( 'Work', 'sail-renovate' ) ) ); ?></em>
-      </h2>
+      <?php $port_t = sail_field( 'home_portfolio_title', __( 'Our', 'sail-renovate' ) ); $port_a = sail_field( 'home_portfolio_title_accent', __( 'Work', 'sail-renovate' ) ); ?>
+      <h2 class="section-title" id="portfolio-heading"><?php echo esc_html( sail_strip_accent( $port_t, $port_a ) ); ?> <em><?php echo esc_html( $port_a ); ?></em></h2>
     </div>
     <a href="<?php echo esc_url( sail_field( 'home_portfolio_link_url', home_url( '/projects/' ) ) ); ?>" class="section-link">
       <?php echo esc_html( sail_field( 'home_portfolio_link_label', __( 'View all projects', 'sail-renovate' ) ) ); ?>
@@ -424,9 +421,8 @@ $phone_tel = 'tel:' . preg_replace( '/[^0-9+]/', '', $phone );
   <div class="contact__cta">
     <div>
       <p class="section-eyebrow"><?php echo esc_html( sail_field( 'home_cta_eyebrow', __( 'Ready to Transform Your Home?', 'sail-renovate' ) ) ); ?></p>
-      <h2 class="cta-card__title">
-        <?php echo esc_html( sail_field( 'home_cta_title', __( 'Ready to start your', 'sail-renovate' ) ) ); ?> <em><?php echo esc_html( sail_field( 'home_cta_title_accent', __( 'project?', 'sail-renovate' ) ) ); ?></em>
-      </h2>
+      <?php $cta_t = sail_field( 'home_cta_title', __( 'Ready to start your', 'sail-renovate' ) ); $cta_a = sail_field( 'home_cta_title_accent', __( 'project?', 'sail-renovate' ) ); ?>
+      <h2 class="cta-card__title"><?php echo esc_html( sail_strip_accent( $cta_t, $cta_a ) ); ?> <em><?php echo esc_html( $cta_a ); ?></em></h2>
       <p class="contact__intro">
         <?php echo esc_html( sail_field( 'home_cta_body', __( 'Join our satisfied clients and experience professional renovation services across Bristol and the South West. Free consultation, no obligation.', 'sail-renovate' ) ) ); ?>
       </p>

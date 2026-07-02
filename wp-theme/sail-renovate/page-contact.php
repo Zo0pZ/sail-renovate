@@ -4,11 +4,61 @@
  *
  * @package sail-renovate
  */
+
+// ── Form submission handler ──────────────────────────────────────────────────
+if ( 'POST' === $_SERVER['REQUEST_METHOD'] && isset( $_POST['sail_contact_nonce'] ) ) {
+	if ( ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['sail_contact_nonce'] ) ), 'sail_contact_form' ) ) {
+		wp_die( esc_html__( 'Security check failed.', 'sail-renovate' ) );
+	}
+	// Honeypot: bots fill hidden fields, humans don't.
+	if ( ! empty( $_POST['website'] ) ) {
+		wp_safe_redirect( add_query_arg( 'sent', '1', get_permalink() ) );
+		exit;
+	}
+	$first   = sanitize_text_field(     wp_unslash( $_POST['first_name'] ?? '' ) );
+	$last    = sanitize_text_field(     wp_unslash( $_POST['last_name']  ?? '' ) );
+	$email   = sanitize_email(          wp_unslash( $_POST['email']      ?? '' ) );
+	$phone   = sanitize_text_field(     wp_unslash( $_POST['phone']      ?? '' ) );
+	$service = sanitize_text_field(     wp_unslash( $_POST['service']    ?? '' ) );
+	$message = sanitize_textarea_field( wp_unslash( $_POST['message']    ?? '' ) );
+
+	$to      = sail_contact( 'email' );
+	$subject = sprintf( 'New enquiry from %s %s', $first, $last );
+	$body    = implode( "\n", array_filter( [
+		"Name:    {$first} {$last}",
+		"Email:   {$email}",
+		$phone   ? "Phone:   {$phone}"   : '',
+		$service ? "Service: {$service}" : '',
+		'',
+		'Message:',
+		$message,
+	] ) );
+	$headers = [
+		'Content-Type: text/plain; charset=UTF-8',
+		"Reply-To: {$email}",
+	];
+
+	$sent = wp_mail( $to, $subject, $body, $headers );
+	wp_safe_redirect( add_query_arg( $sent ? 'sent' : 'error', '1', get_permalink() ) );
+	exit;
+}
+
 get_header();
 $phone     = sail_contact( 'phone' );
 $phone_tel = 'tel:' . preg_replace( '/[^0-9+]/', '', $phone );
 ?>
 <main class="contact-page">
+
+  <?php if ( isset( $_GET['sent'] ) ) : ?>
+  <div class="form-notice form-notice--success" role="alert">
+    <p><?php esc_html_e( "Thank you \u{2014} your message has been sent. We\u{2019}ll be in touch shortly.", 'sail-renovate' ); ?></p>
+  </div>
+  <?php elseif ( isset( $_GET['error'] ) ) : ?>
+  <div class="form-notice form-notice--error" role="alert">
+    <p><?php esc_html_e( 'Sorry, there was a problem sending your message. Please try again or call us directly.', 'sail-renovate' ); ?></p>
+  </div>
+  <?php endif; ?>
+
   <!-- ── Left: Info ── -->
   <div class="contact__info-side fade-in">
     <span class="section-eyebrow"><?php echo esc_html( sail_field( 'contact_hero_eyebrow', __( 'Get In Touch', 'sail-renovate' ) ) ); ?></span>
@@ -59,8 +109,15 @@ $phone_tel = 'tel:' . preg_replace( '/[^0-9+]/', '', $phone );
 
   <!-- ── Right: Form ── -->
   <div class="contact__form-side fade-in fade-in-delay-1">
-    <form action="mailto:<?php echo esc_attr( sail_contact( 'email' ) ); ?>" method="post" enctype="text/plain" novalidate>
+    <form action="<?php echo esc_url( get_permalink() ); ?>" method="post" novalidate>
       <?php wp_nonce_field( 'sail_contact_form', 'sail_contact_nonce' ); ?>
+
+      <!-- Honeypot: hidden from humans, filled by bots -->
+      <div style="position:absolute;left:-9999px;visibility:hidden;" aria-hidden="true">
+        <label for="website"><?php esc_html_e( 'Leave this blank', 'sail-renovate' ); ?></label>
+        <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+      </div>
+
       <div class="form-row">
         <div class="form-group" style="margin-bottom:0;">
           <label for="fname"><?php esc_html_e( 'First Name', 'sail-renovate' ); ?></label>
